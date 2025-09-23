@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Image, CheckCircle2 } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
 
 interface PortfolioItem {
   id: number;
@@ -13,8 +12,6 @@ interface PortfolioItem {
 }
 
 const Portfolio: React.FC = () => {
-  const [activeStates, setActiveStates] = useState<{ [key: number]: 'before' | 'after' }>({});
-
   const portfolioData: PortfolioItem[] = [
     {
       id: 1,
@@ -23,8 +20,8 @@ const Portfolio: React.FC = () => {
       timeline: '5 дней',
       points: 28,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      imageAfter: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop'
+      imageBefore: '/before.png',
+      imageAfter: '/after.png'
     },
     {
       id: 2,
@@ -33,8 +30,8 @@ const Portfolio: React.FC = () => {
       timeline: '7 дней',
       points: 35,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: 'https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      imageAfter: 'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop'
+      imageBefore: '/before.png',
+      imageAfter: '/after.png'
     },
     {
       id: 3,
@@ -43,8 +40,8 @@ const Portfolio: React.FC = () => {
       timeline: '4 дня',
       points: 22,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: 'https://images.pexels.com/photos/1396125/pexels-photo-1396125.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      imageAfter: 'https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop'
+      imageBefore: '/before.png',
+      imageAfter: '/after.png'
     },
     {
       id: 4,
@@ -53,21 +50,87 @@ const Portfolio: React.FC = () => {
       timeline: '6 дней',
       points: 31,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: 'https://images.pexels.com/photos/1396128/pexels-photo-1396128.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      imageAfter: 'https://images.pexels.com/photos/1571465/pexels-photo-1571465.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop'
+      imageBefore: '/before.png',
+      imageAfter: '/after.png'
+    },
+    {
+      id: 5,
+      title: 'ЖК "Green City"',
+      address: 'ул. Сурганова, 24',
+      timeline: '8 дней',
+      points: 42,
+      gesAct: 'Акт сдан в ЖЭС',
+      imageBefore: '/before.png',
+      imageAfter: '/after.png'
+    },
+    {
+      id: 6,
+      title: 'ЖК "Столичный"',
+      address: 'пр. Победителей, 65',
+      timeline: '6 дней',
+      points: 29,
+      gesAct: 'Акт сдан в ЖЭС',
+      imageBefore: '/before.png',
+      imageAfter: '/after.png'
     }
   ];
 
-  const toggleState = (id: number) => {
-    setActiveStates(prev => ({
-      ...prev,
-      [id]: prev[id] === 'after' ? 'before' : 'after'
-    }));
-  };
+  const sliderRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+  const afterWrapperRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+  const containerRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
-  const getState = (id: number): 'before' | 'after' => {
-    return activeStates[id] || 'before';
-  };
+  useEffect(() => {
+    const setupSlider = (id: number) => {
+      const slider = sliderRefs.current[id];
+      const afterWrapper = afterWrapperRefs.current[id];
+      const container = containerRefs.current[id];
+
+      if (!slider || !afterWrapper || !container) return;
+
+      let isDragging = false;
+
+      const move = (e: MouseEvent | TouchEvent) => {
+        if (!isDragging) return;
+        
+        const rect = container.getBoundingClientRect();
+        let x = (e.type.includes('touch') ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX) - rect.left;
+        x = Math.max(0, Math.min(x, rect.width));
+        
+        afterWrapper.style.width = x + 'px';
+        slider.style.left = x + 'px';
+      };
+
+      const startDrag = () => {
+        isDragging = true;
+        document.addEventListener('mousemove', move);
+        document.addEventListener('touchmove', move);
+      };
+
+      const stopDrag = () => {
+        isDragging = false;
+        document.removeEventListener('mousemove', move);
+        document.removeEventListener('touchmove', move);
+      };
+
+      slider.addEventListener('mousedown', startDrag);
+      slider.addEventListener('touchstart', startDrag);
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchend', stopDrag);
+
+      return () => {
+        slider.removeEventListener('mousedown', startDrag);
+        slider.removeEventListener('touchstart', startDrag);
+        document.removeEventListener('mouseup', stopDrag);
+        document.removeEventListener('touchend', stopDrag);
+        document.removeEventListener('mousemove', move);
+        document.removeEventListener('touchmove', move);
+      };
+    };
+
+    portfolioData.forEach(item => {
+      setupSlider(item.id);
+    });
+  }, []);
 
   return (
     <section id="portfolio" className="bg-white">
@@ -81,77 +144,89 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {portfolioData.map((item, index) => {
-            const currentState = getState(item.id);
-            const currentImage = currentState === 'before' ? item.imageBefore : item.imageAfter;
-            const CurrentIcon = currentState === 'before' ? Image : CheckCircle2;
-            const iconColor = currentState === 'before' ? 'text-gray-500' : 'text-icon';
-            
-            return (
-              <div
-                key={item.id}
-                className="group rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Заголовок */}
-                <h3 className="text-xl md:text-2xl font-bold text-primary mb-4">
-                  {item.title}
-                </h3>
+        <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {portfolioData.map((item, index) => (
+            <div
+              key={item.id}
+              className="group rounded-2xl border border-gray-200 bg-gray-50 p-4 md:p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {/* Заголовок */}
+              <h3 className="text-lg md:text-xl font-bold text-primary mb-3">
+                {item.title}
+              </h3>
 
-                {/* Детали проекта */}
-                <div className="grid grid-cols-2 gap-4 mb-6 text-sm text-text">
-                  <div>
-                    <p className="font-medium">Адрес:</p>
-                    <p>{item.address}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium">Сроки:</p>
-                    <p>{item.timeline}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium">Точки:</p>
-                    <p>{item.points} шт.</p>
-                  </div>
-                  <div>
-                    <p className="font-medium">Статус:</p>
-                    <p>{item.gesAct}</p>
-                  </div>
+              {/* Детали проекта */}
+              <div className="grid grid-cols-2 gap-2 mb-4 text-xs text-text">
+                <div>
+                  <p className="font-medium">Адрес:</p>
+                  <p className="text-xs">{item.address}</p>
                 </div>
+                <div>
+                  <p className="font-medium">Сроки:</p>
+                  <p className="text-xs">{item.timeline}</p>
+                </div>
+                <div>
+                  <p className="font-medium">Точки:</p>
+                  <p className="text-xs">{item.points} шт.</p>
+                </div>
+                <div>
+                  <p className="font-medium">Статус:</p>
+                  <p className="text-xs">{item.gesAct}</p>
+                </div>
+              </div>
 
-                {/* Блок изображения */}
-                <div className="relative mb-4">
-                  <div className="aspect-[4/3] rounded-xl overflow-hidden bg-gray-200">
-                    <img
-                      src={currentImage}
-                      alt={`${item.title} - ${currentState === 'before' ? 'До' : 'После'}`}
-                      className="w-full h-full object-cover transition-opacity duration-300"
+              {/* Слайдер До/После */}
+              <div className="mb-4">
+                <div 
+                  ref={el => containerRefs.current[item.id] = el}
+                  className="relative w-full h-48 overflow-hidden rounded-xl bg-gray-200"
+                >
+                  {/* Фото ДО */}
+                  <img 
+                    src={item.imageBefore} 
+                    alt="До" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+
+                  {/* Фото ПОСЛЕ (сверху, обрезаем ширину) */}
+                  <div 
+                    ref={el => afterWrapperRefs.current[item.id] = el}
+                    className="absolute inset-0 overflow-hidden" 
+                    style={{ width: '50%' }}
+                  >
+                    <img 
+                      src={item.imageAfter} 
+                      alt="После" 
+                      className="w-full h-full object-cover"
                     />
                   </div>
-                  
-                  {/* Индикатор состояния */}
-                  <div className="absolute top-3 left-3 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5">
-                    <CurrentIcon className={`w-4 h-4 ${iconColor}`} strokeWidth={1.5} />
-                    <span className="text-sm font-medium text-gray-700">
-                      {currentState === 'before' ? 'До' : 'После'}
-                    </span>
+
+                  {/* Ползунок */}
+                  <div 
+                    ref={el => sliderRefs.current[item.id] = el}
+                    className="absolute top-0 bottom-0 w-1 bg-white cursor-col-resize flex items-center justify-center select-none"
+                    style={{ left: '50%' }}
+                  >
+                    <div className="w-6 h-6 bg-icon rounded-full shadow-md hover:scale-110 transition-transform"></div>
+                  </div>
+
+                  {/* Метки До/После */}
+                  <div className="absolute top-3 left-3 bg-black/50 text-white text-xs px-2 py-1 rounded">
+                    ДО
+                  </div>
+                  <div className="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded">
+                    ПОСЛЕ
                   </div>
                 </div>
-
-                {/* Кнопка переключения */}
-                <button
-                  onClick={() => toggleState(item.id)}
-                  className="w-full bg-icon text-white font-medium py-3 px-6 rounded-xl 
-                           hover:brightness-90 hover:scale-105 transition-all duration-200
-                           flex items-center justify-center gap-2"
-                >
-                  <span>
-                    {currentState === 'before' ? 'Показать После' : 'Показать До'}
-                  </span>
-                </button>
               </div>
-            );
-          })}
+
+              {/* Инструкция */}
+              <p className="text-xs text-gray-500 text-center">
+                Перетащите ползунок для сравнения
+              </p>
+            </div>
+          ))}
         </div>
 
         <div className="mt-12 text-center">
