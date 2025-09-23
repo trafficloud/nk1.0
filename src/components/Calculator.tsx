@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator as CalculatorIcon, Download } from 'lucide-react';
+import { Calculator as CalculatorIcon } from 'lucide-react';
 
 interface CalculationResult {
   min: number;
@@ -274,7 +274,7 @@ const Calculator: React.FC = () => {
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button 
                 onClick={calculate}
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[180px]
                            rounded-xl min-h-[44px] px-6 py-3
                            text-sm sm:text-base font-medium
                            bg-[#FF7F50] text-white hover:brightness-110 transition"
@@ -283,12 +283,17 @@ const Calculator: React.FC = () => {
               </button>
               <button 
                 onClick={downloadPDF}
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[180px]
                            rounded-xl min-h-[44px] px-6 py-3
                            text-sm sm:text-base font-medium
                            border border-[#1A3A63] text-[#1A3A63] hover:bg-[#1A3A63]/5 transition"
               >
-                ⬇️ <span>Скачать PDF</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>Скачать PDF</span>
               </button>
             </div>
 

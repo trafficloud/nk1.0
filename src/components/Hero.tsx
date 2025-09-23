@@ -40,17 +40,17 @@ const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-slide-up">
             <a
               href="#calc"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap w-[240px]
                          rounded-xl min-h-[48px] px-8 py-3
                          text-sm sm:text-base font-semibold
                          bg-[#FF7F50] text-white hover:brightness-110 transition"
             >
-              <Calculator className="w-5 h-5" /> <span>Рассчитать стоимость услуг</span>
+              <Calculator className="w-5 h-5" /> <span>Рассчитать стоимость</span>
             </a>
 
             <a
               href="#consult"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap w-[240px]
                          rounded-xl min-h-[48px] px-8 py-3
                          text-sm sm:text-base font-semibold
                          border border-white text-white hover:bg-white/10 transition"
