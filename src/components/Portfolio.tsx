@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 interface PortfolioItem {
   id: number;
@@ -12,6 +13,7 @@ interface PortfolioItem {
 }
 
 const Portfolio: React.FC = () => {
+  // Показываем только первые 3 карточки на главной странице
   const portfolioData: PortfolioItem[] = [
     {
       id: 1,
@@ -42,36 +44,6 @@ const Portfolio: React.FC = () => {
       gesAct: 'Акт сдан в ЖЭС',
       imageBefore: '/до1.png',
       imageAfter: '/после1.png'
-    },
-    {
-      id: 4,
-      title: 'ЖК "Riverside"',
-      address: 'ул. Притыцкого, 156',
-      timeline: '6 дней',
-      points: 31,
-      gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/before.png',
-      imageAfter: '/after.png'
-    },
-    {
-      id: 5,
-      title: 'ЖК "Green City"',
-      address: 'ул. Сурганова, 24',
-      timeline: '8 дней',
-      points: 42,
-      gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/before.png',
-      imageAfter: '/after.png'
-    },
-    {
-      id: 6,
-      title: 'ЖК "Столичный"',
-      address: 'пр. Победителей, 65',
-      timeline: '6 дней',
-      points: 29,
-      gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/before.png',
-      imageAfter: '/after.png'
     }
   ];
 
@@ -227,6 +199,24 @@ const Portfolio: React.FC = () => {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Кнопка "Смотреть больше работ" */}
+        <div className="mt-12 text-center">
+          <Link
+            to="/portfolio"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl transition-colors duration-300 text-base font-medium"
+          >
+            Смотреть больше работ
+            <svg 
+              className="w-5 h-5" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
 
         <div className="mt-12 text-center">
