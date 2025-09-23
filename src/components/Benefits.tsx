@@ -28,7 +28,7 @@ const Benefits: React.FC = () => {
 
   return (
     <section id="benefits" className="bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 md:pb-12 pt-12 md:pt-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Почему нам доверяют

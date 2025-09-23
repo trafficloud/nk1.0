@@ -104,7 +104,7 @@ const Calculator: React.FC = () => {
 
   return (
     <section id="calc" className="bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-12 pb-16 md:pb-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 text-center">
             Рассчитайте стоимость <span className="text-accent">за 2 минуты</span>
