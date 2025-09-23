@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Zap } from 'lucide-react';
 import logoImage from '/public/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
 
   const menuItems = [
-    { name: 'Главная', href: '/', isExternal: false },
-    { name: 'Преимущества', href: '#benefits', isExternal: false }, 
-    { name: 'Портфолио', href: '/portfolio', isExternal: false },
-    { name: 'О компании', href: '#about', isExternal: false },
-    { name: 'Отзывы', href: '#reviews', isExternal: false },
-    { name: 'Процесс', href: '#process', isExternal: false },
-    { name: 'Гарантии', href: '#guarantees', isExternal: false },
-    { name: 'FAQ', href: '#faq', isExternal: false },
-    { name: 'Контакты', href: '#contacts', isExternal: false }
+    'Главная',
+    'Преимущества', 
+    'Портфолио',
+    'О компании',
+    'Отзывы',
+    'Процесс',
+    'Гарантии',
+    'FAQ',
+    'Контакты'
   ];
 
   useEffect(() => {
@@ -55,23 +53,13 @@ const Header: React.FC = () => {
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item, index) => (
-              item.href.startsWith('/') ? (
-                <Link
-                  key={index}
-                  to={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${textClasses}`}
-                >
-                  {item.name}
-                </Link>
-              ) : (
-                <a
-                  key={index}
-                  href={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${textClasses}`}
-                >
-                  {item.name}
-                </a>
-              )
+              <a
+                key={index}
+                href={`#${item.toLowerCase()}`}
+                className={`text-sm font-medium transition-colors hover:text-accent ${textClasses}`}
+              >
+                {item}
+              </a>
             ))}
           </nav>
 
@@ -89,25 +77,14 @@ const Header: React.FC = () => {
           <div className="lg:hidden py-4 bg-white border-t border-gray-200 shadow-lg">
             <nav className="flex flex-col space-y-3">
               {menuItems.map((item, index) => (
-                item.href.startsWith('/') ? (
-                  <Link
-                    key={index}
-                    to={item.href}
-                    className="text-sm font-medium text-primary hover:text-accent transition-colors px-2 py-1"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ) : (
-                  <a
-                    key={index}
-                    href={item.href}
-                    className="text-sm font-medium text-primary hover:text-accent transition-colors px-2 py-1"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                )
+                <a
+                  key={index}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-sm font-medium text-primary hover:text-accent transition-colors px-2 py-1"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item}
+                </a>
               ))}
             </nav>
           </div>
