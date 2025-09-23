@@ -168,7 +168,7 @@ const Portfolio: React.FC = () => {
                     <img 
                       src={item.imageAfter} 
                       alt="После" 
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full object-cover ${item.id === 3 ? 'scale-x-[-1]' : ''}`}
                     />
                   </div>
 
