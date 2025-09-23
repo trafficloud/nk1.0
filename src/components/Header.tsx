@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Zap } from 'lucide-react';
+import logoImage from '/public/68712ea0-bc68-4bc6-b983-b3985a37a71c.png';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,8 +43,11 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <Zap className={`w-8 h-8 ${textClasses}`} />
-            <span className={logoClasses}>ElectroMax</span>
+            <img 
+              src={logoImage} 
+              alt="Надежный Контакт" 
+              className="h-10 w-auto object-contain"
+            />
           </div>
 
           {/* Desktop Menu */}
