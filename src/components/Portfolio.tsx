@@ -42,36 +42,6 @@ const Portfolio: React.FC = () => {
       gesAct: 'Акт сдан в ЖЭС',
       imageBefore: '/до1.png',
       imageAfter: '/после1.png'
-    },
-    {
-      id: 4,
-      title: 'ЖК "Riverside"',
-      address: 'ул. Притыцкого, 156',
-      timeline: '6 дней',
-      points: 31,
-      gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/before.png',
-      imageAfter: '/after.png'
-    },
-    {
-      id: 5,
-      title: 'ЖК "Green City"',
-      address: 'ул. Сурганова, 24',
-      timeline: '8 дней',
-      points: 42,
-      gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/before.png',
-      imageAfter: '/after.png'
-    },
-    {
-      id: 6,
-      title: 'ЖК "Столичный"',
-      address: 'пр. Победителей, 65',
-      timeline: '6 дней',
-      points: 29,
-      gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/before.png',
-      imageAfter: '/after.png'
     }
   ];
 
