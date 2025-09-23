@@ -30,8 +30,8 @@ const Portfolio: React.FC = () => {
       timeline: '7 дней',
       points: 35,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/до.png',
-      imageAfter: '/после.png'
+      imageBefore: '/после.png',
+      imageAfter: '/до.png'
     },
     {
       id: 3,
