@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator as CalcIcon, Download } from 'lucide-react';
+import { Calculator as CalculatorIcon, Download } from 'lucide-react';
 
 interface CalculationResult {
   min: number;
@@ -275,16 +275,16 @@ const Calculator: React.FC = () => {
               <button 
                 onClick={calculate}
                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap
-                           rounded-full min-h-[44px] px-6 py-3
+                           rounded-xl min-h-[44px] px-6 py-3
                            text-sm sm:text-base font-medium
                            bg-[#FF7F50] text-white hover:brightness-110 transition"
               >
-                🧮 <span>Посчитать</span>
+                <CalculatorIcon className="w-5 h-5" /> <span>Посчитать</span>
               </button>
               <button 
                 onClick={downloadPDF}
                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap
-                           rounded-full min-h-[44px] px-6 py-3
+                           rounded-xl min-h-[44px] px-6 py-3
                            text-sm sm:text-base font-medium
                            border border-[#1A3A63] text-[#1A3A63] hover:bg-[#1A3A63]/5 transition"
               >

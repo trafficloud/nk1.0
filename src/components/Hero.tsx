@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap
                          rounded-xl min-h-[48px] px-8 py-3
                          text-sm sm:text-base font-semibold
-                         bg-[#FF5722] text-white hover:brightness-110 transition"
+                         bg-[#FF7F50] text-white hover:brightness-110 transition"
             >
               <Calculator className="w-5 h-5" /> <span>Рассчитать стоимость услуг</span>
             </a>
