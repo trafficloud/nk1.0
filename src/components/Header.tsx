@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Zap } from 'lucide-react';
-import logoImage from '/public/68712ea0-bc68-4bc6-b983-b3985a37a71c.png';
+import logoImage from '/public/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +46,7 @@ const Header: React.FC = () => {
             <img 
               src={logoImage} 
               alt="Надежный Контакт" 
-              className="h-10 w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
           </div>
 
