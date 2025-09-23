@@ -15,8 +15,8 @@ function App() {
             <Header />
             <Hero />
             <Benefits />
-            <Portfolio />
             <Calculator />
+            <Portfolio />
           </>
         } />
       </Routes>
