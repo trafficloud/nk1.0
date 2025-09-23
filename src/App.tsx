@@ -5,7 +5,6 @@ import Hero from './components/Hero';
 import Benefits from './components/Benefits';
 import Calculator from './components/Calculator';
 import Portfolio from './components/Portfolio';
-import FullPortfolioPage from './pages/FullPortfolioPage';
 
 function App() {
   return (
@@ -18,12 +17,6 @@ function App() {
             <Benefits />
             <Portfolio />
             <Calculator />
-          </>
-        } />
-        <Route path="/portfolio" element={
-          <>
-            <Header />
-            <FullPortfolioPage />
           </>
         } />
       </Routes>

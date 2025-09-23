@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   const menuItems = [
     { name: 'Главная', href: '/', isExternal: false },
     { name: 'Преимущества', href: '#benefits', isExternal: false }, 
-    { name: 'Портфолио', href: '/portfolio', isExternal: false },
+    { name: 'Портфолио', href: '#portfolio', isExternal: false },
     { name: 'О компании', href: '#about', isExternal: false },
     { name: 'Отзывы', href: '#reviews', isExternal: false },
     { name: 'Процесс', href: '#process', isExternal: false },
