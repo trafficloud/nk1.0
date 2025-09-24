@@ -13,6 +13,7 @@ export default {
         icon: '#4ECDC4',
         text: '#333333',
         cardBackground: '#F7F3E3',
+        ctaButton: '#FF6A3D',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

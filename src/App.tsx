@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Benefits from './components/Benefits';
 import Calculator from './components/Calculator';
 import Portfolio from './components/Portfolio';
+import Reviews from './components/Reviews';
 import AboutUs from './components/AboutUs';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Benefits />
             <Calculator />
             <Portfolio />
+            <Reviews />
             <AboutUs />
           </>
         } />
