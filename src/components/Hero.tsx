@@ -9,10 +9,10 @@ const Hero: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/159045/the-interior-of-the-repair-interior-design-159045.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')`
+            backgroundImage: `url('/image (4).png')`
           }}
         />
-        <div className="absolute inset-0 bg-[rgba(26,58,99,0.5)]" />
+        <div className="absolute inset-0 bg-[rgba(26,58,99,0.3)]" />
         
         {/* Scroll Indicator */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-5 md:bottom-8 z-20">
