@@ -44,7 +44,6 @@ const FloatingChat: React.FC = () => {
   const openChat = () => {
     setIsAnimating(false);
     setIsOpen(true);
-    setShowBadge(false);
     setTimeout(() => {
       inputRef.current?.focus();
     }, 50);
