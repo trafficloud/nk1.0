@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Briefcase, Building, ShieldCheck, Zap, Users, Award, FileText, CheckCircle, X } from 'lucide-react';
+import { Briefcase, Building, ShieldCheck, Zap, Users, Award, FileText, CheckCircle, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const AboutUs: React.FC = () => {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const heroStats = [
     {
@@ -80,6 +84,54 @@ const AboutUs: React.FC = () => {
       fullImage: '/attestat GP.png'
     }
   ];
+
+  // Check if mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Touch handlers for swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % documents.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + documents.length) % documents.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   const openDocument = (imageUrl: string) => {
     setSelectedDocument(imageUrl);
@@ -169,34 +221,71 @@ const AboutUs: React.FC = () => {
           
           {/* Mobile: Horizontal Scroll */}
           <div className="sm:hidden">
-            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-              {documents.map((doc, index) => (
-                <div
-                  key={doc.id}
-                  className="group cursor-pointer animate-zoom-in flex-shrink-0 w-64"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => openDocument(doc.fullImage)}
+            <div className="relative mb-6">
+              <div 
+                className="overflow-hidden"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <div 
+                  className="flex transition-transform duration-300 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                 >
-                  <div className="rounded-2xl bg-white shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={doc.preview}
-                        alt={doc.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+                  {documents.map((doc, index) => (
+                    <div key={doc.id} className="w-full flex-shrink-0 px-2">
+                      <div
+                        className="group cursor-pointer animate-zoom-in"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                        onClick={() => openDocument(doc.fullImage)}
+                      >
+                        <div className="rounded-2xl bg-white shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                          <div className="aspect-[4/3] overflow-hidden">
+                            <img
+                              src={doc.preview}
+                              alt={doc.title}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                          </div>
+                          <div className="p-4 min-h-[56px] flex items-center justify-center">
+                            <h4 className="text-sm font-medium text-text text-center">
+                              {doc.title}
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="p-4 min-h-[56px] flex items-center justify-center">
-                      <h4 className="text-sm font-medium text-text text-center">
-                        {doc.title}
-                      </h4>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary hover:bg-gray-50 transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary hover:bg-gray-50 transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
+              {/* Dots Indicators */}
+              <div className="flex justify-center gap-2 mt-6">
+                {documents.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentSlide ? 'bg-icon' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
-            <p className="text-xs text-gray-500 text-center mt-2">
-              Проведите пальцем для просмотра всех документов
-            </p>
           </div>
 
           {/* Desktop/Tablet: Grid */}
