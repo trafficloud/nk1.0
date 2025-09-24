@@ -10,6 +10,7 @@ interface Message {
 
 const FloatingChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -19,7 +20,6 @@ const FloatingChat: React.FC = () => {
     }
   ]);
   const [inputValue, setInputValue] = useState('');
-  const [showBadge, setShowBadge] = useState(false);
   const [isAnimating, setIsAnimating] = useState(true);
   
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -107,19 +107,16 @@ const FloatingChat: React.FC = () => {
     setIsAnimating(false);
   };
 
-  // Show badge on scroll
+  // Track scroll position for transparency effect
   useEffect(() => {
-    let seen = false;
     const handleScroll = () => {
-      if (!seen && !isOpen) {
-        setShowBadge(true);
-        seen = true;
-      }
+      const scrolled = window.scrollY > 50;
+      setIsScrolled(scrolled);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isOpen]);
+  }, []);
 
   // Scroll to bottom when messages change
   useEffect(() => {
@@ -144,18 +141,15 @@ const FloatingChat: React.FC = () => {
         className={`fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8
                    w-12 h-12 md:w-14 md:h-14 rounded-full shadow-lg hover:shadow-xl
                    flex items-center justify-center text-white
-                   transition-transform duration-200 hover:translate-y-[-2px]
+                   transition-all duration-200 hover:translate-y-[-2px]
                    ${isAnimating ? 'animate-soft-blink' : ''}`}
-        style={{ background: 'var(--accent, #FF6A3D)' }}
+        style={{ 
+          background: isScrolled 
+            ? 'var(--accent, #FF6A3D)' 
+            : 'rgba(255, 106, 61, 0.7)' 
+        }}
       >
         <MessageSquare className="w-5 h-5" strokeWidth={2} />
-        {showBadge && (
-          <span className="absolute -top-1 -right-1 inline-flex items-center justify-center text-[10px] leading-none
-                         h-4 px-1 rounded-full bg-white font-bold"
-                style={{ color: 'var(--accent, #FF6A3D)' }}>
-            1
-          </span>
-        )}
       </button>
 
       {/* Backdrop */}
@@ -212,7 +206,7 @@ const FloatingChat: React.FC = () => {
               <div 
                 className={`max-w-[80%] rounded-2xl px-3 py-2 text-sm ${
                   message.role === 'user'
-                    ? 'rounded-tr-sm text-white'
+                    ? 'rounded-br-sm text-white'
                     : 'rounded-tl-sm border border-gray-200 bg-white text-text'
                 }`}
                 style={message.role === 'user' ? { background: 'var(--accent, #FF6A3D)' } : {}}
