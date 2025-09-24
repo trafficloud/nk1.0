@@ -12,11 +12,13 @@ export default {
         accent: '#FF7F50',
         icon: '#4ECDC4',
         text: '#333333',
+        cardBackground: '#F7F3E3',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
         'float': 'float 6s ease-in-out infinite',
+        'zoom-in': 'zoomIn 0.6s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -30,6 +32,10 @@ export default {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        zoomIn: {
+          '0%': { opacity: '0', transform: 'scale(0.8)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
         },
       },
     },

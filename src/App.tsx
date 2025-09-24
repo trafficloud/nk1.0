@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Benefits from './components/Benefits';
 import Calculator from './components/Calculator';
 import Portfolio from './components/Portfolio';
+import AboutUs from './components/AboutUs';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Benefits />
             <Calculator />
             <Portfolio />
+            <AboutUs />
           </>
         } />
       </Routes>
