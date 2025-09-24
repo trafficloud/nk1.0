@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/image (4).png')`
+            backgroundImage: `url('/после copy.png')`
           }}
         />
         <div className="absolute inset-0 bg-[rgba(26,58,99,0.3)]" />
