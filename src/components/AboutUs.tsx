@@ -166,7 +166,41 @@ const AboutUs: React.FC = () => {
           <h3 className="text-2xl font-bold text-primary text-center mb-8">
             Наши документы и сертификаты
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          {/* Mobile: Horizontal Scroll */}
+          <div className="sm:hidden">
+            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+              {documents.map((doc, index) => (
+                <div
+                  key={doc.id}
+                  className="group cursor-pointer animate-zoom-in flex-shrink-0 w-64"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => openDocument(doc.fullImage)}
+                >
+                  <div className="rounded-2xl bg-white shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img
+                        src={doc.preview}
+                        alt={doc.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-4 min-h-[56px] flex items-center justify-center">
+                      <h4 className="text-sm font-medium text-text text-center">
+                        {doc.title}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-gray-500 text-center mt-2">
+              Проведите пальцем для просмотра всех документов
+            </p>
+          </div>
+
+          {/* Desktop/Tablet: Grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {documents.map((doc, index) => (
               <div
                 key={doc.id}
