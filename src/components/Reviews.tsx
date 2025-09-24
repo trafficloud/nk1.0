@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Review {
@@ -15,6 +16,9 @@ const Reviews: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const desktopReviewsContainerRef = useRef<HTMLDivElement>(null);
 
   const reviewsData: Review[] = [
     {
@@ -78,6 +82,25 @@ const Reviews: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Check scroll position for desktop navigation
+  useEffect(() => {
+    const checkScrollPosition = () => {
+      const container = desktopReviewsContainerRef.current;
+      if (!container || isMobile) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+    };
+
+    const container = desktopReviewsContainerRef.current;
+    if (container && !isMobile) {
+      container.addEventListener('scroll', checkScrollPosition);
+      checkScrollPosition(); // Initial check
+      
+      return () => container.removeEventListener('scroll', checkScrollPosition);
+    }
+  }, [isMobile]);
   // Auto-scroll functionality
   useEffect(() => {
     if (!isMobile) return;
@@ -126,6 +149,16 @@ const Reviews: React.FC = () => {
     setCurrentSlide(index);
   };
 
+  const scrollDesktopReviews = (direction: 'left' | 'right') => {
+    const container = desktopReviewsContainerRef.current;
+    if (!container) return;
+
+    const scrollAmount = container.offsetWidth;
+    container.scrollBy({
+      left: scrollAmount * (direction === 'right' ? 1 : -1),
+      behavior: 'smooth'
+    });
+  };
   const handleLeaveReview = () => {
     window.open('https://yandex.by/maps/', '_blank');
   };
@@ -133,7 +166,7 @@ const Reviews: React.FC = () => {
   const renderReviewCard = (review: Review, index: number) => (
     <div
       key={review.id}
-      className="group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md animate-slide-up"
+      className="group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md animate-slide-up flex flex-col h-full"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Quote Icon */}
@@ -142,7 +175,7 @@ const Reviews: React.FC = () => {
       </div>
 
       {/* Review Text */}
-      <p className="text-text text-sm leading-relaxed mb-4">
+      <p className="text-text text-sm leading-relaxed mb-4 flex-grow">
         {review.text}
       </p>
 
@@ -250,12 +283,39 @@ const Reviews: React.FC = () => {
           </div>
         ) : (
           /* Desktop/Tablet Grid */
-          <div className="mb-12">
-            <div className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
+          <div className="mb-12 relative">
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => scrollDesktopReviews('left')}
+              disabled={!canScrollLeft}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 ${
+                canScrollLeft 
+                  ? 'hover:bg-gray-50 hover:shadow-lg' 
+                  : 'opacity-50 cursor-not-allowed'
+              } hidden sm:flex`}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => scrollDesktopReviews('right')}
+              disabled={!canScrollRight}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 ${
+                canScrollRight 
+                  ? 'hover:bg-gray-50 hover:shadow-lg' 
+                  : 'opacity-50 cursor-not-allowed'
+              } hidden sm:flex`}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            <div 
+              ref={desktopReviewsContainerRef}
+              className="flex gap-6 md:gap-8 overflow-x-auto pb-4 scrollbar-hide"
+            >
               {reviewsData.map((review, index) => (
                 <div 
                   key={review.id}
-                  className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-21.333px)] snap-start"
+                  className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-21.333px)]"
                 >
                   {renderReviewCard(review, index)}
                 </div>
