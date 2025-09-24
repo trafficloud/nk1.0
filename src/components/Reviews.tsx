@@ -250,8 +250,17 @@ const Reviews: React.FC = () => {
           </div>
         ) : (
           /* Desktop/Tablet Grid */
-          <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12">
-            {reviewsData.map((review, index) => renderReviewCard(review, index))}
+          <div className="mb-12">
+            <div className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
+              {reviewsData.map((review, index) => (
+                <div 
+                  key={review.id}
+                  className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-21.333px)] snap-start"
+                >
+                  {renderReviewCard(review, index)}
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
