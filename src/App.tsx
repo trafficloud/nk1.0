@@ -19,8 +19,8 @@ function App() {
             <Benefits />
             <Calculator />
             <Portfolio />
-            <Reviews />
             <AboutUs />
+            <Reviews />
           </>
         } />
       </Routes>
