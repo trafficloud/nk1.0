@@ -75,9 +75,9 @@ const AboutUs: React.FC = () => {
     },
     {
       id: 4,
-      title: 'Страховой полис',
-      preview: 'https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
-      fullImage: 'https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+      title: 'Аттестат ГП',
+      preview: '/attestat GP.png',
+      fullImage: '/attestat GP.png'
     }
   ];
 
