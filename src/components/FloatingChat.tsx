@@ -142,16 +142,15 @@ const FloatingChat: React.FC = () => {
         onFocus={stopAnimation}
         onTouchStart={stopAnimation}
         className={`fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8
-                   h-12 md:h-14 pl-4 pr-5 rounded-full shadow-lg hover:shadow-xl
-                   flex items-center gap-2 md:gap-3 text-white
+                   w-12 h-12 md:w-14 md:h-14 rounded-full shadow-lg hover:shadow-xl
+                   flex items-center justify-center text-white
                    transition-transform duration-200 hover:translate-y-[-2px]
                    ${isAnimating ? 'animate-soft-blink' : ''}`}
         style={{ background: 'var(--accent, #FF6A3D)' }}
       >
         <MessageSquare className="w-5 h-5" strokeWidth={2} />
-        <span className="hidden sm:inline font-semibold">Задать вопрос</span>
         {showBadge && (
-          <span className="ml-1 inline-flex items-center justify-center text-[10px] leading-none
+          <span className="absolute -top-1 -right-1 inline-flex items-center justify-center text-[10px] leading-none
                          h-4 px-1 rounded-full bg-white font-bold"
                 style={{ color: 'var(--accent, #FF6A3D)' }}>
             1
