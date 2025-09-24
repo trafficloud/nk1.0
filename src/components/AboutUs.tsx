@@ -4,9 +4,12 @@ import { Briefcase, Building, ShieldCheck, Zap, Users, Award, FileText, CheckCir
 const AboutUs: React.FC = () => {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentAdvantageSlide, setCurrentAdvantageSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [advantageTouchStart, setAdvantageTouchStart] = useState<number | null>(null);
+  const [advantageTouchEnd, setAdvantageTouchEnd] = useState<number | null>(null);
 
   const heroStats = [
     {
@@ -133,6 +136,43 @@ const AboutUs: React.FC = () => {
     setCurrentSlide(index);
   };
 
+  const nextAdvantageSlide = () => {
+    setCurrentAdvantageSlide((prev) => (prev + 1) % advantages.length);
+  };
+
+  const prevAdvantageSlide = () => {
+    setCurrentAdvantageSlide((prev) => (prev - 1 + advantages.length) % advantages.length);
+  };
+
+  const goToAdvantageSlide = (index: number) => {
+    setCurrentAdvantageSlide(index);
+  };
+
+  // Touch handlers for advantages swipe
+  const handleAdvantageTouchStart = (e: React.TouchEvent) => {
+    setAdvantageTouchEnd(null);
+    setAdvantageTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleAdvantageTouchMove = (e: React.TouchEvent) => {
+    setAdvantageTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleAdvantageTouchEnd = () => {
+    if (!advantageTouchStart || !advantageTouchEnd) return;
+    
+    const distance = advantageTouchStart - advantageTouchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextAdvantageSlide();
+    }
+    if (isRightSwipe) {
+      prevAdvantageSlide();
+    }
+  };
+
   const openDocument = (imageUrl: string) => {
     setSelectedDocument(imageUrl);
   };
@@ -156,7 +196,7 @@ const AboutUs: React.FC = () => {
 
         {/* Block 1: Hero Stats */}
         <div className="mb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {heroStats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
@@ -185,32 +225,103 @@ const AboutUs: React.FC = () => {
 
         {/* Block 2: Advantages Checklist */}
         <div className="mb-16">
-          <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-2">
-            {advantages.map((advantage, index) => {
-              const IconComponent = advantage.icon;
-              return (
-                <div
-                  key={index}
-                  className="group rounded-2xl bg-primary/5 p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+          {/* Mobile: Horizontal Slider */}
+          {isMobile ? (
+            <div className="relative mb-6">
+              <div 
+                className="overflow-hidden"
+                onTouchStart={handleAdvantageTouchStart}
+                onTouchMove={handleAdvantageTouchMove}
+                onTouchEnd={handleAdvantageTouchEnd}
+              >
+                <div 
+                  className="flex transition-transform duration-300 ease-in-out"
+                  style={{ transform: `translateX(-${currentAdvantageSlide * 100}%)` }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-icon/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      <IconComponent className="w-6 h-6 text-icon" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-primary mb-2">
-                        {advantage.title}
-                      </h3>
-                      <p className="text-sm text-text leading-relaxed">
-                        {advantage.description}
-                      </p>
+                  {advantages.map((advantage, index) => {
+                    const IconComponent = advantage.icon;
+                    return (
+                      <div key={index} className="w-full flex-shrink-0 px-2">
+                        <div
+                          className="group rounded-2xl bg-primary/5 p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
+                          style={{ animationDelay: `${index * 0.1}s` }}
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-icon/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                              <IconComponent className="w-6 h-6 text-icon" strokeWidth={1.5} />
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-semibold text-primary mb-2">
+                                {advantage.title}
+                              </h3>
+                              <p className="text-sm text-text leading-relaxed">
+                                {advantage.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevAdvantageSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary hover:bg-gray-50 transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextAdvantageSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary hover:bg-gray-50 transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
+              {/* Dots Indicators */}
+              <div className="flex justify-center gap-2 mt-6">
+                {advantages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToAdvantageSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentAdvantageSlide ? 'bg-icon' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            /* Desktop/Tablet: Grid */
+            <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-2">
+              {advantages.map((advantage, index) => {
+                const IconComponent = advantage.icon;
+                return (
+                  <div
+                    key={index}
+                    className="group rounded-2xl bg-primary/5 p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-icon/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <IconComponent className="w-6 h-6 text-icon" strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-primary mb-2">
+                          {advantage.title}
+                        </h3>
+                        <p className="text-sm text-text leading-relaxed">
+                          {advantage.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Block 3: Documents Gallery */}
