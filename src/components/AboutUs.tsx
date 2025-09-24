@@ -69,9 +69,9 @@ const AboutUs: React.FC = () => {
     },
     {
       id: 3,
-      title: 'Допуск СРО',
-      preview: 'https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
-      fullImage: 'https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+      title: 'Аттестат СМР',
+      preview: '/atestat CMP.png',
+      fullImage: '/atestat CMP.png'
     },
     {
       id: 4,
