@@ -48,7 +48,9 @@ const Header: React.FC = () => {
             <img 
               src={logoImage} 
               alt="Надежный Контакт" 
-              className="h-14 w-auto object-contain"
+              className={`h-14 w-auto object-contain transition-all duration-300 ${
+                !isScrolled ? 'brightness-0 invert' : ''
+              }`}
             />
           </div>
 
