@@ -196,10 +196,10 @@ const AboutUs: React.FC = () => {
         {/* Lightbox Modal */}
         {selectedDocument && (
           <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-            <div className="relative max-w-4xl max-h-full">
+            <div className="relative max-w-full max-h-full flex items-center justify-center">
               <button
                 onClick={closeDocument}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+                className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full p-2"
               >
                 <X className="w-8 h-8" />
               </button>
