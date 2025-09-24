@@ -8,6 +8,7 @@ import Portfolio from './components/Portfolio';
 import Reviews from './components/Reviews';
 import AboutUs from './components/AboutUs';
 import FAQ from './components/FAQ';
+import FloatingChat from './components/FloatingChat';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <AboutUs />
             <Reviews />
             <FAQ />
+            <FloatingChat />
           </>
         } />
       </Routes>
