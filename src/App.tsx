@@ -7,6 +7,7 @@ import Calculator from './components/Calculator';
 import Portfolio from './components/Portfolio';
 import Reviews from './components/Reviews';
 import AboutUs from './components/AboutUs';
+import FAQ from './components/FAQ';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Portfolio />
             <AboutUs />
             <Reviews />
+            <FAQ />
           </>
         } />
       </Routes>
