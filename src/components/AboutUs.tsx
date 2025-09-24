@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Briefcase, Building, ShieldCheck, Zap, Users, Award, FileText, CheckCircle, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const AboutUs: React.FC = () => {
