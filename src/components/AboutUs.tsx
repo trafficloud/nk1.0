@@ -139,7 +139,7 @@ const AboutUs: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className="group rounded-2xl bg-cardBackground p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
+                  className="group rounded-2xl bg-primary/5 p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="flex items-start gap-4">
