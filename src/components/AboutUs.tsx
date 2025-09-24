@@ -64,8 +64,8 @@ const AboutUs: React.FC = () => {
     {
       id: 2,
       title: 'Сертификат соответствия СТБ',
-      preview: '/сертификат исо.png',
-      fullImage: '/сертификат исо.png'
+      preview: '/sertificat.png',
+      fullImage: '/sertificat.png'
     },
     {
       id: 3,
