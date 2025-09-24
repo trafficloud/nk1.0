@@ -1,5 +1,5 @@
-import React from 'react';
-import { Quote, Star } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Review {
   id: number;
@@ -11,6 +11,11 @@ interface Review {
 }
 
 const Reviews: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
   const reviewsData: Review[] = [
     {
       id: 1,
@@ -62,10 +67,124 @@ const Reviews: React.FC = () => {
     }
   ];
 
+  // Check if mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % reviewsData.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isMobile, reviewsData.length]);
+
+  // Touch handlers for swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % reviewsData.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + reviewsData.length) % reviewsData.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
   const handleLeaveReview = () => {
-    // Здесь можно добавить логику для открытия формы отзыва или перехода на внешний сервис
     window.open('https://yandex.by/maps/', '_blank');
   };
+
+  const renderReviewCard = (review: Review, index: number) => (
+    <div
+      key={review.id}
+      className="group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md animate-slide-up"
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
+      {/* Quote Icon */}
+      <div className="mb-4">
+        <Quote className="w-8 h-8 text-icon opacity-60" />
+      </div>
+
+      {/* Review Text */}
+      <p className="text-text text-sm leading-relaxed mb-4">
+        {review.text}
+      </p>
+
+      {/* Badges */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        {review.badges.map((badge, badgeIndex) => (
+          <span
+            key={badgeIndex}
+            className="inline-block px-3 py-1 text-xs font-medium bg-accent text-white rounded-full"
+          >
+            {badge}
+          </span>
+        ))}
+      </div>
+
+      {/* Rating */}
+      <div className="flex items-center gap-1 mb-4">
+        {[...Array(review.rating)].map((_, starIndex) => (
+          <Star
+            key={starIndex}
+            className="w-4 h-4 text-accent fill-current"
+          />
+        ))}
+      </div>
+
+      {/* Client Info */}
+      <div className="flex items-center gap-3">
+        <div className="w-12 h-12 rounded-full border-2 border-icon overflow-hidden">
+          <img
+            src={review.photo}
+            alt={review.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div>
+          <h4 className="font-semibold text-primary text-sm">
+            {review.name}
+          </h4>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section id="reviews" className="bg-white">
@@ -80,64 +199,61 @@ const Reviews: React.FC = () => {
           </p>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12">
-          {reviewsData.map((review, index) => (
-            <div
-              key={review.id}
-              className="group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+        {/* Reviews Grid/Slider */}
+        {isMobile ? (
+          /* Mobile Slider */
+          <div className="relative mb-12">
+            <div 
+              className="overflow-hidden"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
-              {/* Quote Icon */}
-              <div className="mb-4">
-                <Quote className="w-8 h-8 text-icon opacity-60" />
-              </div>
-
-              {/* Review Text */}
-              <p className="text-text text-sm leading-relaxed mb-4">
-                {review.text}
-              </p>
-
-              {/* Badges */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {review.badges.map((badge, badgeIndex) => (
-                  <span
-                    key={badgeIndex}
-                    className="inline-block px-3 py-1 text-xs font-medium bg-accent text-white rounded-full"
-                  >
-                    {badge}
-                  </span>
+              <div 
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {reviewsData.map((review, index) => (
+                  <div key={review.id} className="w-full flex-shrink-0 px-2">
+                    {renderReviewCard(review, index)}
+                  </div>
                 ))}
-              </div>
-
-              {/* Rating */}
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(review.rating)].map((_, starIndex) => (
-                  <Star
-                    key={starIndex}
-                    className="w-4 h-4 text-accent fill-current"
-                  />
-                ))}
-              </div>
-
-              {/* Client Info */}
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full border-2 border-icon overflow-hidden">
-                  <img
-                    src={review.photo}
-                    alt={review.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary text-sm">
-                    {review.name}
-                  </h4>
-                </div>
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary hover:bg-gray-50 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary hover:bg-gray-50 transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Dots Indicators */}
+            <div className="flex justify-center gap-2 mt-6">
+              {reviewsData.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentSlide ? 'bg-icon' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* Desktop/Tablet Grid */
+          <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+            {reviewsData.map((review, index) => renderReviewCard(review, index))}
+          </div>
+        )}
 
         {/* CTA Button */}
         <div className="text-center">
@@ -150,6 +266,9 @@ const Reviews: React.FC = () => {
           >
             Оставить отзыв
           </button>
+          <p className="mt-3 text-sm text-text">
+            Ваш отзыв помогает нам становиться лучше
+          </p>
         </div>
       </div>
     </section>
