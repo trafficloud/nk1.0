@@ -57,7 +57,7 @@ const AboutUs: React.FC = () => {
   const documents = [
     {
       id: 1,
-      title: 'Лицензия на электромонтажные работы',
+      title: 'Лицензия на работу',
       preview: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
       fullImage: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
     },
@@ -182,7 +182,7 @@ const AboutUs: React.FC = () => {
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-4">
+                  <div className="p-4 min-h-[56px] flex items-center justify-center">
                     <h4 className="text-sm font-medium text-text text-center">
                       {doc.title}
                     </h4>
