@@ -50,12 +50,6 @@ const FooterSection: React.FC = () => {
         <div className="mt-10 border-t border-neutral-200/40 pt-4 text-xs text-neutral-600 dark:border-neutral-700/60 dark:text-neutral-400">
           <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
             <div>© {year} f(Am)team. Все права защищены.</div>
-            <div className="flex items-center gap-4">
-              <a href="/privacy" className="underline-offset-2 hover:underline">Политика конфиденциальности</a>
-              <a href="/offer" className="underline-offset-2 hover:underline">Публичная оферта</a>
-              <a href="/about" className="underline-offset-2 hover:underline">О компании</a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
