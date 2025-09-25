@@ -9,6 +9,7 @@ import Reviews from './components/Reviews';
 import AboutUs from './components/AboutUs';
 import FAQ from './components/FAQ';
 import FloatingChat from './components/FloatingChat';
+import FooterSection from './components/FooterSection';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <AboutUs />
             <Reviews />
             <FAQ />
+            <FooterSection />
             <FloatingChat />
           </>
         } />
