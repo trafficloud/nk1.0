@@ -6,7 +6,7 @@ const FooterSection: React.FC = () => {
   return (
     <section className="-mt-6 relative overflow-hidden bg-gradient-to-b from-white via-neutral-100/70 to-[#0A1F44] dark:from-neutral-900 dark:via-neutral-900/80 dark:to-[#0A1F44]">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-        <h2 className="text-center text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
+        <h2 className="text-center text-2xl font-semibold tracking-tight text-primary">
           Реквизиты и контакты
         </h2>
 
@@ -27,7 +27,7 @@ const FooterSection: React.FC = () => {
           </dl>
 
           {/* Правая колонка: контакты (лаконично) */}
-          <div className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+          <div className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300 text-right">
             <p>
               <span className="text-neutral-500">Телефон: </span>
               <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100"
