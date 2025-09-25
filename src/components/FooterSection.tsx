@@ -45,6 +45,7 @@ const FooterSection: React.FC = () => {
             </div>
           </div>
         </div>
+        </div>
 
         {/* Нижняя тонкая линия и копирайт (микро) */}
         <div className="mt-10 border-t border-neutral-200/40 pt-4 text-xs text-neutral-600 dark:border-neutral-700/60 dark:text-neutral-400">
