@@ -23,14 +23,6 @@ const FooterSection: React.FC = () => {
               <dt className="text-neutral-500">Юр. адрес</dt>
               <dd>220000, г. Минск, ул. Примерная, д. 1, оф. 10</dd>
 
-              <dt className="text-neutral-500">Банк</dt>
-              <dd>ОАО «Банк Пример», BIC PPRBBY2X</dd>
-
-              <dt className="text-neutral-500">Р/с</dt>
-              <dd className="font-mono tracking-tight">BY00PPRB00000000000000000000</dd>
-
-              <dt className="text-neutral-500">Директор</dt>
-              <dd>Сергей Романовский, действует на основании устава</dd>
             </div>
           </dl>
 
@@ -44,12 +36,6 @@ const FooterSection: React.FC = () => {
             <p className="mt-2">
               <span className="text-neutral-500">Email: </span>
               <a className="underline-offset-2 hover:underline" href="mailto:hello@famteam.pro">hello@famteam.pro</a>
-            </p>
-            <p className="mt-2">
-              <span className="text-neutral-500">Адрес офиса: </span>Минск, ул. Примерная, 1
-            </p>
-            <p className="mt-2">
-              <span className="text-neutral-500">График: </span>Пн–Пт 09:00–19:00, Сб 10:00–16:00
             </p>
 
             <div className="mt-4 flex flex-wrap gap-4">
