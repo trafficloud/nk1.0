@@ -30,20 +30,20 @@ const FooterSection: React.FC = () => {
             {/* Контакты в мобильной версии (отображаются только на мобильных, интегрированы в левую колонку) */}
             <div className="md:hidden mt-4 space-y-2">
               <div className="flex gap-2">
-                <dt className="w-28 text-neutral-500">Телефон:</dt>
-                <dd>
+                <div className="w-28 text-neutral-500">Телефон:</div>
+                <div>
                   <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100" href="tel:+375290000000">
                     +375 (29) 000-00-00
                   </a>
-                </dd>
+                </div>
               </div>
               <div className="flex gap-2">
-                <dt className="w-28 text-neutral-500">Email:</dt>
-                <dd>
+                <div className="w-28 text-neutral-500">Email:</div>
+                <div>
                   <a className="underline-offset-2 hover:underline" href="mailto:hello@famteam.pro">
                     hello@famteam.pro
                   </a>
-                </dd>
+                </div>
               </div>
             </div>
           </dl>
