@@ -87,7 +87,7 @@ const FAQ: React.FC = () => {
   const visibleItems = showAll ? faqData : faqData.filter(item => item.isTop);
 
   return (
-    <section id="faq" className="bg-white pt-20 pb-20 md:pt-24 md:pb-24">
+    <section id="faq" className="bg-white pt-20 pb-10 md:pt-24 md:pb-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
