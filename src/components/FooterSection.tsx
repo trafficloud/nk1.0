@@ -10,8 +10,8 @@ const FooterSection: React.FC = () => {
           Реквизиты и контакты
         </h2>
 
-        <div className="mt-6 grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2">
-          {/* Левая колонка: реквизиты (dl без коробок) */}
+        <div className="mt-6 grid grid-cols-1 gap-x-16 gap-y-8 md:grid-cols-2">
+          {/* Левая колонка: реквизиты */}
           <dl className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
             <div className="grid grid-cols-[120px_1fr] items-baseline gap-x-4 gap-y-2">
               <dt className="text-neutral-500">Наименование</dt>
@@ -23,24 +23,40 @@ const FooterSection: React.FC = () => {
               <dt className="text-neutral-500">Юр. адрес</dt>
               <dd>220000, г. Минск, ул. Примерная, д. 1, оф. 10</dd>
 
+              <dt className="text-neutral-500">Банк</dt>
+              <dd>ОАО «Банк Пример», BIC PPRBBY2X</dd>
+
+              <dt className="text-neutral-500">Р/с</dt>
+              <dd className="font-mono tracking-tight">BY00PPRB00000000000000000000</dd>
+
+              <dt className="text-neutral-500">Директор</dt>
+              <dd>Сергей Романовский</dd>
             </div>
           </dl>
 
-          {/* Правая колонка: контакты (лаконично) */}
+          {/* Правая колонка: контакты */}
           <div className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300 text-right">
-            <p>
+            <p className="mb-2">
               <span className="text-neutral-500">Телефон: </span>
               <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100"
                  href="tel:+375290000000">+375 (29) 000-00-00</a>
             </p>
-            <p className="mt-2">
+            <p className="mb-2">
               <span className="text-neutral-500">Email: </span>
               <a className="underline-offset-2 hover:underline" href="mailto:hello@famteam.pro">hello@famteam.pro</a>
+            </p>
+            <p className="mb-2">
+              <span className="text-neutral-500">Адрес офиса: </span>
+              <span>Минск, ул. Примерная, 1</span>
+            </p>
+            <p>
+              <span className="text-neutral-500">График: </span>
+              <span>Пн–Пт 09:00–19:00, Сб 10:00–16:00</span>
             </p>
           </div>
         </div>
 
-        {/* Нижняя тонкая линия и копирайт (микро) */}
+        {/* Нижняя тонкая линия и копирайт */}
         <div className="mt-10 border-t border-neutral-200/40 pt-4 text-xs text-neutral-600 dark:border-neutral-700/60 dark:text-neutral-400">
           <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
             <div>© {year} f(Am)team. Все права защищены.</div>
