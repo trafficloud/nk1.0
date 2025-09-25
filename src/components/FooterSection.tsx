@@ -37,12 +37,6 @@ const FooterSection: React.FC = () => {
               <span className="text-neutral-500">Email: </span>
               <a className="underline-offset-2 hover:underline" href="mailto:hello@famteam.pro">hello@famteam.pro</a>
             </p>
-
-            <div className="mt-4 flex flex-wrap gap-4">
-              <a href="https://t.me/yourusername" className="text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100">Telegram</a>
-              <a href="viber://chat?number=%2B375290000000" className="underline-offset-2 hover:underline">Viber</a>
-              <a href="https://wa.me/375290000000" className="underline-offset-2 hover:underline">WhatsApp</a>
-            </div>
           </div>
         </div>
 
