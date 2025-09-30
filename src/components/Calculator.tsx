@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calculator as CalculatorIcon } from 'lucide-react';
 import { loadConfig, Config } from '../types/calculator';
 import { getProcessedFormValues, calculateTotal, FormValues } from '../utils/calculator';
+import ResultCard from './ResultCard';
 
 interface CalculationResult {
   min: number;
@@ -13,7 +14,7 @@ interface CalculationResult {
     logistics: number;
     rush: number;
   };
-  factors: string[];
+  factors: { key: string; label: string }[];
   orangeNote: string;
 }
 
@@ -363,102 +364,49 @@ const Calculator: React.FC = () => {
           </div>
 
           {/* Result */}
-          <div className="rounded-2xl border border-primary bg-primary/5 p-6 md:p-7 shadow-sm animate-slide-up">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-white text-xs font-medium mb-6">
-              Итоговый расчёт
-            </div>
-            
-            <div className="mb-6">
-              <div className="text-3xl md:text-4xl font-bold">
-                {result ? (
-                  <>
-                    <span className="text-primary">{formatNumber(result.min)}</span>
-                    <span className="text-primary"> — </span>
-                    <span className="text-primary">{formatNumber(result.max)}</span>
-                    <span className="ml-1 text-accent">{result.currency}</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-primary">—</span>
-                    <span className="text-primary"> — </span>
-                    <span className="text-primary">—</span>
-                    <span className="ml-1 text-accent">BYN</span>
-                  </>
-                )}
+          {result ? (
+            <ResultCard
+              currency={result.currency}
+              rangeMin={result.min}
+              rangeMax={result.max}
+              breakdown={result.breakdown}
+              factors={result.factors}
+              orangeNote={result.orangeNote}
+            />
+          ) : (
+            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-7 shadow-sm animate-slide-up">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-white text-xs font-medium mb-6">
+                Итоговый расчёт
               </div>
-              <p className="mt-2 text-sm text-gray-600">
-                Диапазон зависит от выбранных материалов и опций
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 text-sm mb-6">
-              <div>
-                <p className="text-gray-500 mb-1">Работы</p>
-                <p className="font-medium text-gray-800">
-                  {result ? `${formatNumber(result.breakdown.works)} ${result.currency}` : '—'}
-                </p>
-              </div>
-              <div>
-                <p className="text-gray-500 mb-1">Материалы</p>
-                <p className="font-medium text-gray-800">
-                  {result ? `${formatNumber(result.breakdown.materials)} ${result.currency}` : '—'}
-                </p>
-              </div>
-              <div>
-                <p className="text-gray-500 mb-1">Логистика</p>
-                <p className="font-medium text-gray-800">
-                  {result ? `${formatNumber(result.breakdown.logistics)} ${result.currency}` : '—'}
-                </p>
-              </div>
-              <div>
-                <p className="text-gray-500 mb-1">Срочность</p>
-                <p className="font-medium text-gray-800">
-                  {result ? `${formatNumber(result.breakdown.rush)} ${result.currency}` : '—'}
-                </p>
-              </div>
-            </div>
-
-            {/* Factors */}
-            {result && result.factors.length > 0 && (
+              
               <div className="mb-6">
-                <p className="text-sm font-medium text-gray-700 mb-2">Факторы ценообразования:</p>
-                <div className="flex flex-wrap gap-2">
-                  {result.factors.map((factor, index) => (
-                    <span
-                      key={index}
-                      className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-600"
-                    >
-                      {factor}
-                    </span>
-                  ))}
+                <div className="text-3xl md:text-4xl font-bold">
+                  <span className="text-primary">—</span>
+                  <span className="text-primary"> — </span>
+                  <span className="text-primary">—</span>
+                  <span className="ml-1 text-accent">BYN</span>
                 </div>
-              </div>
-            )}
-
-            {/* Orange Note */}
-            {result && result.orangeNote && (
-              <div className="mb-6">
-                <p className="text-sm font-semibold text-orange-500">
-                  {result.orangeNote}
+                <p className="mt-2 text-sm text-gray-600">
+                  Диапазон зависит от выбранных материалов и опций
                 </p>
               </div>
-            )}
 
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li>
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
-                Цена фиксируется в договоре
-              </li>
-              <li>
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
-                Поэтапная оплата
-              </li>
-              <li>
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
-                Бесплатный выезд специалиста : Брест +30 км
-              </li>
-            </ul>
-          </div>
+              <ul className="space-y-2 text-sm text-gray-700">
+                <li>
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
+                  Цена фиксируется в договоре
+                </li>
+                <li>
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
+                  Поэтапная оплата
+                </li>
+                <li>
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
+                  Бесплатный выезд специалиста : Брест +30 км
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
 
         <p className="mt-8 text-center text-sm text-gray-500">

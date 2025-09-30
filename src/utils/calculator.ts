@@ -134,30 +134,30 @@ export function calcMaterials(est: ReturnType<typeof estimateIfMissing>, cfg: Co
 }
 
 export function applyModifiersMax(max: number, form: ReturnType<typeof getProcessedFormValues>, cfg: Config) {
-  let factors: string[] = [];
+  let factors: { key: string; label: string }[] = [];
   const r = (k: string, d="1") => Number(cfg.pricing_rules.find(x => x.key === k)?.value ?? d);
 
   // материал стен
   let wallCoef = 1;
   switch (form.wallMaterial) {
-    case "Бетон":       wallCoef = r("wall_material_max_coef_concrete","1.15"); factors.push("Тип стены: бетон (до +15%)"); break;
-    case "Кирпич":      wallCoef = r("wall_material_max_coef_brick","1.00");    factors.push("Тип стены: кирпич (без надбавки)"); break;
-    case "Г-с блок":    wallCoef = r("wall_material_max_coef_gs","0.95");       factors.push("Тип стены: газосиликат (возможна экономия)"); break;
-    default:            wallCoef = r("wall_material_max_coef_unknown","1.10");  factors.push("Тип стены не указан (закладываем до +10%)");
+    case "Бетон":       wallCoef = r("wall_material_max_coef_concrete","1.15"); factors.push({ key: "wall", label: "Тип стены: бетон (до +15%)" }); break;
+    case "Кирпич":      wallCoef = r("wall_material_max_coef_brick","1.00");    factors.push({ key: "wall", label: "Тип стены: кирпич (без надбавки)" }); break;
+    case "Г-с блок":    wallCoef = r("wall_material_max_coef_gs","0.95");       factors.push({ key: "wall", label: "Тип стены: газосиликат (возможна экономия)" }); break;
+    default:            wallCoef = r("wall_material_max_coef_unknown","1.10");  factors.push({ key: "wall", label: "Тип стены не указан (закладываем до +10%)" });
   }
   max *= wallCoef;
 
   // высота >3м
-  if (form.heightGT3) { max *= r("height_gt3m_max_coef","1.10"); factors.push("Высота потолков >3 м (до +10%)"); }
+  if (form.heightGT3) { max *= r("height_gt3m_max_coef","1.10"); factors.push({ key: "height", label: "Высота потолков >3 м (до +10%)" }); }
 
   // срочность
-  if (form.urgency && form.urgency.toLowerCase().includes("сроч")) { max *= r("rush_max_coef","1.15"); factors.push("Срочность (до +15%)"); }
+  if (form.urgency && form.urgency.toLowerCase().includes("сроч")) { max *= r("rush_max_coef","1.15"); factors.push({ key: "rush", label: "Срочность (до +15%)" }); }
 
   // регион
-  if (form.region && form.region.toLowerCase() !== "брест") { max *= r("region_max_coef_outside","1.05"); factors.push("Выезд за город (до +5%)"); }
+  if (form.region && form.region.toLowerCase() !== "брест") { max *= r("region_max_coef_outside","1.05"); factors.push({ key: "region", label: "Выезд за город (до +5%)" }); }
 
   // общий буфер
-  max *= r("hidden_risk_max_coef","1.05"); factors.push("Непредвиденные работы (до +5%)");
+  max *= r("hidden_risk_max_coef","1.05"); factors.push({ key: "hidden", label: "Непредвиденные работы (до +5%)" });
 
   return { maxWithMods: max, factors };
 }
