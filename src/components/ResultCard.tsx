@@ -44,7 +44,7 @@ export default function ResultCard({
 
       {/* Вилка цены — как на твоём макете: крупно, плотное межбуквье */}
       <div className="mt-4 flex items-end gap-2">
-        <h3 className="text-[44px] md:text-[56px] leading-[0.95] font-extrabold text-primary tracking-[-0.02em]">
+        <h3 className="text-3xl md:text-4xl leading-[0.95] font-extrabold text-primary tracking-[-0.02em]">
           {fmt(rangeMin)} — {fmt(rangeMax)}
           <span className="ml-2 text-accent">{currency}</span>
         </h3>
@@ -102,10 +102,10 @@ export default function ResultCard({
       <div className="mt-7">
         <a
           href={phone}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-4 text-lg font-semibold text-white shadow-md transition hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-accent/60"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm sm:text-base font-medium text-white shadow-md transition hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-accent/60"
         >
           <Phone className="h-5 w-5" />
-          Позвонить менеджеру
+          Заказать выезд
         </a>
       </div>
     </section>
@@ -131,7 +131,7 @@ function StatRow({
         <span className="text-gray-500">{icon}</span>
         <span className="text-[14px] text-gray-600">{label}</span>
       </div>
-      <div className="text-[16px] font-semibold text-primary">
+      <div className="text-sm font-semibold text-primary">
         {fmt(value)} {currency}
       </div>
     </div>
