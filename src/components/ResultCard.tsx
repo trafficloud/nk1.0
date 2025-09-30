@@ -17,7 +17,6 @@ type Factor = {
 };
 
 type Props = {
-  className?: string;
   currency?: string;
   rangeMin: number;
   rangeMax: number;
@@ -28,7 +27,6 @@ type Props = {
 };
 
 export default function ResultCard({
-  className = "",
   currency = "BYN",
   rangeMin,
   rangeMax,
@@ -38,7 +36,7 @@ export default function ResultCard({
   orangeNote = "Для формирования итоговой цены закажите бесплатный выезд специалиста для просчета.",
 }: Props) {
   return (
-    <section className={`rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-7 shadow-sm animate-slide-up ${className}`}>
+    <section className="rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-7 shadow-sm animate-slide-up">
       {/* Бейдж */}
       <div className="inline-flex items-center rounded-full bg-accent px-4 py-2 text-xs font-semibold text-white shadow-sm">
         Итоговый расчёт
@@ -101,7 +99,7 @@ export default function ResultCard({
       </ul>
 
       {/* Финальная кнопка — звонок менеджеру */}
-      <div className="mt-7 lg:mt-auto">
+      <div className="mt-7">
         <a
           href={phone}
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm sm:text-base font-medium text-white shadow-md transition hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-accent/60"
