@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRef } from 'react';
 import { Calculator as CalculatorIcon } from 'lucide-react';
 import type { Config, Service } from '../types/calculator';
