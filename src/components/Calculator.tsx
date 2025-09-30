@@ -451,11 +451,11 @@ const Calculator: React.FC = () => {
               </li>
               <li>
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
-                Оплата по факту
+                Поэтапная оплата
               </li>
               <li>
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
-                Бесплатный выезд: Минск +30 км, Брест +30 км
+                Бесплатный выезд специалиста : Брест +30 км
               </li>
             </ul>
           </div>

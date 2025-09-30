@@ -169,6 +169,12 @@ export function calculateTotal(form: ReturnType<typeof getProcessedFormValues>, 
   const works = calcWorks(form, cfg);
   const mats  = calcMaterials(works.est, cfg);
 
+  // Если выбраны "Материалы клиента", исключаем их из расчета
+  if (form.materialsTier === "Материалы клиента") {
+    mats.min = 0;
+    mats.max = 0;
+  }
+
   // материалы и «уровень материалов» слегка влияют на работы
   const tierWorkMin = form.materialsTier === "Премиум-бренды"
     ? Number(cfg.pricing_rules.find(r => r.key === "materials_tier_work_min_coef_premium")?.value || "1.05")
@@ -192,7 +198,7 @@ export function calculateTotal(form: ReturnType<typeof getProcessedFormValues>, 
   // «строчки» для правой колонки (как на твоем скрине)
   const breakdown = {
     works: roundTo(works.max * tierWorkMax, rounding),        // показываем оценку «Работы» ближе к MAX
-    materials: roundTo(mats.max, rounding),
+    materials: form.materialsTier === "Материалы клиента" ? 0 : roundTo(mats.max, rounding),
     logistics: form.region.toLowerCase() !== "брест" ? roundTo((max - min) * 0.05, rounding) : 0, // формальная строка, если надо
     rush: (form.urgency && form.urgency.toLowerCase().includes("сроч")) ? roundTo((max - min) * 0.12, rounding) : 0
   };
