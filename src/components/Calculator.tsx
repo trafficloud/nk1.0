@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator as CalculatorIcon } from 'lucide-react';
+import { Calculator as CalculatorIcon, Phone } from 'lucide-react';
 import { loadConfig, Config } from '../types/calculator';
 import { getProcessedFormValues, calculateTotal, FormValues } from '../utils/calculator';
 import ResultCard from './ResultCard';
