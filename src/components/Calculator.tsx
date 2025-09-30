@@ -28,8 +28,8 @@ const Calculator: React.FC = () => {
   };
 
   const getLogistics = (region: string): number => {
-    if (region.includes('+30')) return 30;
-    if (region.includes('Другая')) return 60;
+    if (region === 'Брест +30 км') return 30;
+    if (region === 'Другая область') return 60;
     return 0; // Минск/Брест
   };
 
@@ -117,6 +117,35 @@ const Calculator: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Form */}
           <div className="rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm animate-slide-up">
+            {/* New fields */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              {/* Wall Material */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Материал стен</label>
+                <select
+                  id="fWallMaterial"
+                  className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
+                  defaultValue="Не знаю"
+                >
+                  <option>Не знаю</option>
+                  <option>Кирпич</option>
+                  <option>Бетон</option>
+                  <option>Г-с блок</option>
+                </select>
+              </div>
+              {/* Ceiling Height */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Высота потолка &gt; 3 м</label>
+                <select
+                  id="fCeilingHeight"
+                  className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
+                  defaultValue="Нет"
+                >
+                  <option>Нет</option>
+                  <option>Да</option>
+                </select>
+              </div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Object Type */}
               <div>
@@ -227,8 +256,6 @@ const Calculator: React.FC = () => {
                   id="fRegion" 
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
                 >
-                  <option>Минск</option>
-                  <option>Минск +30 км</option>
                   <option>Брест</option>
                   <option>Брест +30 км</option>
                   <option>Другая область</option>
