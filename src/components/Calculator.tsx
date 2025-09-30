@@ -1,97 +1,84 @@
 import React, { useState } from 'react';
 import { Calculator as CalculatorIcon } from 'lucide-react';
+import { loadConfig, Config } from '../types/calculator';
+import { getProcessedFormValues, calculateTotal, FormValues } from '../utils/calculator';
 
 interface CalculationResult {
   min: number;
   max: number;
-  work: number;
-  materials: number;
-  logistics: number;
-  urgency: number;
+  currency: string;
+  breakdown: {
+    works: number;
+    materials: number;
+    logistics: number;
+    rush: number;
+  };
+  factors: string[];
+  orangeNote: string;
 }
 
 const Calculator: React.FC = () => {
+  const [config, setConfig] = useState<Config | null>(null);
   const [result, setResult] = useState<CalculationResult | null>(null);
+  
+  // Form state
+  const [fWallMaterial, setFWallMaterial] = useState('Не знаю');
+  const [fCeilingHeight, setFCeilingHeight] = useState('Нет');
+  const [fType, setFType] = useState('Студия');
+  const [fArea, setFArea] = useState('');
+  const [fPoints, setFPoints] = useState('');
+  const [fLights, setFLights] = useState('');
+  const [fPanel, setFPanel] = useState('Новый щит');
+  const [fRcd, setFRcd] = useState('Да');
+  const [fChase, setFChase] = useState('');
+  const [fMaterials, setFMaterials] = useState('Базовые (сертифицированные)');
+  const [fRegion, setFRegion] = useState('Брест');
+  const [fUrgency, setFUrgency] = useState('Стандартно');
+  const [optWarm, setOptWarm] = useState(false);
+  const [optLow, setOptLow] = useState(false);
+  const [optGround, setOptGround] = useState(false);
+  const [optMeter, setOptMeter] = useState(false);
 
-  // Base rates
-  const R = 15; // point
-  const L = 20; // light
-  const Q = 150; // panel
-  const S = 5; // chase meter
-  const Z = 80; // RCD
-  const OPT = { warm: 120, low: 60, ground: 90, meter: 70 };
-
-  const getMaterialCoef = (value: string): number => {
-    if (value.includes('Премиум')) return 0.9;
-    if (value.includes('Материалы клиента')) return 0;
-    return 0.6; // базовые
-  };
-
-  const getLogistics = (region: string): number => {
-    if (region === 'Брест +30 км') return 30;
-    if (region === 'Другая область') return 60;
-    return 0; // Минск/Брест
-  };
-
-  const getUrgency = (val: string): number => {
-    return val.includes('Ускоренно') ? 0.15 : 0;
-  };
-
-  const parseNum = (id: string): number => {
-    const element = document.getElementById(id) as HTMLInputElement;
-    const v = parseFloat(element?.value || '0');
-    return isNaN(v) ? 0 : v;
-  };
-
-  const getSelectValue = (id: string): string => {
-    const element = document.getElementById(id) as HTMLSelectElement;
-    return element?.value || '';
-  };
-
-  const getCheckboxValue = (id: string): boolean => {
-    const element = document.getElementById(id) as HTMLInputElement;
-    return element?.checked || false;
-  };
+  // Load config on mount
+  useEffect(() => {
+    const loadCalculatorConfig = async () => {
+      try {
+        const cfg = await loadConfig();
+        setConfig(cfg);
+      } catch (error) {
+        console.error('Failed to load calculator config:', error);
+      }
+    };
+    
+    loadCalculatorConfig();
+  }, []);
 
   const calculate = (): void => {
-    const pts = parseNum('fPoints');
-    const lgt = parseNum('fLights');
-    const chase = parseNum('fChase');
-
-    const panel = getSelectValue('fPanel');
-    const panelCost = panel.includes('Новый') || panel.includes('Замена') ? Q : 0;
-
-    const rcd = getSelectValue('fRcd');
-    const rcdCost = rcd.includes('Да') ? Z : 0;
-
-    let addons = 0;
-    if (getCheckboxValue('optWarm')) addons += OPT.warm;
-    if (getCheckboxValue('optLow')) addons += OPT.low;
-    if (getCheckboxValue('optGround')) addons += OPT.ground;
-    if (getCheckboxValue('optMeter')) addons += OPT.meter;
-
-    const workBase = (pts * R) + (lgt * L) + (chase * S) + panelCost + rcdCost + addons;
-
-    const matCoef = getMaterialCoef(getSelectValue('fMaterials'));
-    const materials = workBase * matCoef;
-
-    const logi = getLogistics(getSelectValue('fRegion'));
-    const urgPerc = getUrgency(getSelectValue('fUrgency'));
-    const urgVal = (workBase + materials + logi) * urgPerc;
-
-    const sum = workBase + materials + logi + urgVal;
-
-    const min = Math.round(sum * 0.95);
-    const max = Math.round(sum * 1.10);
-
-    setResult({
-      min,
-      max,
-      work: Math.round(workBase),
-      materials: Math.round(materials),
-      logistics: Math.round(logi),
-      urgency: Math.round(urgVal)
-    });
+    if (!config) return;
+    
+    const formValues: FormValues = {
+      objectType: fType,
+      area: Number(fArea) || 0,
+      points: Number(fPoints) || 0,
+      lights: Number(fLights) || 0,
+      panel: fPanel,
+      rcd: fRcd,
+      chaseM: Number(fChase) || 0,
+      materialsTier: fMaterials,
+      region: fRegion,
+      urgency: fUrgency,
+      warmFloor: optWarm,
+      weakCurrent: optLow,
+      grounding: optGround,
+      meterMove: optMeter,
+      wallMaterial: fWallMaterial,
+      heightGT3: fCeilingHeight
+    };
+    
+    const processedForm = getProcessedFormValues(formValues);
+    const calculationResult = calculateTotal(processedForm, config);
+    
+    setResult(calculationResult);
   };
 
   const downloadPDF = (): void => {
@@ -123,9 +110,10 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Материал стен</label>
                 <select
-                  id="fWallMaterial"
+                  name="wallMaterial"
+                  value={fWallMaterial}
+                  onChange={(e) => setFWallMaterial(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
-                  defaultValue="Не знаю"
                 >
                   <option>Не знаю</option>
                   <option>Кирпич</option>
@@ -137,9 +125,10 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Высота потолка &gt; 3 м</label>
                 <select
-                  id="fCeilingHeight"
+                  name="heightGT3"
+                  value={fCeilingHeight}
+                  onChange={(e) => setFCeilingHeight(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
-                  defaultValue="Нет"
                 >
                   <option>Нет</option>
                   <option>Да</option>
@@ -151,7 +140,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Тип объекта</label>
                 <select 
-                  id="fType" 
+                  name="objectType"
+                  value={fType}
+                  onChange={(e) => setFType(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
                 >
                   <option>Студия</option>
@@ -167,7 +158,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Площадь, м²</label>
                 <input 
-                  id="fArea" 
+                  name="area"
+                  value={fArea}
+                  onChange={(e) => setFArea(e.target.value)}
                   type="number" 
                   min="0" 
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors" 
@@ -179,7 +172,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Количество точек</label>
                 <input 
-                  id="fPoints" 
+                  name="points"
+                  value={fPoints}
+                  onChange={(e) => setFPoints(e.target.value)}
                   type="number" 
                   min="0" 
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors" 
@@ -191,7 +186,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Светильники</label>
                 <input 
-                  id="fLights" 
+                  name="lights"
+                  value={fLights}
+                  onChange={(e) => setFLights(e.target.value)}
                   type="number" 
                   min="0" 
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors" 
@@ -203,7 +200,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Щит</label>
                 <select 
-                  id="fPanel" 
+                  name="panel"
+                  value={fPanel}
+                  onChange={(e) => setFPanel(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
                 >
                   <option>Новый щит</option>
@@ -216,7 +215,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">УЗО / дифавтоматы</label>
                 <select 
-                  id="fRcd" 
+                  name="rcd"
+                  value={fRcd}
+                  onChange={(e) => setFRcd(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
                 >
                   <option>Да</option>
@@ -228,7 +229,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Штроба, м</label>
                 <input 
-                  id="fChase" 
+                  name="chaseM"
+                  value={fChase}
+                  onChange={(e) => setFChase(e.target.value)}
                   type="number" 
                   min="0" 
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors" 
@@ -240,7 +243,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Материалы</label>
                 <select 
-                  id="fMaterials" 
+                  name="materialsTier"
+                  value={fMaterials}
+                  onChange={(e) => setFMaterials(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
                 >
                   <option>Базовые (сертифицированные)</option>
@@ -253,7 +258,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Регион</label>
                 <select 
-                  id="fRegion" 
+                  name="region"
+                  value={fRegion}
+                  onChange={(e) => setFRegion(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
                 >
                   <option>Брест</option>
@@ -266,7 +273,9 @@ const Calculator: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Срочность</label>
                 <select 
-                  id="fUrgency" 
+                  name="urgency"
+                  value={fUrgency}
+                  onChange={(e) => setFUrgency(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
                 >
                   <option>Стандартно</option>
@@ -279,19 +288,43 @@ const Calculator: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-3">Доп. опции</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700">
                   <label className="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
-                    <input id="optWarm" type="checkbox" className="accent-primary w-4 h-4" />
+                    <input 
+                      name="opt_warmfloor"
+                      type="checkbox" 
+                      checked={optWarm}
+                      onChange={(e) => setOptWarm(e.target.checked)}
+                      className="accent-primary w-4 h-4" 
+                    />
                     Тёплый пол (эл.)
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
-                    <input id="optLow" type="checkbox" className="accent-primary w-4 h-4" />
+                    <input 
+                      name="opt_weak"
+                      type="checkbox" 
+                      checked={optLow}
+                      onChange={(e) => setOptLow(e.target.checked)}
+                      className="accent-primary w-4 h-4" 
+                    />
                     Слаботочка (интернет/TV)
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
-                    <input id="optGround" type="checkbox" className="accent-primary w-4 h-4" />
+                    <input 
+                      name="opt_ground"
+                      type="checkbox" 
+                      checked={optGround}
+                      onChange={(e) => setOptGround(e.target.checked)}
+                      className="accent-primary w-4 h-4" 
+                    />
                     Заземление/контур
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
-                    <input id="optMeter" type="checkbox" className="accent-primary w-4 h-4" />
+                    <input 
+                      name="opt_meter_move"
+                      type="checkbox" 
+                      checked={optMeter}
+                      onChange={(e) => setOptMeter(e.target.checked)}
+                      className="accent-primary w-4 h-4" 
+                    />
                     Перенос счётчика
                   </label>
                 </div>
@@ -342,7 +375,7 @@ const Calculator: React.FC = () => {
                     <span className="text-primary">{formatNumber(result.min)}</span>
                     <span className="text-primary"> — </span>
                     <span className="text-primary">{formatNumber(result.max)}</span>
-                    <span className="ml-1 text-accent">BYN</span>
+                    <span className="ml-1 text-accent">{result.currency}</span>
                   </>
                 ) : (
                   <>
@@ -362,28 +395,54 @@ const Calculator: React.FC = () => {
               <div>
                 <p className="text-gray-500 mb-1">Работы</p>
                 <p className="font-medium text-gray-800">
-                  {result ? `${formatNumber(result.work)} BYN` : '—'}
+                  {result ? `${formatNumber(result.breakdown.works)} ${result.currency}` : '—'}
                 </p>
               </div>
               <div>
                 <p className="text-gray-500 mb-1">Материалы</p>
                 <p className="font-medium text-gray-800">
-                  {result ? `${formatNumber(result.materials)} BYN` : '—'}
+                  {result ? `${formatNumber(result.breakdown.materials)} ${result.currency}` : '—'}
                 </p>
               </div>
               <div>
                 <p className="text-gray-500 mb-1">Логистика</p>
                 <p className="font-medium text-gray-800">
-                  {result ? `${formatNumber(result.logistics)} BYN` : '—'}
+                  {result ? `${formatNumber(result.breakdown.logistics)} ${result.currency}` : '—'}
                 </p>
               </div>
               <div>
                 <p className="text-gray-500 mb-1">Срочность</p>
                 <p className="font-medium text-gray-800">
-                  {result ? `${formatNumber(result.urgency)} BYN` : '—'}
+                  {result ? `${formatNumber(result.breakdown.rush)} ${result.currency}` : '—'}
                 </p>
               </div>
             </div>
+
+            {/* Factors */}
+            {result && result.factors.length > 0 && (
+              <div className="mb-6">
+                <p className="text-sm font-medium text-gray-700 mb-2">Факторы ценообразования:</p>
+                <div className="flex flex-wrap gap-2">
+                  {result.factors.map((factor, index) => (
+                    <span
+                      key={index}
+                      className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-600"
+                    >
+                      {factor}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Orange Note */}
+            {result && result.orangeNote && (
+              <div className="mb-6">
+                <p className="text-sm font-semibold text-orange-500">
+                  {result.orangeNote}
+                </p>
+              </div>
+            )}
 
             <ul className="space-y-2 text-sm text-gray-700">
               <li>

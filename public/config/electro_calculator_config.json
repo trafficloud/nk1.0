@@ -1,0 +1,64 @@
+{
+  "config_version": "1.0.0",
+  "currency": "BYN",
+  "last_updated": "2025-09-30T12:00:00Z",
+
+  "services": [
+    { "id": "chase_generic", "category": "core", "name": "Штроба (ориентир)", "unit": "m", "min_price": 5.0, "max_price": 8.0, "pricing_mode": "avg" },
+    { "id": "points_install", "category": "core", "name": "Точки (розетки/выключатели)", "unit": "pcs", "min_price": 7.0, "max_price": 10.0, "pricing_mode": "avg" },
+    { "id": "spotlights", "category": "core", "name": "Точечные светильники (ГКЛ)", "unit": "pcs", "min_price": 10.0, "max_price": 10.0, "pricing_mode": "min" },
+    { "id": "chandelier", "category": "core", "name": "Люстра", "unit": "pcs", "min_price": 30.0, "max_price": 40.0, "pricing_mode": "avg" },
+    { "id": "panel_install", "category": "core", "name": "Щит (установка)", "unit": "pcs", "min_price": 50.0, "max_price": 200.0, "pricing_mode": "by_param", "param_schema": "panel_params_v1" },
+    { "id": "rcd_diff", "category": "core", "name": "УЗО / дифавтоматы (подключение)", "unit": "pcs", "min_price": 15.0, "max_price": 15.0, "pricing_mode": "min" },
+
+    { "id": "led_strip", "category": "extra", "name": "LED-лента", "unit": "m", "min_price": 6.0, "max_price": 6.0, "pricing_mode": "min" },
+    { "id": "weak_current", "category": "extra", "name": "Слаботочка (интернет/TV) — ориентир за точку", "unit": "pcs", "min_price": 8.0, "max_price": 12.0, "pricing_mode": "avg" },
+    { "id": "ground_loop", "category": "extra", "name": "Заземление/контур (ориентир)", "unit": "job", "min_price": 50.0, "max_price": 120.0, "pricing_mode": "avg" },
+    { "id": "meter_move", "category": "extra", "name": "Перенос счётчика (ориентир)", "unit": "job", "min_price": 60.0, "max_price": 120.0, "pricing_mode": "avg" },
+
+    { "id": "min_visit", "category": "extra", "name": "Минимальный выезд", "unit": "job", "min_price": 30.0, "max_price": 30.0, "pricing_mode": "min" }
+  ],
+
+  "params": [
+    { "schema_id": "panel_params_v1", "param": "modules", "variant": "≤12M", "coef": 1.0 },
+    { "schema_id": "panel_params_v1", "param": "modules", "variant": "18–24M", "coef": 1.3 },
+    { "schema_id": "panel_params_v1", "param": "modules", "variant": ">24M", "coef": 1.6 }
+  ],
+
+  "pricing_rules": [
+    { "key": "rounding", "value": "0.10" },
+    { "key": "min_order", "value": "30" },
+
+    { "key": "wall_material_max_coef_unknown", "value": "1.10" },
+    { "key": "wall_material_max_coef_concrete", "value": "1.15" },
+    { "key": "wall_material_max_coef_brick", "value": "1.00" },
+    { "key": "wall_material_max_coef_gs", "value": "0.95" },
+
+    { "key": "height_gt3m_max_coef", "value": "1.10" },
+    { "key": "rush_max_coef", "value": "1.15" },
+    { "key": "region_max_coef_outside", "value": "1.05" },
+    { "key": "hidden_risk_max_coef", "value": "1.05" },
+
+    { "key": "materials_tier_work_min_coef", "value": "1.00" },
+    { "key": "materials_tier_work_max_coef", "value": "1.03" },
+    { "key": "materials_tier_work_min_coef_premium", "value": "1.05" },
+    { "key": "materials_tier_work_max_coef_premium", "value": "1.10" }
+  ],
+
+  "heuristics": {
+    "by_object_type": {
+      "Студия":      { "points_per_m2_min": 0.45, "points_per_m2_max": 0.60, "spot_per_m2_min": 0.15, "spot_per_m2_max": 0.22, "chase_m_per_point_min": 0.5, "chase_m_per_point_max": 0.8, "panel_modules_guess": "18–24M" },
+      "1-комнатная": { "points_per_m2_min": 0.45, "points_per_m2_max": 0.60, "spot_per_m2_min": 0.15, "spot_per_m2_max": 0.23, "chase_m_per_point_min": 0.5, "chase_m_per_point_max": 0.8, "panel_modules_guess": "18–24M" },
+      "2-комнатная": { "points_per_m2_min": 0.50, "points_per_m2_max": 0.65, "spot_per_m2_min": 0.16, "spot_per_m2_max": 0.24, "chase_m_per_point_min": 0.5, "chase_m_per_point_max": 0.8, "panel_modules_guess": ">24M" },
+      "3-комнатная": { "points_per_m2_min": 0.50, "points_per_m2_max": 0.70, "spot_per_m2_min": 0.17, "spot_per_m2_max": 0.25, "chase_m_per_point_min": 0.5, "chase_m_per_point_max": 0.8, "panel_modules_guess": ">24M" },
+      "Дом":         { "points_per_m2_min": 0.45, "points_per_m2_max": 0.70, "spot_per_m2_min": 0.15, "spot_per_m2_max": 0.25, "chase_m_per_point_min": 0.5, "chase_m_per_point_max": 0.9, "panel_modules_guess": ">24M" }
+    }
+  },
+
+  "materials_norms": {
+    "per_point_min": 7.0,  "per_point_max": 10.0,
+    "per_meter_chase_min": 0.0, "per_meter_chase_max": 0.0,
+    "per_spot_min": 4.0,   "per_spot_max": 6.0,
+    "panel_min": 40.0,     "panel_max": 80.0
+  }
+}
