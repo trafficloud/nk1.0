@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator as CalculatorIcon, Phone } from 'lucide-react';
+import { Calculator as CalculatorIcon } from 'lucide-react';
 import { loadConfig, Config } from '../types/calculator';
 import { getProcessedFormValues, calculateTotal, FormValues } from '../utils/calculator';
 import ResultCard from './ResultCard';
@@ -102,9 +102,9 @@ const Calculator: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:items-end">
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Form */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm animate-slide-up flex flex-col">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm animate-slide-up">
             {/* New fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               {/* Wall Material */}
@@ -332,7 +332,7 @@ const Calculator: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-col sm:flex-row gap-3 lg:mt-auto">
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button 
                 onClick={calculate}
                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[180px]
@@ -366,7 +366,6 @@ const Calculator: React.FC = () => {
           {/* Result */}
           {result ? (
             <ResultCard
-              className="flex flex-col lg:justify-end"
               currency={result.currency}
               rangeMin={result.min}
               rangeMax={result.max}
@@ -375,7 +374,7 @@ const Calculator: React.FC = () => {
               orangeNote={result.orangeNote}
             />
           ) : (
-            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-7 shadow-sm animate-slide-up flex flex-col lg:justify-end">
+            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-7 shadow-sm animate-slide-up">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-white text-xs font-medium mb-6">
                 Итоговый расчёт
               </div>
@@ -392,7 +391,7 @@ const Calculator: React.FC = () => {
                 </p>
               </div>
 
-              <ul className="space-y-2 text-sm text-gray-700 lg:mt-auto lg:mb-4">
+              <ul className="space-y-2 text-sm text-gray-700">
                 <li>
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
                   Цена фиксируется в договоре
@@ -406,13 +405,6 @@ const Calculator: React.FC = () => {
                   Бесплатный выезд специалиста : Брест +30 км
                 </li>
               </ul>
-              
-              <div className="mt-4">
-                <div className="flex w-full items-center justify-center gap-2 rounded-xl bg-gray-300 px-6 py-3 text-sm sm:text-base font-medium text-gray-500 cursor-not-allowed">
-                  <Phone className="h-5 w-5" />
-                  Заказать выезд
-                </div>
-              </div>
             </div>
           )}
         </div>
