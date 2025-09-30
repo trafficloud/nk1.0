@@ -1,0 +1,644 @@
+{
+  "generated_at": "2025-09-30T10:37:46.425519Z",
+  "services": [
+    {
+      "id": "chase_concrete",
+      "category": "core",
+      "name": "Штроба в ж/б стене",
+      "unit": "m",
+      "min_price": 6.0,
+      "max_price": 8.0,
+      "pricing_mode": "by_param",
+      "param_schema": "chase_params_v1",
+      "notes": "зависит от ширины"
+    },
+    {
+      "id": "chase_brick",
+      "category": "core",
+      "name": "Штроба в кирпичной стене",
+      "unit": "m",
+      "min_price": 5.0,
+      "max_price": 7.0,
+      "pricing_mode": "by_param",
+      "param_schema": "chase_params_v1",
+      "notes": "зависит от ширины"
+    },
+    {
+      "id": "chase_gs",
+      "category": "core",
+      "name": "Штроба в г/с блоках",
+      "unit": "m",
+      "min_price": 3.0,
+      "max_price": 4.0,
+      "pricing_mode": "by_param",
+      "param_schema": "chase_params_v1",
+      "notes": "зависит от ширины"
+    },
+    {
+      "id": "box_hole_concrete",
+      "category": "core",
+      "name": "Отверстие под подрозетник (бетон)",
+      "unit": "pcs",
+      "min_price": 15.0,
+      "max_price": 20.0,
+      "pricing_mode": "by_param",
+      "param_schema": "hole_params_v1",
+      "notes": "зависит от диаметра"
+    },
+    {
+      "id": "box_hole_brick",
+      "category": "core",
+      "name": "Отверстие под подрозетник (кирпич)",
+      "unit": "pcs",
+      "min_price": 12.0,
+      "max_price": 15.0,
+      "pricing_mode": "by_param",
+      "param_schema": "hole_params_v1",
+      "notes": "зависит от диаметра"
+    },
+    {
+      "id": "box_hole_gs",
+      "category": "core",
+      "name": "Отверстие под подрозетник (г/с)",
+      "unit": "pcs",
+      "min_price": 10.0,
+      "max_price": 12.0,
+      "pricing_mode": "by_param",
+      "param_schema": "hole_params_v1",
+      "notes": "зависит от диаметра"
+    },
+    {
+      "id": "through_hole",
+      "category": "core",
+      "name": "Сквозное отверстие до 50 мм",
+      "unit": "pcs",
+      "min_price": 15.5,
+      "max_price": 20.0,
+      "pricing_mode": "by_param",
+      "param_schema": "hole_params_v1",
+      "notes": "зависит от размера/материала"
+    },
+    {
+      "id": "niche_for_panel",
+      "category": "core",
+      "name": "Подготовка ниши под щиток",
+      "unit": "pcs",
+      "min_price": 50.0,
+      "max_price": 300.0,
+      "pricing_mode": "by_param",
+      "param_schema": "panel_niche_params_v1",
+      "notes": "зависит от размера и стены"
+    },
+    {
+      "id": "demount_chandelier",
+      "category": "extra",
+      "name": "Демонтаж люстры",
+      "unit": "pcs",
+      "min_price": 5.0,
+      "max_price": 5.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "demount_sockets",
+      "category": "extra",
+      "name": "Демонтаж розеток/выключателей",
+      "unit": "pcs",
+      "min_price": 1.0,
+      "max_price": 1.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "cable_laying",
+      "category": "core",
+      "name": "Укладка электрического кабеля",
+      "unit": "m",
+      "min_price": 2.5,
+      "max_price": 4.0,
+      "pricing_mode": "by_param",
+      "param_schema": "cable_params_v1",
+      "notes": "зависит от сечения"
+    },
+    {
+      "id": "warm_floor_cable",
+      "category": "extra",
+      "name": "Монтаж кабеля тёплого пола",
+      "unit": "m",
+      "min_price": 15.0,
+      "max_price": 15.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "cable_channel",
+      "category": "extra",
+      "name": "Монтаж кабель-канала",
+      "unit": "m",
+      "min_price": 4.0,
+      "max_price": 6.0,
+      "pricing_mode": "by_param",
+      "param_schema": "channel_params_v1",
+      "notes": "зависит от размера"
+    },
+    {
+      "id": "metal_flex_pull",
+      "category": "core",
+      "name": "Затяжка кабеля в металлорукав",
+      "unit": "m",
+      "min_price": 1.0,
+      "max_price": 2.0,
+      "pricing_mode": "by_param",
+      "param_schema": "cable_params_v1",
+      "notes": "зависит от сечения"
+    },
+    {
+      "id": "conduit_laying",
+      "category": "core",
+      "name": "Укладка гофры/труб/металлорукава",
+      "unit": "m",
+      "min_price": 2.0,
+      "max_price": 3.0,
+      "pricing_mode": "by_param",
+      "param_schema": "conduit_params_v1",
+      "notes": "зависит от диаметра/крепления"
+    },
+    {
+      "id": "box_install",
+      "category": "core",
+      "name": "Установка распред./розет. коробок",
+      "unit": "pcs",
+      "min_price": 4.0,
+      "max_price": 5.0,
+      "pricing_mode": "by_param",
+      "param_schema": "box_params_v1",
+      "notes": "зависит от диаметра"
+    },
+    {
+      "id": "splice_test",
+      "category": "core",
+      "name": "Распайка/прозвонка схем",
+      "unit": "pcs",
+      "min_price": 16.0,
+      "max_price": 30.0,
+      "pricing_mode": "by_param",
+      "param_schema": "splice_params_v1",
+      "notes": "зависит от количества кабелей"
+    },
+    {
+      "id": "socket_switch_install",
+      "category": "core",
+      "name": "Установка розеток/выключателей",
+      "unit": "pcs",
+      "min_price": 7.0,
+      "max_price": 10.0,
+      "pricing_mode": "by_param",
+      "param_schema": "socket_params_v1",
+      "notes": "зависит от наличия шлейфа"
+    },
+    {
+      "id": "surface_socket_switch",
+      "category": "extra",
+      "name": "Установка накладных розеток/выключателей",
+      "unit": "pcs",
+      "min_price": 10.0,
+      "max_price": 10.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "tv_splitter",
+      "category": "extra",
+      "name": "Установка ТВ-разветвителя",
+      "unit": "pcs",
+      "min_price": 10.0,
+      "max_price": 10.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "thermostat_install",
+      "category": "extra",
+      "name": "Монтаж термостата тёплого пола",
+      "unit": "pcs",
+      "min_price": 20.0,
+      "max_price": 20.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "daylight_fixture",
+      "category": "core",
+      "name": "Монтаж светильника дневного света",
+      "unit": "pcs",
+      "min_price": 30.0,
+      "max_price": 30.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "led_strip",
+      "category": "extra",
+      "name": "Монтаж LED-ленты",
+      "unit": "m",
+      "min_price": 6.0,
+      "max_price": 6.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "spotlight_gypsum",
+      "category": "core",
+      "name": "Монтаж точечного светильника (ГКЛ)",
+      "unit": "pcs",
+      "min_price": 10.0,
+      "max_price": 10.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "chandelier_install",
+      "category": "core",
+      "name": "Монтаж люстры",
+      "unit": "pcs",
+      "min_price": 30.0,
+      "max_price": 40.0,
+      "pricing_mode": "by_param",
+      "param_schema": "fixture_params_v1",
+      "notes": "зависит от размера"
+    },
+    {
+      "id": "bra_install",
+      "category": "core",
+      "name": "Монтаж бра",
+      "unit": "pcs",
+      "min_price": 30.0,
+      "max_price": 30.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "fan_install",
+      "category": "extra",
+      "name": "Монтаж вентилятора",
+      "unit": "pcs",
+      "min_price": 30.0,
+      "max_price": 30.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "panel_install",
+      "category": "core",
+      "name": "Установка щитка",
+      "unit": "pcs",
+      "min_price": 50.0,
+      "max_price": 200.0,
+      "pricing_mode": "by_param",
+      "param_schema": "panel_params_v1",
+      "notes": "зависит от размера"
+    },
+    {
+      "id": "mcb_install",
+      "category": "core",
+      "name": "Установка автомата однополюсного/колодок",
+      "unit": "pcs",
+      "min_price": 10.0,
+      "max_price": 10.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "rcd_diff_connect",
+      "category": "core",
+      "name": "Подключение диф/ввод/УЗО",
+      "unit": "pcs",
+      "min_price": 15.0,
+      "max_price": 15.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "фиксированная цена"
+    },
+    {
+      "id": "meter_single",
+      "category": "core",
+      "name": "Установка однофазного счётчика",
+      "unit": "pcs",
+      "min_price": 50.0,
+      "max_price": 60.0,
+      "pricing_mode": "by_param",
+      "param_schema": "meter_params_v1",
+      "notes": "внутр./наружн. исполнение"
+    },
+    {
+      "id": "min_visit",
+      "category": "extra",
+      "name": "Минимальный выезд электрика",
+      "unit": "job",
+      "min_price": 30.0,
+      "max_price": 30.0,
+      "pricing_mode": "min",
+      "param_schema": "",
+      "notes": "минимальная сумма заказа"
+    }
+  ],
+  "params": [
+    {
+      "schema_id": "chase_params_v1",
+      "param": "wall_material",
+      "variant": "бетон",
+      "coef": 1.2
+    },
+    {
+      "schema_id": "chase_params_v1",
+      "param": "wall_material",
+      "variant": "кирпич",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "chase_params_v1",
+      "param": "wall_material",
+      "variant": "г/с блок",
+      "coef": 0.85
+    },
+    {
+      "schema_id": "chase_params_v1",
+      "param": "width",
+      "variant": "<20мм",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "chase_params_v1",
+      "param": "width",
+      "variant": "20–30мм",
+      "coef": 1.15
+    },
+    {
+      "schema_id": "chase_params_v1",
+      "param": "width",
+      "variant": ">30мм",
+      "coef": 1.3
+    },
+    {
+      "schema_id": "hole_params_v1",
+      "param": "wall_material",
+      "variant": "бетон",
+      "coef": 1.2
+    },
+    {
+      "schema_id": "hole_params_v1",
+      "param": "wall_material",
+      "variant": "кирпич",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "hole_params_v1",
+      "param": "wall_material",
+      "variant": "г/с блок",
+      "coef": 0.9
+    },
+    {
+      "schema_id": "hole_params_v1",
+      "param": "diameter",
+      "variant": "≤68мм",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "hole_params_v1",
+      "param": "diameter",
+      "variant": ">68мм",
+      "coef": 1.25
+    },
+    {
+      "schema_id": "panel_niche_params_v1",
+      "param": "panel_size",
+      "variant": "≤12M",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "panel_niche_params_v1",
+      "param": "panel_size",
+      "variant": "18–24M",
+      "coef": 1.3
+    },
+    {
+      "schema_id": "panel_niche_params_v1",
+      "param": "panel_size",
+      "variant": ">24M",
+      "coef": 1.6
+    },
+    {
+      "schema_id": "panel_niche_params_v1",
+      "param": "wall_material",
+      "variant": "бетон",
+      "coef": 1.15
+    },
+    {
+      "schema_id": "panel_niche_params_v1",
+      "param": "wall_material",
+      "variant": "кирпич",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "panel_niche_params_v1",
+      "param": "wall_material",
+      "variant": "г/с блок",
+      "coef": 0.9
+    },
+    {
+      "schema_id": "cable_params_v1",
+      "param": "section",
+      "variant": "1.5мм²",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "cable_params_v1",
+      "param": "section",
+      "variant": "2.5мм²",
+      "coef": 1.1
+    },
+    {
+      "schema_id": "cable_params_v1",
+      "param": "section",
+      "variant": "4мм²",
+      "coef": 1.25
+    },
+    {
+      "schema_id": "cable_params_v1",
+      "param": "section",
+      "variant": "6мм²",
+      "coef": 1.4
+    },
+    {
+      "schema_id": "channel_params_v1",
+      "param": "size",
+      "variant": "≤25×16",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "channel_params_v1",
+      "param": "size",
+      "variant": "40×25",
+      "coef": 1.2
+    },
+    {
+      "schema_id": "channel_params_v1",
+      "param": "size",
+      "variant": ">40×25",
+      "coef": 1.35
+    },
+    {
+      "schema_id": "conduit_params_v1",
+      "param": "diameter",
+      "variant": "16мм",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "conduit_params_v1",
+      "param": "diameter",
+      "variant": "20мм",
+      "coef": 1.1
+    },
+    {
+      "schema_id": "conduit_params_v1",
+      "param": "diameter",
+      "variant": "25–32мм",
+      "coef": 1.25
+    },
+    {
+      "schema_id": "conduit_params_v1",
+      "param": "fixing",
+      "variant": "скобы",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "conduit_params_v1",
+      "param": "fixing",
+      "variant": "подвес/клипсы",
+      "coef": 1.1
+    },
+    {
+      "schema_id": "box_params_v1",
+      "param": "diameter",
+      "variant": "68мм",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "box_params_v1",
+      "param": "diameter",
+      "variant": ">68мм",
+      "coef": 1.15
+    },
+    {
+      "schema_id": "splice_params_v1",
+      "param": "cables_in_joint",
+      "variant": "до 3",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "splice_params_v1",
+      "param": "cables_in_joint",
+      "variant": "4–6",
+      "coef": 1.2
+    },
+    {
+      "schema_id": "splice_params_v1",
+      "param": "cables_in_joint",
+      "variant": ">6",
+      "coef": 1.4
+    },
+    {
+      "schema_id": "socket_params_v1",
+      "param": "loop",
+      "variant": "без шлейфа",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "socket_params_v1",
+      "param": "loop",
+      "variant": "со шлейфом",
+      "coef": 1.15
+    },
+    {
+      "schema_id": "fixture_params_v1",
+      "param": "size",
+      "variant": "стандарт",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "fixture_params_v1",
+      "param": "size",
+      "variant": "крупная/многоуровневая",
+      "coef": 1.3
+    },
+    {
+      "schema_id": "panel_params_v1",
+      "param": "modules",
+      "variant": "≤12M",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "panel_params_v1",
+      "param": "modules",
+      "variant": "18–24M",
+      "coef": 1.3
+    },
+    {
+      "schema_id": "panel_params_v1",
+      "param": "modules",
+      "variant": ">24M",
+      "coef": 1.6
+    },
+    {
+      "schema_id": "meter_params_v1",
+      "param": "type",
+      "variant": "внутренний",
+      "coef": 1.0
+    },
+    {
+      "schema_id": "meter_params_v1",
+      "param": "type",
+      "variant": "наружный",
+      "coef": 1.1
+    }
+  ],
+  "pricing_rules": [
+    {
+      "key": "rounding",
+      "value": "0.10",
+      "description": "Округление до 10 копеек"
+    },
+    {
+      "key": "min_order",
+      "value": "30",
+      "description": "Минимальный выезд/заказ, BYN"
+    },
+    {
+      "key": "surcharge_night",
+      "value": "1.20",
+      "description": "Ночные работы коэффициент"
+    },
+    {
+      "key": "surcharge_rush",
+      "value": "1.15",
+      "description": "Срочность коэффициент"
+    },
+    {
+      "key": "surcharge_height_gt3m",
+      "value": "1.10",
+      "description": "Работы на высоте >3м коэффициент"
+    }
+  ]
+}
