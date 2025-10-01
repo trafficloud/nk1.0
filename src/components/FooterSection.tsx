@@ -15,15 +15,15 @@ const FooterSection: React.FC = () => {
           <dl className="space-y-2 text-neutral-700 dark:text-neutral-300 md:text-left">
             <div className="flex gap-2 items-baseline">
               <dt className="w-28 text-neutral-500">Наименование</dt>
-              <dd className="font-medium text-neutral-900 dark:text-neutral-100 flex-1">ООО «ФамТим»</dd>
+              <dd className="font-medium text-neutral-900 dark:text-neutral-100 flex-1">ОДО «Брестское предприятие производственных и инжиниринговых услуг»</dd>
             </div>
             <div className="flex gap-2 items-baseline">
               <dt className="w-28 text-neutral-500">УНП</dt>
-              <dd className="flex-1">123456789</dd>
+              <dd className="flex-1">290484521</dd>
             </div>
             <div className="flex gap-2 items-baseline">
               <dt className="w-28 text-neutral-500">Юр. адрес</dt>
-              <dd className="flex-1">220000, г. Минск, ул. Примерная, д. 1, оф. 10</dd>
+              <dd className="flex-1">224030, г.Брест, ул. Гоголя, д.</dd>
             </div>
 
             {/* Контакты в мобильной версии (отображаются только на мобильных, интегрированы в левую колонку) */}
