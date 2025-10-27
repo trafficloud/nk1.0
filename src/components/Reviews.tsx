@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useRef } from 'react';
 import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { supabase } from '../lib/supabase';
+import ReviewForm from './ReviewForm';
 
 interface Review {
-  id: number;
+  id: string;
   name: string;
-  photo: string;
   text: string;
-  badges: string[];
   rating: number;
+  created_at: string;
 }
 
 const Reviews: React.FC = () => {
@@ -18,58 +19,31 @@ const Reviews: React.FC = () => {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [reviewsData, setReviewsData] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const desktopReviewsContainerRef = useRef<HTMLDivElement>(null);
 
-  const reviewsData: Review[] = [
-    {
-      id: 1,
-      name: 'Анна Петрова',
-      photo: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop&crop=face',
-      text: 'Ребята сделали электрику в нашей двушке быстро и качественно. Все точки работают идеально, документы оформили для ЖЭС. Очень довольны результатом!',
-      badges: ['Цена не выросла', 'Уложились в срок'],
-      rating: 5
-    },
-    {
-      id: 2,
-      name: 'Дмитрий Козлов',
-      photo: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop&crop=face',
-      text: 'Заказывал монтаж электрики в новостройке. Мастера работали аккуратно, убирали за собой. Гарантию дали на 2 года, все документы в порядке.',
-      badges: ['Работали чисто', 'Официальная гарантия'],
-      rating: 5
-    },
-    {
-      id: 3,
-      name: 'Елена Сидорова',
-      photo: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop&crop=face',
-      text: 'Отличная команда! Сделали электрику под ключ в трёхкомнатной квартире. Смета была честная, без скрытых доплат. Рекомендую!',
-      badges: ['Без доплат', 'Под ключ'],
-      rating: 5
-    },
-    {
-      id: 4,
-      name: 'Максим Волков',
-      photo: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop&crop=face',
-      text: 'Обращался для монтажа электрики в студии. Ребята приехали точно в срок, работали профессионально. Все розетки и выключатели установлены идеально.',
-      badges: ['Точно в срок', 'Профессионально'],
-      rating: 5
-    },
-    {
-      id: 5,
-      name: 'Ольга Морозова',
-      photo: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop&crop=face',
-      text: 'Заказывала электромонтаж в новой квартире. Мастера объяснили каждый этап работы, использовали качественные материалы. Очень довольна сервисом!',
-      badges: ['Качественные материалы', 'Объяснили все'],
-      rating: 5
-    },
-    {
-      id: 6,
-      name: 'Андрей Лебедев',
-      photo: 'https://images.pexels.com/photos/1212984/pexels-photo-1212984.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop&crop=face',
-      text: 'Сделали электрику в доме площадью 120 м². Работа выполнена на высшем уровне, все согласно ПУЭ. Акт приняли в ЖЭС без замечаний.',
-      badges: ['По ПУЭ', 'Акт принят'],
-      rating: 5
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const fetchReviews = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('reviews')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setReviewsData(data || []);
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    } finally {
+      setIsLoading(false);
     }
-  ];
+  };
 
   // Check if mobile screen
   useEffect(() => {
@@ -160,7 +134,21 @@ const Reviews: React.FC = () => {
     });
   };
   const handleLeaveReview = () => {
-    window.open('https://yandex.by/maps/', '_blank');
+    setIsFormOpen(true);
+  };
+
+  const handleCloseForm = () => {
+    setIsFormOpen(false);
+    fetchReviews();
+  };
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   const renderReviewCard = (review: Review, index: number) => (
@@ -179,18 +167,6 @@ const Reviews: React.FC = () => {
         {review.text}
       </p>
 
-      {/* Badges */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {review.badges.map((badge, badgeIndex) => (
-          <span
-            key={badgeIndex}
-            className="inline-block px-3 py-1 text-xs font-medium bg-accent text-white rounded-full"
-          >
-            {badge}
-          </span>
-        ))}
-      </div>
-
       {/* Rating */}
       <div className="flex items-center gap-1 mb-4">
         {[...Array(review.rating)].map((_, starIndex) => (
@@ -203,25 +179,44 @@ const Reviews: React.FC = () => {
 
       {/* Client Info */}
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full border-2 border-icon overflow-hidden">
-          <img
-            src={review.photo}
-            alt={review.name}
-            className="w-full h-full object-cover"
-          />
+        <div className="w-12 h-12 rounded-full bg-icon/20 flex items-center justify-center border-2 border-icon">
+          <span className="text-icon font-semibold text-sm">
+            {getInitials(review.name)}
+          </span>
         </div>
         <div>
           <h4 className="font-semibold text-primary text-sm">
             {review.name}
           </h4>
+          <p className="text-xs text-text">
+            {new Date(review.created_at).toLocaleDateString('ru-RU', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </p>
         </div>
       </div>
     </div>
   );
 
+  if (isLoading) {
+    return (
+      <section id="reviews" className="bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+          <div className="text-center">
+            <div className="inline-block w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section id="reviews" className="bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+    <>
+      <ReviewForm isOpen={isFormOpen} onClose={handleCloseForm} />
+      <section id="reviews" className="bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
@@ -341,6 +336,7 @@ const Reviews: React.FC = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
