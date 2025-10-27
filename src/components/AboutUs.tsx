@@ -14,7 +14,7 @@ const AboutUs: React.FC = () => {
   const heroStats = [
     {
       icon: Briefcase,
-      number: '10+',
+      number: '15+',
       title: 'лет опыта',
       description: 'в электромонтаже'
     },

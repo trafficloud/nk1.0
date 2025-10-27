@@ -77,10 +77,10 @@ const FAQ: React.FC = () => {
     setShowAll(!showAll);
   };
 
-  const scrollToContacts = () => {
-    const contactsSection = document.getElementById('contacts');
-    if (contactsSection) {
-      contactsSection.scrollIntoView({ behavior: 'smooth' });
+  const openChat = () => {
+    const chatButton = document.querySelector('[aria-label="Открыть онлайн-чат"]') as HTMLButtonElement;
+    if (chatButton) {
+      chatButton.click();
     }
   };
 
@@ -156,7 +156,7 @@ const FAQ: React.FC = () => {
             Не нашли ответ? Задайте вопрос — ответим за 5 минут
           </p>
           <button
-            onClick={scrollToContacts}
+            onClick={openChat}
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[200px]
                        rounded-xl min-h-[48px] px-8 py-3
                        text-sm sm:text-base font-semibold
