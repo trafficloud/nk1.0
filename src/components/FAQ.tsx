@@ -78,9 +78,15 @@ const FAQ: React.FC = () => {
   };
 
   const openChat = () => {
-    const elevenLabsWidget = document.querySelector('elevenlabs-convai');
+    const elevenLabsWidget = document.querySelector('elevenlabs-convai') as any;
     if (elevenLabsWidget) {
-      (elevenLabsWidget as any).open();
+      if (typeof elevenLabsWidget.startConversation === 'function') {
+        elevenLabsWidget.startConversation();
+      } else if (typeof elevenLabsWidget.open === 'function') {
+        elevenLabsWidget.open();
+      } else {
+        elevenLabsWidget.click();
+      }
     }
   };
 
