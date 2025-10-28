@@ -78,9 +78,9 @@ const FAQ: React.FC = () => {
   };
 
   const openChat = () => {
-    const chatButton = document.querySelector('[aria-label="Открыть онлайн-чат"]') as HTMLButtonElement;
-    if (chatButton) {
-      chatButton.click();
+    const elevenLabsWidget = document.querySelector('elevenlabs-convai');
+    if (elevenLabsWidget) {
+      (elevenLabsWidget as any).open();
     }
   };
 
