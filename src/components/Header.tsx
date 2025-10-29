@@ -31,10 +31,10 @@ const Header: React.FC = () => {
   const headerClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     isScrolled
       ? 'bg-white backdrop-blur shadow-sm border-b border-[rgba(26,58,99,.08)]'
-      : 'bg-black/40 backdrop-blur-md'
+      : 'bg-white/85 backdrop-blur-md border-b border-gray-200/30'
   }`;
 
-  const textClasses = isScrolled ? 'text-primary' : 'text-white';
+  const textClasses = 'text-gray-800';
   const logoClasses = `text-2xl font-tektur font-medium ${textClasses}`;
 
   return (
@@ -43,12 +43,10 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <img 
-              src={logoImage} 
-              alt="Надежный Контакт" 
-              className={`h-14 w-auto object-contain transition-all duration-300 ${
-                !isScrolled ? 'brightness-0 invert' : ''
-              }`}
+            <img
+              src={logoImage}
+              alt="Надежный Контакт"
+              className="h-14 w-auto object-contain transition-all duration-300"
             />
           </div>
 
@@ -59,11 +57,7 @@ const Header: React.FC = () => {
                 <Link
                   key={index}
                   to={item.href}
-                  className={`relative text-sm font-medium px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group ${
-                    isScrolled
-                      ? 'hover:bg-primary/10'
-                      : 'hover:bg-white/10 hover:backdrop-blur-md'
-                  }`}
+                  className={`relative text-sm font-medium px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group hover:bg-gray-100/70`}
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
@@ -72,11 +66,7 @@ const Header: React.FC = () => {
                 <a
                   key={index}
                   href={item.href}
-                  className={`relative text-sm font-medium px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group ${
-                    isScrolled
-                      ? 'hover:bg-primary/10'
-                      : 'hover:bg-white/10 hover:backdrop-blur-md'
-                  }`}
+                  className={`relative text-sm font-medium px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group hover:bg-gray-100/70`}
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
