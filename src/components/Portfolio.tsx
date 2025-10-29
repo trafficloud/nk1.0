@@ -72,8 +72,8 @@ const Portfolio: React.FC = () => {
 
       const startDrag = () => {
         isDragging = true;
-        document.addEventListener('mousemove', move);
-        document.addEventListener('touchmove', move);
+        document.addEventListener('mousemove', move, { passive: true });
+        document.addEventListener('touchmove', move, { passive: true });
       };
 
       const stopDrag = () => {
@@ -82,10 +82,10 @@ const Portfolio: React.FC = () => {
         document.removeEventListener('touchmove', move);
       };
 
-      slider.addEventListener('mousedown', startDrag);
-      slider.addEventListener('touchstart', startDrag);
-      document.addEventListener('mouseup', stopDrag);
-      document.addEventListener('touchend', stopDrag);
+      slider.addEventListener('mousedown', startDrag, { passive: true });
+      slider.addEventListener('touchstart', startDrag, { passive: true });
+      document.addEventListener('mouseup', stopDrag, { passive: true });
+      document.addEventListener('touchend', stopDrag, { passive: true });
 
       return () => {
         slider.removeEventListener('mousedown', startDrag);

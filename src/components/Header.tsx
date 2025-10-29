@@ -24,7 +24,7 @@ const Header: React.FC = () => {
       setIsScrolled(scrolled);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -35,10 +35,6 @@ const Header: React.FC = () => {
   }`;
 
   const textClasses = isScrolled ? 'text-primary' : 'text-white';
-  const logoClasses = `text-2xl font-tektur font-medium ${textClasses}`;
-  const logoFilterClasses = isScrolled
-    ? 'brightness-0 saturate-100'
-    : 'brightness-0 invert';
 
   return (
     <header className={headerClasses}>
@@ -49,7 +45,7 @@ const Header: React.FC = () => {
             <img
               src={logoImage}
               alt="Надежный Контакт"
-              className={`h-14 w-auto object-contain transition-all duration-300 ${logoFilterClasses}`}
+              className="h-14 w-auto object-contain transition-all duration-300"
               style={{
                 filter: isScrolled
                   ? 'brightness(0) saturate(100%) invert(17%) sepia(51%) saturate(1549%) hue-rotate(188deg) brightness(93%) contrast(93%)'

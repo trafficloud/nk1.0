@@ -95,7 +95,7 @@ const AboutUs: React.FC = () => {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', checkMobile, { passive: true });
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
