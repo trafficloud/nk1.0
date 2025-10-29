@@ -91,10 +91,10 @@ const Calculator: React.FC = () => {
   };
 
   return (
-    <section id="calc" className="bg-soft py-12 md:py-16">
+    <section id="calc" className="bg-soft py-10 md:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 text-center">
+        <div className="text-center mb-12 animate-fade-in" data-reveal>
+          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4 text-center">
             Рассчитайте стоимость <span className="text-accent">за 2 минуты</span>
           </h2>
           <p className="mt-2 text-gray-600">
@@ -104,7 +104,7 @@ const Calculator: React.FC = () => {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Form */}
-          <div className="rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 animate-reveal">
+          <div className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/20 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 md:p-7" data-reveal>
             {/* New fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               {/* Wall Material */}
@@ -335,13 +335,13 @@ const Calculator: React.FC = () => {
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={calculate}
-                className="btn btn-md btn-primary btn-shine min-w-[180px]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
               >
-                <CalculatorIcon className="w-5 h-5" /> <span>Посчитать</span>
+                <CalculatorIcon className="w-5 h-5" strokeWidth={1.75} /> <span>Посчитать</span>
               </button>
               <button
                 onClick={downloadPDF}
-                className="btn btn-md btn-outline-blue min-w-[180px]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -368,7 +368,7 @@ const Calculator: React.FC = () => {
               orangeNote={result.orangeNote}
             />
           ) : (
-            <div className="rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 animate-reveal">
+            <div className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/20 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 md:p-7" data-reveal>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-white text-xs font-medium mb-6">
                 Итоговый расчёт
               </div>

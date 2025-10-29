@@ -93,11 +93,11 @@ const FAQ: React.FC = () => {
   const visibleItems = showAll ? faqData : faqData.filter(item => item.isTop);
 
   return (
-    <section id="faq" className="bg-white py-12 md:py-16">
+    <section id="faq" className="bg-white py-10 md:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+        <div className="text-center mb-12 animate-fade-in" data-reveal>
+          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
             Часто задаваемые вопросы
           </h2>
           <p className="text-text max-w-2xl mx-auto text-center">
@@ -110,8 +110,8 @@ const FAQ: React.FC = () => {
           {visibleItems.map((item, index) => (
             <div
               key={item.id}
-              className="bg-white rounded-lg p-4 md:p-5 shadow-elev-1 hover:shadow-elev-2 transition-all duration-300 animate-reveal"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-4 md:p-5"
+              data-reveal
             >
               <button
                 onClick={() => toggleItem(item.id)}
@@ -147,7 +147,7 @@ const FAQ: React.FC = () => {
         <div className="text-center mb-12">
           <button
             onClick={toggleShowAll}
-            className="btn btn-md btn-outline-blue min-w-[180px]"
+            className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
           >
             {showAll ? 'Свернуть' : 'Показать ещё'}
           </button>
@@ -160,9 +160,9 @@ const FAQ: React.FC = () => {
           </p>
           <button
             onClick={openChat}
-            className="btn btn-md btn-primary btn-shine min-w-[200px]"
+            className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
           >
-            <MessageSquare className="w-5 h-5" />
+            <MessageSquare className="w-5 h-5" strokeWidth={1.75} />
             <span>Задать вопрос</span>
           </button>
         </div>

@@ -14,23 +14,23 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200;
   }
 
   .btn-md {
-    @apply min-h-[48px] px-8 py-3 text-sm sm:text-base;
+    @apply min-h-[48px] px-6 sm:px-8 py-3 text-sm sm:text-base shadow-md hover:shadow-lg hover:-translate-y-0.5;
   }
 
   .btn-primary {
-    @apply bg-accent text-white shadow-elev-1 hover:brightness-110 hover:-translate-y-0.5 hover:shadow-elev-2;
+    @apply bg-[#FF7F50] text-white;
   }
 
   .btn-outline-white {
-    @apply border-2 border-white text-white hover:bg-white/10 hover:-translate-y-0.5;
+    @apply bg-[#FF7F50] text-white shadow-md hover:shadow-lg hover:-translate-y-0.5;
   }
 
   .btn-outline-blue {
-    @apply border-2 border-primary text-primary hover:bg-primary/5 hover:-translate-y-0.5;
+    @apply bg-[#FF7F50] text-white shadow-md hover:shadow-lg hover:-translate-y-0.5;
   }
 
   .btn-shine {
@@ -62,7 +62,20 @@
   }
 
   .bg-soft {
-    background: linear-gradient(180deg, #F9FAFB 0%, #FFFFFF 100%);
+    @apply bg-[#F7F9FC];
+  }
+
+  .nk-hero-overlay {
+    background: linear-gradient(to bottom, rgba(26,58,99,.55), rgba(26,58,99,.28)),
+                radial-gradient(circle at center, transparent 35%, rgba(0,0,0,.22) 100%);
+  }
+
+  .nk-headline {
+    position: relative;
+  }
+
+  .nk-hover {
+    @apply hover:scale-[1.02];
   }
 }
 
@@ -77,9 +90,34 @@
   }
 }
 
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-soft-blink {
   animation: soft-blink 2.6s ease-in-out infinite;
 }
+
+[data-reveal] {
+  opacity: 0;
+  animation: fade-in-up 0.45s ease-out forwards;
+}
+
+[data-reveal]:nth-child(1) { animation-delay: 0ms; }
+[data-reveal]:nth-child(2) { animation-delay: 60ms; }
+[data-reveal]:nth-child(3) { animation-delay: 120ms; }
+[data-reveal]:nth-child(4) { animation-delay: 180ms; }
+[data-reveal]:nth-child(5) { animation-delay: 240ms; }
+[data-reveal]:nth-child(6) { animation-delay: 300ms; }
+[data-reveal]:nth-child(7) { animation-delay: 360ms; }
+[data-reveal]:nth-child(8) { animation-delay: 420ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-soft-blink {
@@ -89,8 +127,10 @@
   .btn,
   .animate-reveal,
   .animate-slide-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  [data-reveal] {
     animation: none !important;
     transition: none !important;
+    opacity: 1 !important;
   }
 }

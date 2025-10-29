@@ -103,10 +103,10 @@ const Portfolio: React.FC = () => {
   }, []);
 
   return (
-    <section id="portfolio" className="bg-white py-12 md:py-16">
+    <section id="portfolio" className="bg-white py-10 md:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+        <div className="text-center mb-12 animate-fade-in" data-reveal>
+          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
             Наши работы — До и После
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-center">
@@ -118,8 +118,8 @@ const Portfolio: React.FC = () => {
           {portfolioData.map((item, index) => (
             <div
               key={item.id}
-              className="group rounded-2xl bg-white p-4 md:p-5 shadow-elev-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3 animate-reveal"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-4 md:p-5"
+              data-reveal
             >
               {/* Заголовок */}
               <h3 className="text-lg md:text-xl font-bold text-primary mb-3">

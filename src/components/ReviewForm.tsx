@@ -367,10 +367,10 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ isOpen, onClose }) => {
                 type="submit"
                 disabled={isSubmitting || submitStatus === 'success'}
                 className="w-full inline-flex items-center justify-center gap-2
-                         rounded-xl min-h-[52px] px-8 py-3
+                         rounded-full min-h-[52px] px-8 py-3
                          text-base font-semibold
-                         bg-ctaButton text-white hover:bg-accent
-                         transition-colors duration-300
+                         bg-[#FF7F50] text-white shadow-md hover:shadow-lg hover:-translate-y-0.5
+                         transition-all duration-200
                          disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (

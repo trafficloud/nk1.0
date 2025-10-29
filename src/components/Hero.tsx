@@ -12,13 +12,7 @@ const Hero: React.FC = () => {
             backgroundImage: `url('/после copy.png')`
           }}
         />
-        <div className="absolute inset-0 bg-primary/85" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%)'
-          }}
-        />
+        <div className="absolute inset-0 nk-hero-overlay" />
         
         {/* Scroll Indicator */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-5 md:bottom-8 z-20">
@@ -30,7 +24,7 @@ const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[100svh] flex items-center justify-center">
-        <div className="w-full text-center animate-fade-in">
+        <div className="w-full text-center animate-fade-in mt-24">
           <h1 
             className="font-bold text-white leading-tight mb-4 text-[clamp(1.5rem,4vw,2.2rem)] md:text-[clamp(2.5rem,5vw,4rem)]"
           >
@@ -46,16 +40,16 @@ const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
             <a
               href="#calc"
-              className="btn btn-md btn-primary btn-shine w-full sm:w-auto min-w-[240px]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[240px] justify-center"
             >
-              <Calculator className="w-5 h-5" /> <span>Рассчитать стоимость</span>
+              <Calculator className="w-5 h-5" strokeWidth={1.75} /> <span>Рассчитать стоимость</span>
             </a>
 
             <a
               href="#consult"
-              className="btn btn-md btn-outline-white w-full sm:w-auto min-w-[240px]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[240px] justify-center"
             >
-              <Phone className="w-5 h-5" /> <span>Бесплатная консультация</span>
+              <Phone className="w-5 h-5" strokeWidth={1.75} /> <span>Бесплатная консультация</span>
             </a>
           </div>
         </div>

@@ -182,11 +182,11 @@ const AboutUs: React.FC = () => {
   };
 
   return (
-    <section id="about" className="bg-soft py-12 md:py-16">
+    <section id="about" className="bg-soft py-10 md:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+        <div className="text-center mb-12 animate-fade-in" data-reveal>
+          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
             О компании
           </h2>
           <p className="text-text max-w-2xl mx-auto text-center">
@@ -202,11 +202,11 @@ const AboutUs: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className="text-center animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="text-center"
+                  data-reveal
                 >
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-icon/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-8 h-8 text-icon" strokeWidth={1.5} />
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#1A3A63]/6 flex items-center justify-center">
+                    <IconComponent className="w-12 h-12 text-[#1A3A63]" strokeWidth={1.75} />
                   </div>
                   <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
                     {stat.number}
@@ -243,12 +243,12 @@ const AboutUs: React.FC = () => {
                     return (
                       <div key={index} className="w-full flex-shrink-0 px-2">
                         <div
-                          className="group rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3 animate-reveal"
-                          style={{ animationDelay: `${index * 0.1}s` }}
+                          className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 md:p-7"
+                          data-reveal
                         >
                           <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-icon/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                              <IconComponent className="w-6 h-6 text-icon" strokeWidth={1.5} />
+                            <div className="w-12 h-12 rounded-xl bg-[#1A3A63]/6 flex items-center justify-center flex-shrink-0">
+                              <IconComponent className="w-12 h-12 text-[#1A3A63]" strokeWidth={1.75} />
                             </div>
                             <div>
                               <h3 className="text-lg font-semibold text-primary mb-2">
@@ -301,12 +301,12 @@ const AboutUs: React.FC = () => {
                 return (
                   <div
                     key={index}
-                    className="group rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3 animate-reveal"
-                    style={{ animationDelay: `${index * 0.1}s` }}
+                    className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 md:p-7"
+                    data-reveal
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-icon/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                        <IconComponent className="w-6 h-6 text-icon" strokeWidth={1.5} />
+                      <div className="w-12 h-12 rounded-xl bg-[#1A3A63]/6 flex items-center justify-center flex-shrink-0">
+                        <IconComponent className="w-12 h-12 text-[#1A3A63]" strokeWidth={1.75} />
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-primary mb-2">
@@ -326,7 +326,7 @@ const AboutUs: React.FC = () => {
 
         {/* Block 3: Documents Gallery */}
         <div className="mb-8">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">
+          <h3 className="nk-headline text-[#1A3A63] font-bold text-2xl text-center mb-8" data-reveal>
             Наши документы и сертификаты
           </h3>
           
@@ -346,11 +346,11 @@ const AboutUs: React.FC = () => {
                   {documents.map((doc, index) => (
                     <div key={doc.id} className="w-full flex-shrink-0 px-2">
                       <div
-                        className="group cursor-pointer animate-zoom-in"
-                        style={{ animationDelay: `${index * 0.1}s` }}
+                        className="cursor-pointer"
+                        data-reveal
                         onClick={() => openDocument(doc.fullImage)}
                       >
-                        <div className="rounded-2xl bg-white shadow-elev-2 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3">
+                        <div className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover overflow-hidden">
                           <div className="aspect-[4/3] overflow-hidden">
                             <img
                               src={doc.preview}
@@ -404,11 +404,11 @@ const AboutUs: React.FC = () => {
             {documents.map((doc, index) => (
               <div
                 key={doc.id}
-                className="group cursor-pointer animate-zoom-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="cursor-pointer"
+                data-reveal
                 onClick={() => openDocument(doc.fullImage)}
               >
-                <div className="rounded-2xl bg-white shadow-elev-2 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3">
+                <div className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover overflow-hidden">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={doc.preview}
