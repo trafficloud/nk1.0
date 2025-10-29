@@ -18,8 +18,6 @@ const Reviews: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   const [reviewsData, setReviewsData] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -63,25 +61,6 @@ const Reviews: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Check scroll position for desktop navigation
-  useEffect(() => {
-    const checkScrollPosition = () => {
-      const container = desktopReviewsContainerRef.current;
-      if (!container || isMobile) return;
-
-      const { scrollLeft, scrollWidth, clientWidth } = container;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
-    };
-
-    const container = desktopReviewsContainerRef.current;
-    if (container && !isMobile) {
-      container.addEventListener('scroll', checkScrollPosition);
-      checkScrollPosition(); // Initial check
-      
-      return () => container.removeEventListener('scroll', checkScrollPosition);
-    }
-  }, [isMobile]);
   // Auto-scroll functionality
   useEffect(() => {
     if (!isMobile || reviewsData.length === 0) return;
@@ -134,11 +113,34 @@ const Reviews: React.FC = () => {
     const container = desktopReviewsContainerRef.current;
     if (!container) return;
 
+    const { scrollLeft, scrollWidth, clientWidth } = container;
     const scrollAmount = container.offsetWidth;
-    container.scrollBy({
-      left: scrollAmount * (direction === 'right' ? 1 : -1),
-      behavior: 'smooth'
-    });
+
+    if (direction === 'right') {
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        container.scrollTo({
+          left: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      if (scrollLeft <= 10) {
+        container.scrollTo({
+          left: scrollWidth,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    }
   };
   const handleLeaveReview = () => {
     setIsFormOpen(true);
@@ -329,23 +331,13 @@ const Reviews: React.FC = () => {
             {/* Navigation Arrows */}
             <button
               onClick={() => scrollDesktopReviews('left')}
-              disabled={!canScrollLeft}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 ${
-                canScrollLeft
-                  ? 'hover:bg-gray-50 hover:shadow-lg'
-                  : 'opacity-50 cursor-not-allowed'
-              } hidden sm:flex`}
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 hover:bg-gray-50 hover:shadow-lg hidden sm:flex"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => scrollDesktopReviews('right')}
-              disabled={!canScrollRight}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 ${
-                canScrollRight
-                  ? 'hover:bg-gray-50 hover:shadow-lg'
-                  : 'opacity-50 cursor-not-allowed'
-              } hidden sm:flex`}
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 hover:bg-gray-50 hover:shadow-lg hidden sm:flex"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
