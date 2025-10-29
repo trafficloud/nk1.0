@@ -155,7 +155,7 @@ const Reviews: React.FC = () => {
   const renderReviewCard = (review: Review, index: number) => (
     <div
       key={review.id}
-      className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 flex flex-col h-full"
+      className="bg-white rounded-2xl border-2 border-[#1A3A63]/40 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 flex flex-col h-full"
       data-reveal
     >
       {/* Quote Icon */}
