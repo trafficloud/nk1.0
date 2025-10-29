@@ -106,10 +106,10 @@ const Portfolio: React.FC = () => {
     <section id="portfolio" className="bg-soft py-10 md:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 animate-fade-in" data-reveal>
-          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
+          <h2 className="nk-headline font-heading font-bold tracking-tight text-[#1A3A63] text-3xl md:text-4xl mb-4">
             Наши работы — До и После
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-center">
+          <p className="font-sans font-normal text-gray-600 max-w-2xl mx-auto text-center">
             Смотрите реальные примеры монтажа электрики в новостройках
           </p>
         </div>
@@ -122,15 +122,15 @@ const Portfolio: React.FC = () => {
               data-reveal
             >
               {/* Заголовок */}
-              <h3 className="text-lg md:text-xl font-bold text-primary mb-3">
+              <h3 className="font-heading font-bold tracking-tight text-lg md:text-xl text-primary mb-3">
                 {item.title}
               </h3>
 
               {/* Детали проекта */}
               <div className="grid grid-cols-2 gap-2 mb-4 text-xs text-text">
                 <div>
-                  <p className="font-medium">Адрес:</p>
-                  <p className="text-xs">{item.address}</p>
+                  <p className="font-sans font-medium">Адрес:</p>
+                  <p className="font-sans font-normal text-xs">{item.address}</p>
                 </div>
                 <div>
                   <p className="font-medium">Сроки:</p>
@@ -192,7 +192,7 @@ const Portfolio: React.FC = () => {
               </div>
 
               {/* Инструкция */}
-              <p className="text-xs text-gray-500 text-center">
+              <p className="font-sans font-normal text-xs text-gray-500 text-center">
                 Перетащите ползунок для сравнения
               </p>
             </div>
@@ -200,7 +200,7 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="font-sans font-normal text-sm text-gray-500">
             Все работы выполнены с соблюдением ПУЭ и СТБ, сданы с актами в ЖЭС
           </p>
         </div>

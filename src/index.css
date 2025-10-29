@@ -112,7 +112,8 @@
 [data-reveal] {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+  will-change: transform, opacity;
 }
 
 [data-reveal].is-visible {
@@ -128,6 +129,12 @@
 [data-reveal]:nth-child(6).is-visible { transition-delay: 300ms; }
 [data-reveal]:nth-child(7).is-visible { transition-delay: 360ms; }
 [data-reveal]:nth-child(8).is-visible { transition-delay: 420ms; }
+
+@media (max-width: 768px) {
+  [data-reveal] {
+    transform: translateY(10px);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .animate-soft-blink {

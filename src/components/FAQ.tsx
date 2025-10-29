@@ -97,10 +97,10 @@ const FAQ: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in" data-reveal>
-          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
+          <h2 className="nk-headline font-heading font-bold tracking-tight text-[#1A3A63] text-3xl md:text-4xl mb-4">
             Часто задаваемые вопросы
           </h2>
-          <p className="text-text max-w-2xl mx-auto text-center">
+          <p className="font-sans font-normal text-text max-w-2xl mx-auto text-center">
             От заявки до гарантии — в 1–2 шага
           </p>
         </div>
@@ -119,7 +119,7 @@ const FAQ: React.FC = () => {
                 aria-expanded={openItems.has(item.id)}
                 aria-controls={`faq-answer-${item.id}`}
               >
-                <h3 className="text-lg font-bold text-primary pr-4">
+                <h3 className="font-heading font-bold tracking-tight text-lg text-primary pr-4">
                   {item.question}
                 </h3>
                 <ChevronDown
@@ -135,7 +135,7 @@ const FAQ: React.FC = () => {
                   openItems.has(item.id) ? 'max-h-96 mt-4' : 'max-h-0'
                 }`}
               >
-                <p className="text-text leading-relaxed">
+                <p className="font-sans font-normal text-text leading-relaxed">
                   {item.answer}
                 </p>
               </div>
@@ -147,7 +147,7 @@ const FAQ: React.FC = () => {
         <div className="text-center mb-12">
           <button
             onClick={toggleShowAll}
-            className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
+            className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
           >
             {showAll ? 'Свернуть' : 'Показать ещё'}
           </button>
@@ -155,12 +155,12 @@ const FAQ: React.FC = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <p className="text-text mb-4">
+          <p className="font-sans font-normal text-text mb-4">
             Не нашли ответ? Задайте вопрос — ответим за 5 минут
           </p>
           <button
             onClick={openChat}
-            className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
+            className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
           >
             <MessageSquare className="w-5 h-5" strokeWidth={1.75} />
             <span>Задать вопрос</span>

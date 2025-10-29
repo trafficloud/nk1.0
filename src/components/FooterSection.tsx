@@ -6,13 +6,13 @@ const FooterSection: React.FC = () => {
   return (
     <section className="border-t border-gray-200 bg-white py-12 md:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-lg font-semibold text-primary">
+        <h2 className="font-heading font-semibold tracking-tight text-center text-lg text-primary">
           Реквизиты и контакты
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-16 md:grid-cols-2 text-sm leading-relaxed">
           {/* Левая колонка (для мобильных и десктопных реквизитов) */}
-          <dl className="space-y-2 text-neutral-700 dark:text-neutral-300 md:text-left">
+          <dl className="font-sans font-normal space-y-2 text-neutral-700 dark:text-neutral-300 md:text-left">
             <div className="flex gap-2 items-baseline">
               <dt className="w-28 text-neutral-500">Наименование</dt>
               <dd className="font-medium text-neutral-900 dark:text-neutral-100 flex-1">ОДО «Брестское предприятие производственных и инжиниринговых услуг»</dd>
@@ -47,7 +47,7 @@ const FooterSection: React.FC = () => {
             </div>
           </dl>
           {/* Правая колонка (только для десктопа) */}
-          <div className="hidden md:block space-y-2 text-neutral-700 dark:text-neutral-300 text-right">
+          <div className="font-sans font-normal hidden md:block space-y-2 text-neutral-700 dark:text-neutral-300 text-right">
             <p>
               <span className="text-neutral-500">Телефон: </span>
               <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100"
@@ -60,7 +60,7 @@ const FooterSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-neutral-200 pt-4 text-xs text-neutral-500 dark:border-neutral-700 dark:text-neutral-400 text-center">
+        <div className="font-sans font-normal mt-8 border-t border-neutral-200 pt-4 text-xs text-neutral-500 dark:border-neutral-700 dark:text-neutral-400 text-center">
           © {year} f(Am)team. Все права защищены.
         </div>
       </div>

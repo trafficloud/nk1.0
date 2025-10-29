@@ -171,7 +171,7 @@ const Reviews: React.FC = () => {
       </div>
 
       {/* Review Text */}
-      <p className="text-text text-sm leading-relaxed mb-4 flex-grow">
+      <p className="font-sans font-normal text-text text-sm leading-relaxed mb-4 flex-grow">
         {review.text}
       </p>
 
@@ -211,10 +211,10 @@ const Reviews: React.FC = () => {
           )}
         </div>
         <div>
-          <h4 className="font-semibold text-primary text-sm">
+          <h4 className="font-heading font-semibold tracking-tight text-primary text-sm">
             {review.name}
           </h4>
-          <p className="text-xs text-text">
+          <p className="font-sans font-normal text-xs text-text">
             {new Date(review.created_at).toLocaleDateString('ru-RU', {
               year: 'numeric',
               month: 'long',
@@ -243,15 +243,15 @@ const Reviews: React.FC = () => {
       <section id="reviews" className="bg-white py-10 md:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
+            <h2 className="nk-headline font-heading font-bold tracking-tight text-[#1A3A63] text-3xl md:text-4xl mb-4">
               Отзывы клиентов
             </h2>
-            <p className="text-text max-w-2xl mx-auto text-center mb-8">
+            <p className="font-sans font-normal text-text max-w-2xl mx-auto text-center mb-8">
               Станьте первым, кто оставит отзыв о нашей работе
             </p>
             <button
               onClick={handleLeaveReview}
-              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
             >
               Оставить отзыв
             </button>
@@ -268,10 +268,10 @@ const Reviews: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
+          <h2 className="nk-headline font-heading font-bold tracking-tight text-[#1A3A63] text-3xl md:text-4xl mb-4">
             Отзывы клиентов
           </h2>
-          <p className="text-text max-w-2xl mx-auto text-center">
+          <p className="font-sans font-normal text-text max-w-2xl mx-auto text-center">
             Нам доверяют новосёлы и застройщики
           </p>
         </div>
@@ -362,11 +362,11 @@ const Reviews: React.FC = () => {
         <div className="text-center">
           <button
             onClick={handleLeaveReview}
-            className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
+            className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
           >
             Оставить отзыв
           </button>
-          <p className="mt-3 text-sm text-text">
+          <p className="font-sans font-normal mt-3 text-sm text-text">
             Ваш отзыв помогает нам становиться лучше
           </p>
         </div>

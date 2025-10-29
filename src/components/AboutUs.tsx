@@ -186,10 +186,10 @@ const AboutUs: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in" data-reveal>
-          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
+          <h2 className="nk-headline font-heading font-bold tracking-tight text-[#1A3A63] text-3xl md:text-4xl mb-4">
             О компании
           </h2>
-          <p className="text-text max-w-2xl mx-auto text-center">
+          <p className="font-sans font-normal text-text max-w-2xl mx-auto text-center">
             Мы делаем электромонтаж в новостройках безопасным, аккуратным и прозрачным
           </p>
         </div>
@@ -208,13 +208,13 @@ const AboutUs: React.FC = () => {
                   <div className="mx-auto mb-4 flex items-center justify-center">
                     <IconComponent className="w-16 h-16 text-[#FF7F50]" strokeWidth={1.75} />
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                  <div className="font-heading font-bold text-3xl md:text-4xl text-primary mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-lg font-semibold text-primary mb-1">
+                  <div className="font-heading font-semibold tracking-tight text-lg text-primary mb-1">
                     {stat.title}
                   </div>
-                  <div className="text-sm text-text">
+                  <div className="font-sans font-normal text-sm text-text">
                     {stat.description}
                   </div>
                 </div>
@@ -251,10 +251,10 @@ const AboutUs: React.FC = () => {
                               <IconComponent className="w-12 h-12 text-[#1A3A63]" strokeWidth={1.75} />
                             </div>
                             <div>
-                              <h3 className="text-lg font-semibold text-primary mb-2">
+                              <h3 className="font-heading font-semibold tracking-tight text-lg text-primary mb-2">
                                 {advantage.title}
                               </h3>
-                              <p className="text-sm text-text leading-relaxed">
+                              <p className="font-sans font-normal text-sm text-text leading-relaxed">
                                 {advantage.description}
                               </p>
                             </div>
@@ -309,10 +309,10 @@ const AboutUs: React.FC = () => {
                         <IconComponent className="w-12 h-12 text-[#1A3A63]" strokeWidth={1.75} />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-primary mb-2">
+                        <h3 className="font-heading font-semibold tracking-tight text-lg text-primary mb-2">
                           {advantage.title}
                         </h3>
-                        <p className="text-sm text-text leading-relaxed">
+                        <p className="font-sans font-normal text-sm text-text leading-relaxed">
                           {advantage.description}
                         </p>
                       </div>
@@ -326,7 +326,7 @@ const AboutUs: React.FC = () => {
 
         {/* Block 3: Documents Gallery */}
         <div className="mb-8">
-          <h3 className="nk-headline text-[#1A3A63] font-bold text-2xl text-center mb-8" data-reveal>
+          <h3 className="nk-headline font-heading font-bold tracking-tight text-[#1A3A63] text-2xl text-center mb-8" data-reveal>
             Наши документы и сертификаты
           </h3>
           
@@ -359,7 +359,7 @@ const AboutUs: React.FC = () => {
                             />
                           </div>
                           <div className="p-4 min-h-[56px] flex items-center justify-center">
-                            <h4 className="text-sm font-medium text-text text-center">
+                            <h4 className="font-sans font-medium text-sm text-text text-center">
                               {doc.title}
                             </h4>
                           </div>
@@ -417,7 +417,7 @@ const AboutUs: React.FC = () => {
                     />
                   </div>
                   <div className="p-4 min-h-[56px] flex items-center justify-center">
-                    <h4 className="text-sm font-medium text-text text-center">
+                    <h4 className="font-sans font-medium text-sm text-text text-center">
                       {doc.title}
                     </h4>
                   </div>

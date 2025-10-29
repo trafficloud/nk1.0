@@ -94,10 +94,10 @@ const Calculator: React.FC = () => {
     <section id="calc" className="bg-white py-10 md:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 animate-fade-in" data-reveal>
-          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4 text-center">
+          <h2 className="nk-headline font-heading font-bold tracking-tight text-[#1A3A63] text-3xl md:text-4xl mb-4 text-center">
             Рассчитайте стоимость <span className="text-accent">за 2 минуты</span>
           </h2>
-          <p className="mt-2 text-gray-600">
+          <p className="font-sans font-normal mt-2 text-gray-600">
             Предварительный расчёт. Точную цену закрепим в договоре после бесплатного замера.
           </p>
         </div>
@@ -109,12 +109,12 @@ const Calculator: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               {/* Wall Material */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Материал стен</label>
+                <label className="block font-sans font-medium text-sm text-gray-700 mb-2">Материал стен</label>
                 <select
                   name="wallMaterial"
                   value={fWallMaterial}
                   onChange={(e) => setFWallMaterial(e.target.value)}
-                  className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
+                  className="font-sans font-normal w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
                 >
                   <option>Не знаю</option>
                   <option>Кирпич</option>
@@ -335,13 +335,13 @@ const Calculator: React.FC = () => {
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={calculate}
-                className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
+                className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
               >
                 <CalculatorIcon className="w-5 h-5" strokeWidth={1.75} /> <span>Посчитать</span>
               </button>
               <button
                 onClick={downloadPDF}
-                className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
+                className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -352,7 +352,7 @@ const Calculator: React.FC = () => {
               </button>
             </div>
 
-            <p className="mt-3 text-xs text-gray-500">
+            <p className="font-sans font-normal mt-3 text-xs text-gray-500">
               Это предварительный расчёт. Точную цену зафиксируем в договоре после бесплатного выезда на замеры.
             </p>
           </div>
@@ -403,7 +403,7 @@ const Calculator: React.FC = () => {
           )}
         </div>
 
-        <p className="mt-8 text-center text-sm text-gray-500">
+        <p className="font-sans font-normal mt-8 text-center text-sm text-gray-500">
           Нажмите «Скачать PDF», чтобы получить расчёт с брендингом.
         </p>
       </div>

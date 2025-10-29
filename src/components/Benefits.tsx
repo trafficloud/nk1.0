@@ -30,10 +30,10 @@ const Benefits: React.FC = () => {
     <section id="benefits" className="bg-soft py-10 md:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 animate-fade-in" data-reveal>
-          <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
+          <h2 className="nk-headline font-heading font-bold tracking-tight text-[#1A3A63] text-3xl md:text-4xl mb-4">
             Почему нам доверяют
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-center">
+          <p className="font-sans font-normal text-gray-600 max-w-2xl mx-auto text-center">
             Честная смета, безопасность по стандартам и официальная гарантия на работы
           </p>
         </div>
@@ -51,11 +51,11 @@ const Benefits: React.FC = () => {
                   <div className="w-12 h-12 rounded-xl bg-[#1A3A63]/6 flex items-center justify-center">
                     <IconComponent className="w-12 h-12" strokeWidth={1.75} />
                   </div>
-                  <h3 className="text-lg md:text-xl text-primary font-semibold">
+                  <h3 className="font-heading font-semibold tracking-tight text-lg md:text-xl text-primary">
                     {benefit.title}
                   </h3>
                 </div>
-                <p className="text-sm text-text leading-relaxed">
+                <p className="font-sans font-normal text-sm text-text leading-relaxed">
                   {benefit.text}
                 </p>
               </div>
