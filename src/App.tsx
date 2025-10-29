@@ -9,8 +9,11 @@ import Reviews from './components/Reviews';
 import AboutUs from './components/AboutUs';
 import FAQ from './components/FAQ';
 import FooterSection from './components/FooterSection';
+import { useScrollAnimation } from './hooks/useScrollAnimation';
 
 function App() {
+  useScrollAnimation();
+
   return (
     <div className="min-h-screen bg-white">
       <Routes>

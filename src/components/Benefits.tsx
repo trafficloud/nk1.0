@@ -44,7 +44,7 @@ const Benefits: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 md:p-7 transition-all duration-300"
+                className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 md:p-7"
                 data-reveal
               >
                 <div className="flex items-center gap-4 mb-4">
