@@ -28,14 +28,14 @@ const Hero: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[100svh] flex items-center justify-center">
         <div className="w-full text-center animate-fade-in mt-24">
-          <h1 
-            className="font-bold text-white leading-tight mb-4 text-[clamp(1.5rem,4vw,2.2rem)] md:text-[clamp(2.5rem,5vw,4rem)]"
+          <h1
+            className="font-sans font-bold text-white leading-tight mb-4 text-[clamp(1.5rem,4vw,2.2rem)] md:text-[clamp(2.5rem,5vw,4rem)]"
           >
             Профессиональный монтаж электрики в новостройках
           </h1>
-          
+
           <p
-            className="text-white/90 mb-6 max-w-3xl mx-auto leading-relaxed text-[clamp(0.9rem,2.5vw,1.1rem)]"
+            className="font-sans text-white/90 mb-6 max-w-3xl mx-auto leading-relaxed text-[clamp(0.9rem,2.5vw,1.1rem)]"
           >
             ⚡ Работаем как <span className="font-semibold text-white">ООО «Надежный Контакт»</span> — официальная компания, а не ИП. Ответственность закреплена договором и гарантией 24 месяца.
           </p>
