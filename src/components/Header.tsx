@@ -30,11 +30,11 @@ const Header: React.FC = () => {
 
   const headerClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     isScrolled
-      ? 'bg-white/8 backdrop-blur-sm border-b border-white/5'
-      : 'bg-white/3 backdrop-blur-[2px] border-b border-white/3'
+      ? 'bg-white/95 backdrop-blur-md border-b border-gray-200'
+      : 'bg-white/5 backdrop-blur-[2px] border-b border-white/10'
   }`;
 
-  const textClasses = 'text-gray-800';
+  const textClasses = isScrolled ? 'text-gray-800' : 'text-white';
   const logoClasses = `text-2xl font-tektur font-medium ${textClasses}`;
 
   return (
