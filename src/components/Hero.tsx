@@ -4,16 +4,19 @@ import { Calculator, Phone } from 'lucide-react';
 const Hero: React.FC = () => {
   return (
     <section id="home" className="relative overflow-hidden">
-      {/* Background */}
+      {/* Background Video */}
       <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/после copy.png')`
-          }}
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/Cinematic_Electrical_Installation_Sequence.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 nk-hero-overlay" />
-        
+
         {/* Scroll Indicator */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-5 md:bottom-8 z-20">
           <div className="w-6 h-10 rounded-full border-2 border-white/70 flex items-start justify-center">
