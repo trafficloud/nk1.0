@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Zap } from 'lucide-react';
-import logoImage from '/public/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png';
+import { getImageUrl, handleImageError, IMAGE_PATHS } from '../utils/imageHelpers';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,12 +43,13 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <img 
-              src={logoImage} 
-              alt="Надежный Контакт" 
+            <img
+              src={getImageUrl(IMAGE_PATHS.logo)}
+              alt="Надежный Контакт"
               className={`h-14 w-auto object-contain transition-all duration-300 ${
                 !isScrolled ? 'brightness-0 invert' : ''
               }`}
+              onError={(e) => handleImageError(e, 'НК', 200, 200)}
             />
           </div>
 

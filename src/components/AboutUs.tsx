@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase, Building, ShieldCheck, Zap, Users, Award, FileText, CheckCircle, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getImageUrl, handleImageError, IMAGE_PATHS } from '../utils/imageHelpers';
 
 const AboutUs: React.FC = () => {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
@@ -65,26 +66,26 @@ const AboutUs: React.FC = () => {
     {
       id: 1,
       title: 'Лицензия на работу',
-      preview: '/лицензия.png',
-      fullImage: '/лицензия.png'
+      preview: IMAGE_PATHS.certificates.license,
+      fullImage: IMAGE_PATHS.certificates.license
     },
     {
       id: 2,
       title: 'Сертификат соответствия СТБ',
-      preview: '/sertificat.png',
-      fullImage: '/sertificat.png'
+      preview: IMAGE_PATHS.certificates.certificate,
+      fullImage: IMAGE_PATHS.certificates.certificate
     },
     {
       id: 3,
       title: 'Аттестат СМР',
-      preview: '/atestat CMP.png',
-      fullImage: '/atestat CMP.png'
+      preview: IMAGE_PATHS.certificates.attestCMP,
+      fullImage: IMAGE_PATHS.certificates.attestCMP
     },
     {
       id: 4,
       title: 'Аттестат ГП',
-      preview: '/attestat GP.png',
-      fullImage: '/attestat GP.png'
+      preview: IMAGE_PATHS.certificates.attestGP,
+      fullImage: IMAGE_PATHS.certificates.attestGP
     }
   ];
 
@@ -353,9 +354,10 @@ const AboutUs: React.FC = () => {
                         <div className="rounded-2xl bg-white shadow-elev-2 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3">
                           <div className="aspect-[4/3] overflow-hidden">
                             <img
-                              src={doc.preview}
+                              src={getImageUrl(doc.preview)}
                               alt={doc.title}
                               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              onError={(e) => handleImageError(e, doc.title, 400, 300)}
                             />
                           </div>
                           <div className="p-4 min-h-[56px] flex items-center justify-center">
@@ -411,9 +413,10 @@ const AboutUs: React.FC = () => {
                 <div className="rounded-2xl bg-white shadow-elev-2 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      src={doc.preview}
+                      src={getImageUrl(doc.preview)}
                       alt={doc.title}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      onError={(e) => handleImageError(e, doc.title, 400, 300)}
                     />
                   </div>
                   <div className="p-4 min-h-[56px] flex items-center justify-center">
@@ -438,9 +441,10 @@ const AboutUs: React.FC = () => {
                 <X className="w-8 h-8" />
               </button>
               <img
-                src={selectedDocument}
+                src={getImageUrl(selectedDocument)}
                 alt="Документ"
                 className="max-w-full max-h-full object-contain rounded-lg"
+                onError={(e) => handleImageError(e, 'Документ', 800, 600)}
               />
             </div>
           </div>

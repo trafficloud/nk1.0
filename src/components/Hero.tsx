@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calculator, Phone } from 'lucide-react';
+import { getImageUrl, IMAGE_PATHS } from '../utils/imageHelpers';
 
 const Hero: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const Hero: React.FC = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/после copy.png')`
+            backgroundImage: `url(${getImageUrl(IMAGE_PATHS.heroBg)})`
           }}
         />
         <div className="absolute inset-0 bg-primary/85" />

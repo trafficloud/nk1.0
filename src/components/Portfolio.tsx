@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { getImageUrl, handleImageError, IMAGE_PATHS } from '../utils/imageHelpers';
 
 interface PortfolioItem {
   id: number;
@@ -20,8 +21,8 @@ const Portfolio: React.FC = () => {
       timeline: '5 дней',
       points: 28,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/after1.png',
-      imageAfter: '/before1.png'
+      imageBefore: IMAGE_PATHS.portfolio.project1Before,
+      imageAfter: IMAGE_PATHS.portfolio.project1After
     },
     {
       id: 2,
@@ -30,8 +31,8 @@ const Portfolio: React.FC = () => {
       timeline: '7 дней',
       points: 35,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/после.png',
-      imageAfter: '/до.png'
+      imageBefore: IMAGE_PATHS.portfolio.project2Before,
+      imageAfter: IMAGE_PATHS.portfolio.project2After
     },
     {
       id: 3,
@@ -40,8 +41,8 @@ const Portfolio: React.FC = () => {
       timeline: '4 дня',
       points: 22,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/после1.png',
-      imageAfter: '/до1.png'
+      imageBefore: IMAGE_PATHS.portfolio.project3Before,
+      imageAfter: IMAGE_PATHS.portfolio.project3After
     }
   ];
 
@@ -153,10 +154,11 @@ const Portfolio: React.FC = () => {
                   className="relative w-full h-48 overflow-hidden rounded-xl bg-gray-200"
                 >
                   {/* Фото ДО */}
-                  <img 
-                    src={item.imageBefore} 
-                    alt="До" 
+                  <img
+                    src={getImageUrl(item.imageBefore)}
+                    alt="До"
                     className="absolute inset-0 w-full h-full object-cover"
+                    onError={(e) => handleImageError(e, 'До', 600, 400)}
                   />
 
                   {/* Фото ПОСЛЕ (сверху, обрезаем ширину) */}
@@ -165,10 +167,11 @@ const Portfolio: React.FC = () => {
                     className="absolute inset-0 overflow-hidden" 
                     style={{ width: '50%' }}
                   >
-                    <img 
-                      src={item.imageAfter} 
-                      alt="После" 
+                    <img
+                      src={getImageUrl(item.imageAfter)}
+                      alt="После"
                       className={`w-full h-full object-cover ${item.id === 3 ? 'transform scale-x-[-1]' : ''}`}
+                      onError={(e) => handleImageError(e, 'После', 600, 400)}
                     />
                   </div>
 
