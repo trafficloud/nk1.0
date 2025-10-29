@@ -10,12 +10,10 @@ const Header: React.FC = () => {
 
   const menuItems = [
     { name: 'Главная', href: '/', isExternal: false },
-    { name: 'Преимущества', href: '#benefits', isExternal: false }, 
+    { name: 'Преимущества', href: '#benefits', isExternal: false },
     { name: 'Портфолио', href: '#portfolio', isExternal: false },
     { name: 'Отзывы', href: '#reviews', isExternal: false },
     { name: 'О компании', href: '#about', isExternal: false },
-    { name: 'Процесс', href: '#process', isExternal: false },
-    { name: 'Гарантии', href: '#guarantees', isExternal: false },
     { name: 'FAQ', href: '#faq', isExternal: false },
     { name: 'Контакты', href: '#contacts', isExternal: false }
   ];
