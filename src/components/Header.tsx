@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   const headerClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     isScrolled
       ? 'bg-white backdrop-blur shadow-sm border-b border-[rgba(26,58,99,.08)]'
-      : 'bg-primary/40 backdrop-blur-md'
+      : 'bg-black/40 backdrop-blur-md'
   }`;
 
   const textClasses = isScrolled ? 'text-primary' : 'text-white';

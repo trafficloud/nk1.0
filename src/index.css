@@ -66,7 +66,7 @@
   }
 
   .nk-hero-overlay {
-    background: linear-gradient(to bottom, rgba(26,58,99,.55), rgba(26,58,99,.28)),
+    background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.28)),
                 radial-gradient(circle at center, transparent 35%, rgba(0,0,0,.22) 100%);
   }
 
