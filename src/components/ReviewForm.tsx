@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, X, Send } from 'lucide-react';
+import { Star, X, Send, Upload, Image as ImageIcon } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface ReviewFormProps {
@@ -13,15 +13,43 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ isOpen, onClose }) => {
     email: '',
     phone: '',
     rating: 5,
-    text: ''
+    text: '',
+    avatar: null as File | null
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [hoveredRating, setHoveredRating] = useState(0);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Размер файла не должен превышать 5 МБ');
+        return;
+      }
+      if (!file.type.startsWith('image/')) {
+        alert('Пожалуйста, выберите изображение');
+        return;
+      }
+      setFormData(prev => ({ ...prev, avatar: file }));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatarPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeAvatar = () => {
+    setFormData(prev => ({ ...prev, avatar: null }));
+    setAvatarPreview(null);
   };
 
   const handleRatingClick = (rating: number) => {
@@ -38,8 +66,36 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ isOpen, onClose }) => {
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setUploadProgress(0);
 
     try {
+      let avatarUrl = null;
+
+      if (formData.avatar) {
+        setUploadProgress(30);
+        const fileExt = formData.avatar.name.split('.').pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from('review-avatars')
+          .upload(fileName, formData.avatar, {
+            cacheControl: '3600',
+            upsert: false
+          });
+
+        if (uploadError) throw uploadError;
+
+        setUploadProgress(60);
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('review-avatars')
+          .getPublicUrl(fileName);
+
+        avatarUrl = publicUrl;
+      }
+
+      setUploadProgress(80);
+
       const { error } = await supabase
         .from('reviews')
         .insert([
@@ -49,18 +105,22 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ isOpen, onClose }) => {
             phone: formData.phone.trim() || null,
             rating: formData.rating,
             text: formData.text.trim(),
-            status: 'pending'
+            status: 'pending',
+            avatar_url: avatarUrl
           }
         ]);
 
       if (error) throw error;
 
+      setUploadProgress(100);
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', rating: 5, text: '' });
+      setFormData({ name: '', email: '', phone: '', rating: 5, text: '', avatar: null });
+      setAvatarPreview(null);
 
       setTimeout(() => {
         onClose();
         setSubmitStatus('idle');
+        setUploadProgress(0);
       }, 2500);
     } catch (error) {
       console.error('Error submitting review:', error);
@@ -74,6 +134,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ isOpen, onClose }) => {
     if (!isSubmitting) {
       onClose();
       setSubmitStatus('idle');
+      setAvatarPreview(null);
+      setUploadProgress(0);
     }
   };
 
@@ -125,6 +187,67 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ isOpen, onClose }) => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="px-6 py-6 space-y-5">
+            {/* Avatar Upload */}
+            <div>
+              <label className="block text-sm font-semibold text-primary mb-2">
+                Ваше фото (необязательно)
+              </label>
+              <div className="flex items-center gap-4">
+                {avatarPreview ? (
+                  <div className="relative">
+                    <img
+                      src={avatarPreview}
+                      alt="Preview"
+                      className="w-20 h-20 rounded-full object-cover border-2 border-icon"
+                    />
+                    <button
+                      type="button"
+                      onClick={removeAvatar}
+                      disabled={isSubmitting}
+                      className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors disabled:opacity-50"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-20 h-20 rounded-full bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center">
+                    <ImageIcon className="w-8 h-8 text-gray-400" />
+                  </div>
+                )}
+                <div className="flex-1">
+                  <label
+                    htmlFor="avatar"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-primary rounded-lg cursor-pointer transition-colors disabled:opacity-50"
+                  >
+                    <Upload className="w-4 h-4" />
+                    <span className="text-sm font-medium">Загрузить фото</span>
+                  </label>
+                  <input
+                    type="file"
+                    id="avatar"
+                    accept="image/*"
+                    onChange={handleAvatarChange}
+                    disabled={isSubmitting}
+                    className="hidden"
+                  />
+                  <p className="text-xs text-text mt-2">
+                    Максимальный размер: 5 МБ. Форматы: JPG, PNG, WebP
+                  </p>
+                </div>
+              </div>
+              {uploadProgress > 0 && uploadProgress < 100 && (
+                <div className="mt-3">
+                  <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                    <div
+                      className="bg-accent h-full transition-all duration-300"
+                      style={{ width: `${uploadProgress}%` }}
+                    />
+                  </div>
+                  <p className="text-xs text-text mt-1">Загрузка: {uploadProgress}%</p>
+                </div>
+              )}
+            </div>
+
             {/* Name */}
             <div>
               <label htmlFor="name" className="block text-sm font-semibold text-primary mb-2">

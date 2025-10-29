@@ -10,6 +10,7 @@ interface Review {
   text: string;
   rating: number;
   created_at: string;
+  avatar_url?: string;
 }
 
 const Reviews: React.FC = () => {
@@ -179,10 +180,28 @@ const Reviews: React.FC = () => {
 
       {/* Client Info */}
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full bg-icon/20 flex items-center justify-center border-2 border-icon">
-          <span className="text-icon font-semibold text-sm">
-            {getInitials(review.name)}
-          </span>
+        <div className="w-12 h-12 rounded-full bg-icon/20 flex items-center justify-center border-2 border-icon overflow-hidden">
+          {review.avatar_url ? (
+            <img
+              src={review.avatar_url}
+              alt={review.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                const parent = e.currentTarget.parentElement;
+                if (parent) {
+                  const span = document.createElement('span');
+                  span.className = 'text-icon font-semibold text-sm';
+                  span.textContent = getInitials(review.name);
+                  parent.appendChild(span);
+                }
+              }}
+            />
+          ) : (
+            <span className="text-icon font-semibold text-sm">
+              {getInitials(review.name)}
+            </span>
+          )}
         </div>
         <div>
           <h4 className="font-semibold text-primary text-sm">
