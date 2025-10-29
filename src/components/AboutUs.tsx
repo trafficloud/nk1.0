@@ -205,8 +205,8 @@ const AboutUs: React.FC = () => {
                   className="text-center"
                   data-reveal
                 >
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#1A3A63]/6 flex items-center justify-center">
-                    <IconComponent className="w-12 h-12 text-[#1A3A63]" strokeWidth={1.75} />
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#FF7F50]/10 flex items-center justify-center">
+                    <IconComponent className="w-12 h-12 text-[#FF7F50]" strokeWidth={1.75} />
                   </div>
                   <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
                     {stat.number}
