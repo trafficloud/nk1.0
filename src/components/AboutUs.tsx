@@ -244,7 +244,6 @@ const AboutUs: React.FC = () => {
                       <div key={index} className="w-full flex-shrink-0 px-2">
                         <div
                           className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 md:p-7"
-                          data-reveal
                         >
                           <div className="flex items-start gap-4">
                             <div className="flex items-center justify-center flex-shrink-0">
@@ -347,7 +346,6 @@ const AboutUs: React.FC = () => {
                     <div key={doc.id} className="w-full flex-shrink-0 px-2">
                       <div
                         className="cursor-pointer"
-                        data-reveal
                         onClick={() => openDocument(doc.fullImage)}
                       >
                         <div className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover overflow-hidden">
