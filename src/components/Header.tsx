@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import Logo from './Logo';
+import logoImage from '/public/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,13 +36,27 @@ const Header: React.FC = () => {
 
   const textClasses = isScrolled ? 'text-primary' : 'text-white';
   const logoClasses = `text-2xl font-tektur font-medium ${textClasses}`;
+  const logoFilterClasses = isScrolled
+    ? 'brightness-0 saturate-100'
+    : 'brightness-0 invert';
 
   return (
     <header className={headerClasses}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Logo isScrolled={isScrolled} />
+          <div className="flex items-center gap-2">
+            <img
+              src={logoImage}
+              alt="Надежный Контакт"
+              className={`h-14 w-auto object-contain transition-all duration-300 ${logoFilterClasses}`}
+              style={{
+                filter: isScrolled
+                  ? 'brightness(0) saturate(100%) invert(17%) sepia(51%) saturate(1549%) hue-rotate(188deg) brightness(93%) contrast(93%)'
+                  : 'brightness(0) invert(1)'
+              }}
+            />
+          </div>
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center space-x-1">
