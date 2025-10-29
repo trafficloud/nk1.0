@@ -53,13 +53,13 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop Menu */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-1">
             {menuItems.map((item, index) => (
               item.href.startsWith('/') ? (
                 <Link
                   key={index}
                   to={item.href}
-                  className={`relative text-sm font-medium px-6 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group ${
+                  className={`relative text-sm font-medium px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group ${
                     isScrolled
                       ? 'hover:bg-primary/10'
                       : 'hover:bg-white/10 hover:backdrop-blur-md'
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
                 <a
                   key={index}
                   href={item.href}
-                  className={`relative text-sm font-medium px-6 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group ${
+                  className={`relative text-sm font-medium px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group ${
                     isScrolled
                       ? 'hover:bg-primary/10'
                       : 'hover:bg-white/10 hover:backdrop-blur-md'
