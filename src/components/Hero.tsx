@@ -31,10 +31,10 @@ const Hero: React.FC = () => {
             Профессиональный монтаж электрики в новостройках
           </h1>
           
-          <p 
+          <p
             className="text-white/90 mb-6 max-w-3xl mx-auto leading-relaxed text-[clamp(0.9rem,2.5vw,1.1rem)]"
           >
-            Фиксированная смета без скрытых доплат. 24 месяца официальной гарантии. Работаем по Бресту и Брестской области.
+            ⚡ Работаем как <span className="font-semibold text-white">ООО «Надежный Контакт»</span> — официальная компания, а не ИП. Ответственность закреплена договором и гарантией 24 месяца.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-slide-up">
