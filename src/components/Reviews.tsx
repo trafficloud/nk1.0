@@ -161,7 +161,7 @@ const Reviews: React.FC = () => {
   const renderReviewCard = (review: Review, index: number) => (
     <div
       key={review.id}
-      className="bg-white rounded-2xl border-2 border-[#1A3A63]/40 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 flex flex-col h-full"
+      className="bg-white rounded-2xl border-2 border-[#1A3A63]/40 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover-subtle p-5 flex flex-col h-full"
     >
       {/* Quote Icon */}
       <div className="mb-4">
@@ -325,39 +325,39 @@ const Reviews: React.FC = () => {
           </div>
         ) : (
           /* Desktop/Tablet Grid */
-          <div className="mb-12 relative">
+          <div className="mb-12 relative px-8 sm:px-10">
             {/* Navigation Arrows */}
             <button
               onClick={() => scrollDesktopReviews('left')}
               disabled={!canScrollLeft}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 ${
-                canScrollLeft 
-                  ? 'hover:bg-gray-50 hover:shadow-lg' 
+              className={`absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 ${
+                canScrollLeft
+                  ? 'hover:bg-gray-50 hover:shadow-lg'
                   : 'opacity-50 cursor-not-allowed'
               } hidden sm:flex`}
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => scrollDesktopReviews('right')}
               disabled={!canScrollRight}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 ${
-                canScrollRight 
-                  ? 'hover:bg-gray-50 hover:shadow-lg' 
+              className={`absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center text-primary transition-all duration-300 z-10 ${
+                canScrollRight
+                  ? 'hover:bg-gray-50 hover:shadow-lg'
                   : 'opacity-50 cursor-not-allowed'
               } hidden sm:flex`}
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
 
-            <div 
+            <div
               ref={desktopReviewsContainerRef}
-              className="flex gap-6 md:gap-8 overflow-x-auto pb-4 scrollbar-hide"
+              className="flex gap-4 md:gap-5 overflow-x-auto pb-4 scrollbar-hide"
             >
               {reviewsData.map((review, index) => (
-                <div 
+                <div
                   key={review.id}
-                  className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-21.333px)]"
+                  className="flex-shrink-0 w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
                 >
                   {renderReviewCard(review, index)}
                 </div>

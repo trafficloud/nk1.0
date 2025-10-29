@@ -77,6 +77,10 @@
   .nk-hover {
     @apply transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-[0_12px_32px_-8px_rgba(10,20,40,0.35)];
   }
+
+  .nk-hover-subtle {
+    @apply transition-all duration-300 ease-out hover:shadow-[0_12px_32px_-8px_rgba(10,20,40,0.35)] hover:border-[#1A3A63]/60;
+  }
 }
 
 @keyframes soft-blink {
