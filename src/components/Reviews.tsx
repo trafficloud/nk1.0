@@ -162,7 +162,6 @@ const Reviews: React.FC = () => {
     <div
       key={review.id}
       className="bg-white rounded-2xl border-2 border-[#1A3A63]/40 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 flex flex-col h-full"
-      data-reveal
     >
       {/* Quote Icon */}
       <div className="mb-4">
@@ -241,7 +240,7 @@ const Reviews: React.FC = () => {
     return (
       <section id="reviews" className="bg-white py-10 md:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12" data-reveal>
+          <div className="text-center mb-12">
             <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
               Отзывы клиентов
             </h2>
@@ -266,7 +265,7 @@ const Reviews: React.FC = () => {
       <section id="reviews" className="bg-white py-10 md:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in" data-reveal>
+        <div className="text-center mb-12">
           <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
             Отзывы клиентов
           </h2>
