@@ -163,7 +163,7 @@ const Reviews: React.FC = () => {
   const renderReviewCard = (review: Review, index: number) => (
     <div
       key={review.id}
-      className="bg-white rounded-2xl border-2 border-[#1A3A63]/40 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover-subtle p-5 flex flex-col h-full"
+      className="bg-white rounded-2xl border-2 border-[#1A3A63]/40 nk-hover-subtle p-5 flex flex-col h-full"
     >
       {/* Quote Icon */}
       <div className="mb-4">
@@ -344,7 +344,7 @@ const Reviews: React.FC = () => {
 
             <div
               ref={desktopReviewsContainerRef}
-              className="flex gap-4 md:gap-5 overflow-x-auto pb-4 scrollbar-hide"
+              className="flex gap-4 md:gap-5 overflow-x-auto pr-4 scrollbar-hide"
             >
               {reviewsData.map((review, index) => (
                 <div
