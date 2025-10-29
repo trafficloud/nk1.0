@@ -84,7 +84,7 @@ const Reviews: React.FC = () => {
   }, [isMobile]);
   // Auto-scroll functionality
   useEffect(() => {
-    if (!isMobile) return;
+    if (!isMobile || reviewsData.length === 0) return;
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % reviewsData.length);

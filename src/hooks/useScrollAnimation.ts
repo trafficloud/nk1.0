@@ -24,10 +24,14 @@ export const useScrollAnimation = () => {
 
     observeElements();
 
-    const timer = setTimeout(observeElements, 500);
+    const timer1 = setTimeout(observeElements, 500);
+    const timer2 = setTimeout(observeElements, 1500);
+    const timer3 = setTimeout(observeElements, 3000);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
       const elements = document.querySelectorAll('[data-reveal]');
       elements.forEach((el) => observer.unobserve(el));
     };
