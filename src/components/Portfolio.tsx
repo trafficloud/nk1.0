@@ -103,7 +103,7 @@ const Portfolio: React.FC = () => {
   }, []);
 
   return (
-    <section id="portfolio" className="bg-white py-10 md:py-14">
+    <section id="portfolio" className="bg-soft py-10 md:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 animate-fade-in" data-reveal>
           <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
