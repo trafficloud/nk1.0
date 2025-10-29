@@ -36,7 +36,7 @@ export default function ResultCard({
   orangeNote = "Для формирования итоговой цены закажите бесплатный выезд специалиста для просчета.",
 }: Props) {
   return (
-    <section className="rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-7 shadow-sm animate-slide-up">
+    <section className="rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 animate-reveal">
       {/* Бейдж */}
       <div className="inline-flex items-center rounded-full bg-accent px-4 py-2 text-xs font-semibold text-white shadow-sm">
         Итоговый расчёт
@@ -102,7 +102,7 @@ export default function ResultCard({
       <div className="mt-7">
         <a
           href={phone}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm sm:text-base font-medium text-white shadow-md transition hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-accent/60"
+          className="btn btn-md btn-primary btn-shine w-full"
         >
           <Phone className="h-5 w-5" />
           Заказать выезд

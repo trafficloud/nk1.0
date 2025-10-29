@@ -91,8 +91,8 @@ const Calculator: React.FC = () => {
   };
 
   return (
-    <section id="calc" className="bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+    <section id="calc" className="bg-soft py-12 md:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 text-center">
             Рассчитайте стоимость <span className="text-accent">за 2 минуты</span>
@@ -104,7 +104,7 @@ const Calculator: React.FC = () => {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Form */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm animate-slide-up">
+          <div className="rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 animate-reveal">
             {/* New fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               {/* Wall Material */}
@@ -333,21 +333,15 @@ const Calculator: React.FC = () => {
             </div>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              <button 
+              <button
                 onClick={calculate}
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[180px]
-                           rounded-xl min-h-[44px] px-6 py-3
-                           text-sm sm:text-base font-medium
-                           bg-[#FF7F50] text-white hover:brightness-110 transition"
+                className="btn btn-md btn-primary btn-shine min-w-[180px]"
               >
                 <CalculatorIcon className="w-5 h-5" /> <span>Посчитать</span>
               </button>
-              <button 
+              <button
                 onClick={downloadPDF}
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[180px]
-                           rounded-xl min-h-[44px] px-6 py-3
-                           text-sm sm:text-base font-medium
-                           border border-[#1A3A63] text-[#1A3A63] hover:bg-[#1A3A63]/5 transition"
+                className="btn btn-md btn-outline-blue min-w-[180px]"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -374,7 +368,7 @@ const Calculator: React.FC = () => {
               orangeNote={result.orangeNote}
             />
           ) : (
-            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-7 shadow-sm animate-slide-up">
+            <div className="rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 animate-reveal">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-white text-xs font-medium mb-6">
                 Итоговый расчёт
               </div>

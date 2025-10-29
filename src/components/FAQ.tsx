@@ -93,7 +93,7 @@ const FAQ: React.FC = () => {
   const visibleItems = showAll ? faqData : faqData.filter(item => item.isTop);
 
   return (
-    <section id="faq" className="bg-white pt-20 pb-10 md:pt-24 md:pb-12">
+    <section id="faq" className="bg-white py-12 md:py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
@@ -110,7 +110,7 @@ const FAQ: React.FC = () => {
           {visibleItems.map((item, index) => (
             <div
               key={item.id}
-              className="bg-white border border-gray-200 rounded-lg p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up"
+              className="bg-white rounded-lg p-4 md:p-5 shadow-elev-1 hover:shadow-elev-2 transition-all duration-300 animate-reveal"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <button
@@ -147,10 +147,7 @@ const FAQ: React.FC = () => {
         <div className="text-center mb-12">
           <button
             onClick={toggleShowAll}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[180px]
-                       rounded-xl min-h-[44px] px-6 py-3
-                       text-sm sm:text-base font-medium
-                       border border-primary text-primary hover:bg-primary/5 transition-colors duration-300"
+            className="btn btn-md btn-outline-blue min-w-[180px]"
           >
             {showAll ? 'Свернуть' : 'Показать ещё'}
           </button>
@@ -163,10 +160,7 @@ const FAQ: React.FC = () => {
           </p>
           <button
             onClick={openChat}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[200px]
-                       rounded-xl min-h-[48px] px-8 py-3
-                       text-sm sm:text-base font-semibold
-                       bg-ctaButton text-white hover:bg-accent transition-colors duration-300"
+            className="btn btn-md btn-primary btn-shine min-w-[200px]"
           >
             <MessageSquare className="w-5 h-5" />
             <span>Задать вопрос</span>

@@ -12,25 +12,85 @@
   }
 }
 
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-300;
+  }
+
+  .btn-md {
+    @apply min-h-[48px] px-8 py-3 text-sm sm:text-base;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-white shadow-elev-1 hover:brightness-110 hover:-translate-y-0.5 hover:shadow-elev-2;
+  }
+
+  .btn-outline-white {
+    @apply border-2 border-white text-white hover:bg-white/10 hover:-translate-y-0.5;
+  }
+
+  .btn-outline-blue {
+    @apply border-2 border-primary text-primary hover:bg-primary/5 hover:-translate-y-0.5;
+  }
+
+  .btn-shine {
+    background-size: 200% auto;
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 60%,
+      transparent 100%
+    );
+  }
+
+  .btn-shine:hover {
+    animation: shine 1.5s ease-in-out;
+  }
+
+  .elev-1 {
+    @apply shadow-elev-1;
+  }
+
+  .elev-2 {
+    @apply shadow-elev-2;
+  }
+
+  .elev-3 {
+    @apply shadow-elev-3;
+  }
+
+  .bg-soft {
+    background: linear-gradient(180deg, #F9FAFB 0%, #FFFFFF 100%);
+  }
+}
+
 @keyframes soft-blink {
-  0%, 100% { 
-    opacity: 1; 
-    box-shadow: 0 8px 20px rgba(255,106,61,.35); 
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 8px 20px rgba(255,106,61,.35);
   }
-  50% { 
-    opacity: .88; 
-    box-shadow: 0 8px 28px rgba(255,106,61,.5); 
+  50% {
+    opacity: .88;
+    box-shadow: 0 8px 28px rgba(255,106,61,.5);
   }
 }
 
-/* мягкое мигание, без раздражающей пульсации */
-.animate-soft-blink { 
-  animation: soft-blink 2.6s ease-in-out infinite; 
+.animate-soft-blink {
+  animation: soft-blink 2.6s ease-in-out infinite;
 }
 
-/* уважаем пользователей с отключенной анимацией */
 @media (prefers-reduced-motion: reduce) {
-  .animate-soft-blink { 
-    animation: none; 
+  .animate-soft-blink {
+    animation: none;
+  }
+
+  .btn,
+  .animate-reveal,
+  .animate-slide-up,
+  .animate-fade-in {
+    animation: none !important;
+    transition: none !important;
   }
 }

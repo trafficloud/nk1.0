@@ -155,7 +155,7 @@ const Reviews: React.FC = () => {
   const renderReviewCard = (review: Review, index: number) => (
     <div
       key={review.id}
-      className="group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md animate-slide-up flex flex-col h-full"
+      className="group rounded-xl bg-white p-6 shadow-elev-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3 animate-reveal flex flex-col h-full"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Quote Icon */}
@@ -234,8 +234,8 @@ const Reviews: React.FC = () => {
   return (
     <>
       <ReviewForm isOpen={isFormOpen} onClose={handleCloseForm} />
-      <section id="reviews" className="bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+      <section id="reviews" className="bg-soft py-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
@@ -342,10 +342,7 @@ const Reviews: React.FC = () => {
         <div className="text-center">
           <button
             onClick={handleLeaveReview}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap min-w-[200px]
-                       rounded-xl min-h-[48px] px-8 py-3
-                       text-sm sm:text-base font-semibold
-                       bg-ctaButton text-white hover:bg-accent transition-colors duration-300"
+            className="btn btn-md btn-primary btn-shine min-w-[200px]"
           >
             Оставить отзыв
           </button>

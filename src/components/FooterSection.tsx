@@ -4,8 +4,8 @@ const FooterSection: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <section className="border-t border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <section className="border-t border-gray-200 bg-white py-12 md:py-16">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-lg font-semibold text-primary">
           Реквизиты и контакты
         </h2>

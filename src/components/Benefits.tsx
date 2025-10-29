@@ -27,8 +27,8 @@ const Benefits: React.FC = () => {
   ];
 
   return (
-    <section id="benefits" className="bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+    <section id="benefits" className="bg-soft py-12 md:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Почему нам доверяют
@@ -44,7 +44,8 @@ const Benefits: React.FC = () => {
             return (
               <div
                 key={index}
-                className="group rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
+                className="group rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3 animate-reveal"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-icon/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

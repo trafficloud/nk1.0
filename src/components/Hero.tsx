@@ -6,13 +6,19 @@ const Hero: React.FC = () => {
     <section id="home" className="relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('/после copy.png')`
           }}
         />
-        <div className="absolute inset-0 bg-[rgba(26,58,99,0.3)]" />
+        <div className="absolute inset-0 bg-primary/85" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%)'
+          }}
+        />
         
         {/* Scroll Indicator */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-5 md:bottom-8 z-20">
@@ -37,23 +43,17 @@ const Hero: React.FC = () => {
             ⚡ Работаем как <span className="font-semibold text-white">ООО «Надежный Контакт»</span> — официальная компания, а не ИП. Ответственность закреплена договором и гарантией 24 месяца.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-slide-up">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
             <a
               href="#calc"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap w-[240px]
-                         rounded-xl min-h-[48px] px-8 py-3
-                         text-sm sm:text-base font-semibold
-                         bg-[#FF7F50] text-white hover:brightness-110 transition"
+              className="btn btn-md btn-primary btn-shine w-full sm:w-auto min-w-[240px]"
             >
               <Calculator className="w-5 h-5" /> <span>Рассчитать стоимость</span>
             </a>
 
             <a
               href="#consult"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap w-[240px]
-                         rounded-xl min-h-[48px] px-8 py-3
-                         text-sm sm:text-base font-semibold
-                         border border-white text-white hover:bg-white/10 transition"
+              className="btn btn-md btn-outline-white w-full sm:w-auto min-w-[240px]"
             >
               <Phone className="w-5 h-5" /> <span>Бесплатная консультация</span>
             </a>

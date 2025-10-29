@@ -182,8 +182,8 @@ const AboutUs: React.FC = () => {
   };
 
   return (
-    <section id="about" className="bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+    <section id="about" className="bg-soft py-12 md:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
@@ -243,7 +243,7 @@ const AboutUs: React.FC = () => {
                     return (
                       <div key={index} className="w-full flex-shrink-0 px-2">
                         <div
-                          className="group rounded-2xl bg-primary/5 p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
+                          className="group rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3 animate-reveal"
                           style={{ animationDelay: `${index * 0.1}s` }}
                         >
                           <div className="flex items-start gap-4">
@@ -301,7 +301,7 @@ const AboutUs: React.FC = () => {
                 return (
                   <div
                     key={index}
-                    className="group rounded-2xl bg-primary/5 p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-slide-up"
+                    className="group rounded-2xl bg-white p-6 md:p-7 shadow-elev-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3 animate-reveal"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="flex items-start gap-4">
@@ -350,7 +350,7 @@ const AboutUs: React.FC = () => {
                         style={{ animationDelay: `${index * 0.1}s` }}
                         onClick={() => openDocument(doc.fullImage)}
                       >
-                        <div className="rounded-2xl bg-white shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        <div className="rounded-2xl bg-white shadow-elev-2 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3">
                           <div className="aspect-[4/3] overflow-hidden">
                             <img
                               src={doc.preview}
@@ -408,7 +408,7 @@ const AboutUs: React.FC = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => openDocument(doc.fullImage)}
               >
-                <div className="rounded-2xl bg-white shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <div className="rounded-2xl bg-white shadow-elev-2 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-elev-3">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={doc.preview}
