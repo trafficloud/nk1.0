@@ -30,8 +30,8 @@ const Header: React.FC = () => {
 
   const headerClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     isScrolled
-      ? 'bg-white backdrop-blur shadow-sm border-b border-[rgba(26,58,99,.08)]'
-      : 'bg-white/85 backdrop-blur-md border-b border-gray-200/30'
+      ? 'bg-white/8 backdrop-blur-sm border-b border-white/5'
+      : 'bg-white/3 backdrop-blur-[2px] border-b border-white/3'
   }`;
 
   const textClasses = 'text-gray-800';
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 bg-white border-t border-gray-200 shadow-lg">
+          <div className="lg:hidden py-4 bg-white/10 backdrop-blur-md border-t border-white/10">
             <nav className="flex flex-col space-y-3">
               {menuItems.map((item, index) => (
                 item.href.startsWith('/') ? (
