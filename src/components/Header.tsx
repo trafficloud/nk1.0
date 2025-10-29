@@ -59,17 +59,19 @@ const Header: React.FC = () => {
                 <Link
                   key={index}
                   to={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${textClasses}`}
+                  className={`relative text-sm font-medium px-4 py-2 rounded-md transition-all duration-300 ease-out hover:bg-white/10 hover:backdrop-blur-md hover:text-white active:scale-95 ${textClasses} group`}
                 >
                   {item.name}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
                 </Link>
               ) : (
                 <a
                   key={index}
                   href={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${textClasses}`}
+                  className={`relative text-sm font-medium px-4 py-2 rounded-md transition-all duration-300 ease-out hover:bg-white/10 hover:backdrop-blur-md hover:text-white active:scale-95 ${textClasses} group`}
                 >
                   {item.name}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
                 </a>
               )
             ))}
@@ -93,19 +95,21 @@ const Header: React.FC = () => {
                   <Link
                     key={index}
                     to={item.href}
-                    className="text-sm font-medium text-primary hover:text-accent transition-colors px-2 py-1"
+                    className="relative text-sm font-medium text-primary px-4 py-2 rounded-md transition-all duration-300 ease-out hover:bg-primary/10 hover:text-white hover:backdrop-blur-md active:scale-95 group"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
                   </Link>
                 ) : (
                   <a
                     key={index}
                     href={item.href}
-                    className="text-sm font-medium text-primary hover:text-accent transition-colors px-2 py-1"
+                    className="relative text-sm font-medium text-primary px-4 py-2 rounded-md transition-all duration-300 ease-out hover:bg-primary/10 hover:text-white hover:backdrop-blur-md active:scale-95 group"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
                   </a>
                 )
               ))}
