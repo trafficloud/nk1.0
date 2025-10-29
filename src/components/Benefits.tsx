@@ -48,8 +48,8 @@ const Benefits: React.FC = () => {
                 data-reveal
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#1A3A63]/6 flex items-center justify-center">
-                    <IconComponent className="w-12 h-12" strokeWidth={1.75} />
+                  <div className="w-12 h-12 rounded-xl bg-[#FF7F50]/10 flex items-center justify-center">
+                    <IconComponent className="w-12 h-12 text-[#FF7F50]" strokeWidth={1.75} />
                   </div>
                   <h3 className="font-heading font-semibold tracking-tight text-lg md:text-xl text-primary">
                     {benefit.title}
