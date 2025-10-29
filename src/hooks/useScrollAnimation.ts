@@ -13,14 +13,22 @@ export const useScrollAnimation = () => {
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
+        rootMargin: '0px 0px -100px 0px',
       }
     );
 
-    const elements = document.querySelectorAll('[data-reveal]');
-    elements.forEach((el) => observer.observe(el));
+    const observeElements = () => {
+      const elements = document.querySelectorAll('[data-reveal]');
+      elements.forEach((el) => observer.observe(el));
+    };
+
+    observeElements();
+
+    const timer = setTimeout(observeElements, 500);
 
     return () => {
+      clearTimeout(timer);
+      const elements = document.querySelectorAll('[data-reveal]');
       elements.forEach((el) => observer.unobserve(el));
     };
   }, []);

@@ -37,10 +37,16 @@ const Reviews: React.FC = () => {
         .eq('status', 'approved')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error fetching reviews:', error);
+        throw error;
+      }
+
+      console.log('Reviews fetched successfully:', data?.length || 0, 'reviews');
       setReviewsData(data || []);
     } catch (error) {
       console.error('Error fetching reviews:', error);
+      setReviewsData([]);
     } finally {
       setIsLoading(false);
     }
@@ -221,10 +227,33 @@ const Reviews: React.FC = () => {
 
   if (isLoading) {
     return (
-      <section id="reviews" className="bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+      <section id="reviews" className="bg-white py-10 md:py-14">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-block w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (reviewsData.length === 0) {
+    return (
+      <section id="reviews" className="bg-white py-10 md:py-14">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12" data-reveal>
+            <h2 className="nk-headline text-[#1A3A63] font-bold text-3xl md:text-4xl mb-4">
+              Отзывы клиентов
+            </h2>
+            <p className="text-text max-w-2xl mx-auto text-center mb-8">
+              Станьте первым, кто оставит отзыв о нашей работе
+            </p>
+            <button
+              onClick={handleLeaveReview}
+              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
+            >
+              Оставить отзыв
+            </button>
           </div>
         </div>
       </section>
