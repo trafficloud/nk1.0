@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
           <p
             className="font-sans font-normal text-white/90 mb-6 max-w-3xl mx-auto leading-relaxed text-[clamp(0.9rem,2.5vw,1.1rem)]"
           >
-            ⚡ Работаем как <span className="font-semibold text-white">ООО «Надежный Контакт»</span> — официальная компания, а не ИП. Ответственность закреплена договором и гарантией 24 месяца.
+            Работаем на рынке РБ 15 лет как официальная компания, а не ИП. Ответственность закреплена договором и гарантией 24 месяца. Бесплатный выезд на замер по Бресту и Брестской области
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
