@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Zap } from 'lucide-react';
-import logoImage from '/public/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png';
+import { Menu, X } from 'lucide-react';
+import Logo from './Logo';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +34,7 @@ const Header: React.FC = () => {
       : 'bg-white/5 backdrop-blur-[2px] border-b border-white/10'
   }`;
 
-  const textClasses = isScrolled ? 'text-gray-800' : 'text-white';
+  const textClasses = isScrolled ? 'text-primary' : 'text-white';
   const logoClasses = `text-2xl font-tektur font-medium ${textClasses}`;
 
   return (
@@ -42,13 +42,7 @@ const Header: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <img
-              src={logoImage}
-              alt="Надежный Контакт"
-              className="h-14 w-auto object-contain transition-all duration-300"
-            />
-          </div>
+          <Logo isScrolled={isScrolled} />
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center space-x-1">
