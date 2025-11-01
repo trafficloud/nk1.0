@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, MessageSquare } from 'lucide-react';
+import { openElevenLabsWidget } from '../utils/elevenLabsWidget';
 
 interface FAQItem {
   id: number;
@@ -77,19 +78,6 @@ const FAQ: React.FC = () => {
     setShowAll(!showAll);
   };
 
-  const openChat = () => {
-    const elevenLabsWidget = document.querySelector('elevenlabs-convai') as any;
-    if (elevenLabsWidget) {
-      const shadowRoot = elevenLabsWidget.shadowRoot;
-      if (shadowRoot) {
-        const button = shadowRoot.querySelector('button');
-        if (button) {
-          button.click();
-        }
-      }
-    }
-  };
-
   const visibleItems = showAll ? faqData : faqData.filter(item => item.isTop);
 
   return (
@@ -159,7 +147,7 @@ const FAQ: React.FC = () => {
             Не нашли ответ? Задайте вопрос — ответим за 5 минут
           </p>
           <button
-            onClick={openChat}
+            onClick={openElevenLabsWidget}
             className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
           >
             <MessageSquare className="w-5 h-5" strokeWidth={1.75} />

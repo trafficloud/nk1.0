@@ -1,7 +1,13 @@
 import React from 'react';
 import { Calculator, Phone } from 'lucide-react';
+import { openElevenLabsWidget } from '../utils/elevenLabsWidget';
 
 const Hero: React.FC = () => {
+  const handleConsultationClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    openElevenLabsWidget();
+  };
+
   return (
     <section id="home" className="relative overflow-hidden">
       {/* Background Video */}
@@ -50,6 +56,7 @@ const Hero: React.FC = () => {
 
             <a
               href="#consult"
+              onClick={handleConsultationClick}
               className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[240px] justify-center"
             >
               <Phone className="w-5 h-5" strokeWidth={1.75} /> <span>Бесплатная консультация</span>
