@@ -1,4 +1,4 @@
-const findAndClickCallButton = (shadowRoot: ShadowRoot, attempt = 0, maxAttempts = 15): void => {
+const findAndClickCallButton = (shadowRoot: ShadowRoot, attempt = 0, maxAttempts = 20): void => {
   if (attempt >= maxAttempts) {
     console.warn('Max attempts reached, call button not found');
     console.log('Available buttons in shadow DOM:', shadowRoot.querySelectorAll('button'));
@@ -7,69 +7,72 @@ const findAndClickCallButton = (shadowRoot: ShadowRoot, attempt = 0, maxAttempts
 
   console.log(`Attempt ${attempt + 1} to find call button...`);
 
-  const allButtons = shadowRoot.querySelectorAll('button');
-  console.log(`Found ${allButtons.length} buttons in shadow DOM`);
-
   let callButton: HTMLButtonElement | null = null;
 
-  allButtons.forEach((button, index) => {
-    const btnElement = button as HTMLButtonElement;
-    const text = btnElement.textContent?.trim().toLowerCase() || '';
-    const ariaLabel = btnElement.getAttribute('aria-label')?.toLowerCase() || '';
-    const dataAttr = btnElement.getAttribute('data-testid')?.toLowerCase() || '';
-    const role = btnElement.getAttribute('role')?.toLowerCase() || '';
+  const buttonSelectors = [
+    'button[aria-label*="Позвонить"]',
+    'button[aria-label*="позвонить"]',
+    'div[data-shown="true"] button',
+    'button[aria-label*="Call"]',
+    'button[aria-label*="call"]'
+  ];
 
-    console.log(`Button ${index}:`, {
-      text,
-      ariaLabel,
-      dataAttr,
-      role,
-      className: btnElement.className,
-      visible: btnElement.offsetParent !== null,
-      display: window.getComputedStyle(btnElement).display
-    });
+  for (const selector of buttonSelectors) {
+    const button = shadowRoot.querySelector(selector) as HTMLButtonElement;
+    if (button) {
+      const isVisible = button.offsetParent !== null;
+      const computedStyle = window.getComputedStyle(button);
+      const isDisplayed = computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden';
 
-    if (callButton) return;
+      console.log(`Found button with selector "${selector}":`, {
+        visible: isVisible,
+        displayed: isDisplayed,
+        ariaLabel: button.getAttribute('aria-label'),
+        className: button.className
+      });
 
-    const isCallButton =
-      text.includes('call') ||
-      text.includes('позвонить') ||
-      text.includes('start') ||
-      ariaLabel.includes('call') ||
-      ariaLabel.includes('start') ||
-      dataAttr.includes('call') ||
-      dataAttr.includes('start');
-
-    const isVisible = btnElement.offsetParent !== null &&
-                     window.getComputedStyle(btnElement).display !== 'none';
-
-    if (isCallButton && isVisible) {
-      callButton = btnElement;
-      console.log('Found matching call button:', btnElement);
+      if (isVisible && isDisplayed) {
+        callButton = button;
+        console.log('✓ Found visible call button!');
+        break;
+      }
     }
-  });
+  }
 
-  if (!callButton && allButtons.length > 1) {
-    const visibleButtons = Array.from(allButtons).filter(btn =>
-      (btn as HTMLButtonElement).offsetParent !== null &&
-      window.getComputedStyle(btn as HTMLButtonElement).display !== 'none'
-    );
+  if (!callButton) {
+    const allButtons = shadowRoot.querySelectorAll('button');
+    console.log(`Total buttons found: ${allButtons.length}`);
 
-    if (visibleButtons.length > 0) {
-      callButton = visibleButtons[visibleButtons.length - 1] as HTMLButtonElement;
-      console.log('Using last visible button as fallback:', callButton);
+    for (let i = 0; i < allButtons.length; i++) {
+      const btn = allButtons[i] as HTMLButtonElement;
+      const ariaLabel = btn.getAttribute('aria-label') || '';
+      const isVisible = btn.offsetParent !== null;
+
+      console.log(`Button ${i}:`, {
+        ariaLabel,
+        visible: isVisible,
+        hasPhoneIcon: btn.querySelector('svg') !== null
+      });
+
+      if (ariaLabel.includes('Позвонить') || ariaLabel.includes('позвонить') || ariaLabel.includes('Call') || ariaLabel.includes('call')) {
+        if (isVisible) {
+          callButton = btn;
+          console.log(`✓ Found call button at index ${i}!`);
+          break;
+        }
+      }
     }
   }
 
   if (callButton) {
-    console.log('Clicking call button...', callButton);
+    console.log('🎯 Clicking call button now...', callButton);
     callButton.click();
-    console.log('Call button clicked successfully!');
+    console.log('✅ Call button clicked successfully!');
   } else {
-    console.log(`Call button not found yet, retrying in 300ms...`);
+    console.log(`⏳ Call button not found yet, retrying in 250ms...`);
     setTimeout(() => {
       findAndClickCallButton(shadowRoot, attempt + 1, maxAttempts);
-    }, 300);
+    }, 250);
   }
 };
 
