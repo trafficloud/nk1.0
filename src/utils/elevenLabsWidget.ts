@@ -22,6 +22,16 @@ export const openElevenLabsWidget = (): boolean => {
     }
 
     button.click();
+
+    setTimeout(() => {
+      const allButtons = shadowRoot.querySelectorAll('button');
+      if (allButtons.length > 1) {
+        allButtons[1].click();
+      } else if (allButtons.length === 1) {
+        allButtons[0].click();
+      }
+    }, 100);
+
     return true;
   } catch (error) {
     console.error('Error opening ElevenLabs widget:', error);
