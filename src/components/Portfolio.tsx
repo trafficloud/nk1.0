@@ -153,32 +153,40 @@ const Portfolio: React.FC = () => {
                   className="relative w-full h-48 overflow-hidden rounded-xl bg-gray-200"
                 >
                   {/* Фото ДО */}
-                  <img 
-                    src={item.imageBefore} 
-                    alt="До" 
+                  <img
+                    src={item.imageBefore}
+                    alt={`Электромонтаж до начала работ в ${item.title}, ${item.address}`}
+                    loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
 
                   {/* Фото ПОСЛЕ (сверху, обрезаем ширину) */}
-                  <div 
+                  <div
                     ref={el => afterWrapperRefs.current[item.id] = el}
-                    className="absolute inset-0 overflow-hidden" 
+                    className="absolute inset-0 overflow-hidden"
                     style={{ width: '50%' }}
                   >
-                    <img 
-                      src={item.imageAfter} 
-                      alt="После" 
+                    <img
+                      src={item.imageAfter}
+                      alt={`Завершенный электромонтаж в ${item.title}, ${item.address}`}
+                      loading="lazy"
                       className={`w-full h-full object-cover ${item.id === 3 ? 'transform scale-x-[-1]' : ''}`}
                     />
                   </div>
 
                   {/* Ползунок */}
-                  <div 
+                  <div
                     ref={el => sliderRefs.current[item.id] = el}
                     className="absolute top-0 bottom-0 w-1 bg-white cursor-col-resize flex items-center justify-center select-none"
                     style={{ left: '50%' }}
+                    role="slider"
+                    aria-label="Ползунок сравнения до и после"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={50}
+                    tabIndex={0}
                   >
-                    <div className="w-6 h-6 bg-icon rounded-full shadow-md hover:scale-110 transition-transform"></div>
+                    <div className="w-6 h-6 bg-icon rounded-full shadow-md hover:scale-110 transition-transform" aria-hidden="true"></div>
                   </div>
 
                   {/* Метки До/После */}

@@ -189,6 +189,92 @@ export const generateOrganizationSchema = () => {
   };
 };
 
+export const generateFAQSchema = () => {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Сколько стоит электромонтаж в новостройке?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Стоимость зависит от количества точек (розетки/выключатели/свет), щита, штроб и материалов. Выезд, замер и смета — бесплатно. Точную цену фиксируем в договоре после замера.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Какая гарантия на работы?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Официально 24 месяца на все работы. При дефекте — устраним за наш счёт. Передаём договор, акт и исполнительную схему.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Нужно ли разрешение/согласование?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Спецразрешение не требуется. Работы выполняем по ПУЭ и СТБ; для ЖЭС передаём акт и схему при необходимости.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Можно ли использовать свои материалы?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Да, если материалы сертифицированы (ABB/Schneider/ЕКФ и т.п.). Проверим на замере, согласуем по спецификации.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Как проходит оплата?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Оплата по факту после приёмки. Доступно: ЕРИП, карта, безнал, наличные. Без скрытых доплат.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Сколько времени занимает монтаж?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Типовая 2-к квартира: ~5–7 дней. Дом 100 м²: ~10–14 дней. Уточняем сроки после замера и сметы.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Что включено в смету?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Работы, кабели/автоматы/щит согласно спецификации, логистика. Доп. работы (например, штробление) — по согласованию.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Кто делает документы?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Мы готовим договор, акт, при необходимости — исполнительную схему для ЖЭС; всё передаём заказчику.'
+        }
+      }
+    ]
+  };
+};
+
+export const generateVideoObjectSchema = () => {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'Демонстрация электромонтажных работ',
+    description: 'Профессиональный монтаж электропроводки в новостройках Беларуси',
+    thumbnailUrl: 'https://yourdomain.com/68712ea0-bc68-4bc6-b983-b3985a37a71c.png',
+    uploadDate: '2024-01-01',
+    duration: 'PT30S',
+    contentUrl: 'https://yourdomain.com/Cinematic_Electrical_Installation_Sequence.mp4'
+  };
+};
+
 export const combineSchemas = (...schemas: object[]) => {
   return {
     '@context': 'https://schema.org',

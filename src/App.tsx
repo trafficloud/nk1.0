@@ -11,7 +11,7 @@ import FAQ from './components/FAQ';
 import FooterSection from './components/FooterSection';
 import SEO from './components/SEO';
 import { useScrollAnimation } from './hooks/useScrollAnimation';
-import { combineSchemas, generateLocalBusinessSchema, generateServiceSchema, generateBreadcrumbSchema, generateOrganizationSchema } from './utils/seo';
+import { combineSchemas, generateLocalBusinessSchema, generateServiceSchema, generateBreadcrumbSchema, generateOrganizationSchema, generateFAQSchema, generateVideoObjectSchema } from './utils/seo';
 
 function App() {
   useScrollAnimation();
@@ -20,7 +20,9 @@ function App() {
     generateLocalBusinessSchema(),
     generateServiceSchema(),
     generateBreadcrumbSchema(),
-    generateOrganizationSchema()
+    generateOrganizationSchema(),
+    generateFAQSchema(),
+    generateVideoObjectSchema()
   );
 
   return (

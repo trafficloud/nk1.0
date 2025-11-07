@@ -353,6 +353,7 @@ const AboutUs: React.FC = () => {
                             <img
                               src={doc.preview}
                               alt={doc.title}
+                              loading="lazy"
                               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                           </div>
@@ -411,6 +412,7 @@ const AboutUs: React.FC = () => {
                     <img
                       src={doc.preview}
                       alt={doc.title}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -432,12 +434,13 @@ const AboutUs: React.FC = () => {
               <button
                 onClick={closeDocument}
                 className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full p-2"
+                aria-label="Закрыть просмотр документа"
               >
-                <X className="w-8 h-8" />
+                <X className="w-8 h-8" aria-hidden="true" />
               </button>
               <img
                 src={selectedDocument}
-                alt="Документ"
+                alt="Увеличенный просмотр документа"
                 className="max-w-full max-h-full object-contain rounded-lg"
               />
             </div>

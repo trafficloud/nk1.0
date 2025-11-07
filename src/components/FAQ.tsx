@@ -81,7 +81,7 @@ const FAQ: React.FC = () => {
   const visibleItems = showAll ? faqData : faqData.filter(item => item.isTop);
 
   return (
-    <section id="faq" className="bg-soft py-10 md:py-14">
+    <section id="faq" className="bg-soft py-10 md:py-14" itemScope itemType="https://schema.org/FAQPage">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in" data-reveal>
@@ -100,6 +100,9 @@ const FAQ: React.FC = () => {
               key={item.id}
               className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/18 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-4 md:p-5"
               data-reveal
+              itemScope
+              itemProp="mainEntity"
+              itemType="https://schema.org/Question"
             >
               <button
                 onClick={() => toggleItem(item.id)}
@@ -107,23 +110,27 @@ const FAQ: React.FC = () => {
                 aria-expanded={openItems.has(item.id)}
                 aria-controls={`faq-answer-${item.id}`}
               >
-                <h3 className="font-heading font-bold tracking-tight text-lg text-primary pr-4">
+                <h3 className="font-heading font-bold tracking-tight text-lg text-primary pr-4" itemProp="name">
                   {item.question}
                 </h3>
                 <ChevronDown
                   className={`w-5 h-5 text-ctaButton flex-shrink-0 transition-transform duration-300 ${
                     openItems.has(item.id) ? 'rotate-180' : ''
                   }`}
+                  aria-hidden="true"
                 />
               </button>
-              
+
               <div
                 id={`faq-answer-${item.id}`}
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   openItems.has(item.id) ? 'max-h-96 mt-4' : 'max-h-0'
                 }`}
+                itemScope
+                itemProp="acceptedAnswer"
+                itemType="https://schema.org/Answer"
               >
-                <p className="font-sans font-normal text-text leading-relaxed">
+                <p className="font-sans font-normal text-text leading-relaxed" itemProp="text">
                   {item.answer}
                 </p>
               </div>
@@ -149,8 +156,9 @@ const FAQ: React.FC = () => {
           <button
             onClick={openElevenLabsWidget}
             className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[200px] justify-center"
+            aria-label="Задать вопрос специалисту"
           >
-            <MessageSquare className="w-5 h-5" strokeWidth={1.75} />
+            <MessageSquare className="w-5 h-5" strokeWidth={1.75} aria-hidden="true" />
             <span>Задать вопрос</span>
           </button>
         </div>

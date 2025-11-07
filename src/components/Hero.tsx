@@ -17,12 +17,13 @@ const Hero: React.FC = () => {
           loop
           muted
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
           aria-label="Видео демонстрация электромонтажных работ"
         >
           <source src="/Cinematic_Electrical_Installation_Sequence.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 nk-hero-overlay" />
+        <div className="absolute inset-0 nk-hero-overlay" role="presentation" />
 
         {/* Scroll Indicator */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-5 md:bottom-8 z-20" aria-hidden="true">
