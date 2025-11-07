@@ -39,14 +39,15 @@ Priority images (above the fold):
 Portfolio images:
 - `/public/after.png`, `/public/after1.png`, `/public/after2.png`, `/public/after3.png`
 - `/public/before.png`, `/public/before2.png`, `/public/before3.png`
-- `/public/до.png`, `/public/до1.png`
-- `/public/после.png`, `/public/после1.png`, `/public/после copy.png`
+- `/public/before-1.png`, `/public/before-2.png` (renamed from Cyrillic)
+- `/public/after-1.png`, `/public/after-2.png` (renamed from Cyrillic)
+- `/public/after-copy.png` (renamed from Cyrillic)
 
 Certificate images:
-- `/public/license.png`, `/public/лицензия.png`
+- `/public/license.png`, `/public/license-new.png` (renamed from Cyrillic)
 - `/public/sertificat.png`
-- `/public/atestat CMP.png`, `/public/atestat-cmp.png`
-- `/public/attestat GP.png`, `/public/attestat-gp.png`
+- `/public/atestat-cmp.png`, `/public/atestat-cmp-new.png` (renamed from file with spaces)
+- `/public/attestat-gp.png`, `/public/attestat-gp-new.png` (renamed from file with spaces)
 
 ### 3. Video Optimization
 
