@@ -10,6 +10,8 @@ import AboutUs from './components/AboutUs';
 import FAQ from './components/FAQ';
 import FooterSection from './components/FooterSection';
 import SEO from './components/SEO';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import { useScrollAnimation } from './hooks/useScrollAnimation';
 import { combineSchemas, generateLocalBusinessSchema, generateServiceSchema, generateBreadcrumbSchema, generateOrganizationSchema, generateFAQSchema, generateVideoObjectSchema } from './utils/seo';
 
@@ -42,6 +44,8 @@ function App() {
             <FooterSection />
           </>
         } />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
       </Routes>
     </div>
   );

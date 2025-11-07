@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FooterSection: React.FC = () => {
   const year = new Date().getFullYear();
@@ -68,7 +69,22 @@ const FooterSection: React.FC = () => {
         </div>
 
         <div className="font-sans font-normal mt-8 border-t border-neutral-200 pt-4 text-xs text-neutral-500 dark:border-neutral-700 dark:text-neutral-400 text-center">
-          © {year} f(Am)team. Все права защищены.
+          <p className="mb-2">© {year} f(Am)team. Все права защищены.</p>
+          <div className="flex justify-center gap-4 flex-wrap">
+            <Link
+              to="/privacy-policy"
+              className="underline-offset-2 hover:underline hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+            >
+              Политика конфиденциальности
+            </Link>
+            <span className="text-neutral-300 dark:text-neutral-600">|</span>
+            <Link
+              to="/terms"
+              className="underline-offset-2 hover:underline hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+            >
+              Пользовательское соглашение
+            </Link>
+          </div>
         </div>
       </div>
     </section>
