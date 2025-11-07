@@ -23,24 +23,28 @@ const FooterSection: React.FC = () => {
             </div>
             <div className="flex gap-2 items-baseline">
               <dt className="w-28 text-neutral-500">Юр. адрес</dt>
-              <dd className="flex-1">224030, г.Брест, ул. Гоголя, д.</dd>
+              <dd className="flex-1">224030, г.Брест, ул. Гоголя, 3</dd>
             </div>
 
             {/* Контакты в мобильной версии (отображаются только на мобильных, интегрированы в левую колонку) */}
             <div className="md:hidden mt-4 space-y-2">
               <div className="flex gap-2 items-baseline">
-                <div className="w-28 text-neutral-500">Телефон:</div>
+                <div className="w-28 text-neutral-500">Тел./факс:</div>
                 <div className="flex-1">
-                  <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100" href="tel:+375290000000">
-                    +375 (29) 000-00-00
+                  <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100" href="tel:+375162351390">
+                    35-13-90
+                  </a>
+                  <span className="text-neutral-500">, </span>
+                  <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100" href="tel:+375162215997">
+                    21-59-97
                   </a>
                 </div>
               </div>
               <div className="flex gap-2 items-baseline">
                 <div className="w-28 text-neutral-500">Email:</div>
                 <div className="flex-1">
-                  <a className="underline-offset-2 hover:underline" href="mailto:hello@famteam.pro">
-                    hello@famteam.pro
+                  <a className="underline-offset-2 hover:underline" href="mailto:brestproing@tut.by">
+                    brestproing@tut.by
                   </a>
                 </div>
               </div>
@@ -49,13 +53,16 @@ const FooterSection: React.FC = () => {
           {/* Правая колонка (только для десктопа) */}
           <div className="font-sans font-normal hidden md:block space-y-2 text-neutral-700 dark:text-neutral-300 text-right">
             <p>
-              <span className="text-neutral-500">Телефон: </span>
+              <span className="text-neutral-500">Тел./факс: </span>
               <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100"
-                 href="tel:+375290000000">+375 (29) 000-00-00</a>
+                 href="tel:+375162351390">35-13-90</a>
+              <span className="text-neutral-500">, </span>
+              <a className="font-medium text-neutral-900 underline-offset-2 hover:underline dark:text-neutral-100"
+                 href="tel:+375162215997">21-59-97</a>
             </p>
             <p>
               <span className="text-neutral-500">Email: </span>
-              <a className="underline-offset-2 hover:underline" href="mailto:hello@famteam.pro">hello@famteam.pro</a>
+              <a className="underline-offset-2 hover:underline" href="mailto:brestproing@tut.by">brestproing@tut.by</a>
             </p>
           </div>
         </div>

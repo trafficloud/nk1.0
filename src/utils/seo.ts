@@ -18,11 +18,11 @@ export const generateLocalBusinessSchema = (reviewsData?: Review[]) => {
     alternateName: 'Надежный Контакт',
     description: 'Профессиональный монтаж электропроводки в новостройках. 15 лет опыта, сертифицированные материалы, гарантия 24 месяца.',
     url: 'https://yourdomain.com',
-    telephone: '+375-29-000-00-00',
-    email: 'hello@famteam.pro',
+    telephone: '+375162351390',
+    email: 'brestproing@tut.by',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'ул. Гоголя',
+      streetAddress: 'ул. Гоголя, 3',
       addressLocality: 'Брест',
       postalCode: '224030',
       addressCountry: 'BY'
@@ -170,18 +170,18 @@ export const generateOrganizationSchema = () => {
     logo: 'https://yourdomain.com/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png',
     foundingDate: '2009',
     taxID: '290484521',
-    telephone: '+375-29-000-00-00',
-    email: 'hello@famteam.pro',
+    telephone: '+375162351390',
+    email: 'brestproing@tut.by',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'ул. Гоголя',
+      streetAddress: 'ул. Гоголя, 3',
       addressLocality: 'Брест',
       postalCode: '224030',
       addressCountry: 'BY'
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+375-29-000-00-00',
+      telephone: '+375162351390',
       contactType: 'customer service',
       availableLanguage: ['Russian', 'Belarusian'],
       areaServed: 'BY'
