@@ -154,19 +154,29 @@ const CookiePolicy: React.FC = () => {
               </p>
               <div className="bg-gray-50 p-6 rounded-xl">
                 <p className="mb-2">
-                  <strong className="text-[#1A3A63]">Email:</strong>{' '}
-                  <a href="mailto:info@nadezhnyi-kontakt.by" className="text-[#FF7F50] hover:underline">
-                    info@nadezhnyi-kontakt.by
-                  </a>
+                  <strong className="text-[#1A3A63]">Наименование:</strong> ОДО «Брестское предприятие производственных и инжиниринговых услуг»
                 </p>
                 <p className="mb-2">
-                  <strong className="text-[#1A3A63]">Телефон:</strong>{' '}
-                  <a href="tel:+375291234567" className="text-[#FF7F50] hover:underline">
-                    +375 (29) 123-45-67
+                  <strong className="text-[#1A3A63]">УНП:</strong> 290484521
+                </p>
+                <p className="mb-2">
+                  <strong className="text-[#1A3A63]">Юридический адрес:</strong> 224030, г. Брест, ул. Гоголя, 3
+                </p>
+                <p className="mb-2">
+                  <strong className="text-[#1A3A63]">Тел./факс:</strong>{' '}
+                  <a href="tel:+375162351390" className="text-[#FF7F50] hover:underline">
+                    35-13-90
+                  </a>
+                  {', '}
+                  <a href="tel:+375162215997" className="text-[#FF7F50] hover:underline">
+                    21-59-97
                   </a>
                 </p>
                 <p>
-                  <strong className="text-[#1A3A63]">Адрес:</strong> г. Брест, Республика Беларусь
+                  <strong className="text-[#1A3A63]">Email:</strong>{' '}
+                  <a href="mailto:brestproing@tut.by" className="text-[#FF7F50] hover:underline">
+                    brestproing@tut.by
+                  </a>
                 </p>
               </div>
             </section>
