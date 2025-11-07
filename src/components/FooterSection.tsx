@@ -84,6 +84,13 @@ const FooterSection: React.FC = () => {
             >
               Пользовательское соглашение
             </Link>
+            <span className="text-neutral-300 dark:text-neutral-600">|</span>
+            <Link
+              to="/cookie-policy"
+              className="underline-offset-2 hover:underline hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+            >
+              Политика обработки cookie
+            </Link>
           </div>
         </div>
       </div>
