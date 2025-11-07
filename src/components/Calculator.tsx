@@ -109,12 +109,14 @@ const Calculator: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               {/* Wall Material */}
               <div>
-                <label className="block font-sans font-medium text-sm text-gray-700 mb-2">Материал стен</label>
+                <label htmlFor="wallMaterial" className="block font-sans font-medium text-sm text-gray-700 mb-2">Материал стен</label>
                 <select
+                  id="wallMaterial"
                   name="wallMaterial"
                   value={fWallMaterial}
                   onChange={(e) => setFWallMaterial(e.target.value)}
                   className="font-sans font-normal w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
+                  aria-label="Выберите материал стен"
                 >
                   <option>Не знаю</option>
                   <option>Кирпич</option>
@@ -124,12 +126,14 @@ const Calculator: React.FC = () => {
               </div>
               {/* Ceiling Height */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Высота потолка &gt; 3 м</label>
+                <label htmlFor="heightGT3" className="block text-sm font-medium text-gray-700 mb-2">Высота потолка &gt; 3 м</label>
                 <select
+                  id="heightGT3"
                   name="heightGT3"
                   value={fCeilingHeight}
                   onChange={(e) => setFCeilingHeight(e.target.value)}
                   className="w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-icon p-3 text-sm transition-colors"
+                  aria-label="Высота потолка больше 3 метров"
                 >
                   <option>Нет</option>
                   <option>Да</option>

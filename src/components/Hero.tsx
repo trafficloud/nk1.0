@@ -17,7 +17,8 @@ const Hero: React.FC = () => {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
           aria-label="Видео демонстрация электромонтажных работ"
         >

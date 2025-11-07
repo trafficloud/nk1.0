@@ -55,7 +55,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop Menu */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-1" aria-label="Основное меню">
             {menuItems.map((item, index) => (
               item.href.startsWith('/') ? (
                 <Link
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                   className={`relative font-sans font-semibold text-sm px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group hover:bg-gray-100/70`}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]" aria-hidden="true"></span>
                 </Link>
               ) : (
                 <a
@@ -73,7 +73,7 @@ const Header: React.FC = () => {
                   className={`relative font-sans font-semibold text-sm px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group hover:bg-gray-100/70`}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]" aria-hidden="true"></span>
                 </a>
               )
             ))}
@@ -93,7 +93,7 @@ const Header: React.FC = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden py-4 bg-white/10 backdrop-blur-md border-t border-white/10">
-            <nav className="flex flex-col space-y-3">
+            <nav className="flex flex-col space-y-3" aria-label="Мобильное меню">
               {menuItems.map((item, index) => (
                 item.href.startsWith('/') ? (
                   <Link
@@ -103,7 +103,7 @@ const Header: React.FC = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]" aria-hidden="true"></span>
                   </Link>
                 ) : (
                   <a
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]"></span>
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]" aria-hidden="true"></span>
                   </a>
                 )
               ))}
