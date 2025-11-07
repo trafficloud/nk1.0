@@ -1,5 +1,4 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 
 interface SEOProps {
   title?: string;
@@ -18,41 +17,62 @@ const SEO: React.FC<SEOProps> = ({
   ogType = 'website',
   structuredData
 }) => {
-  return (
-    <Helmet>
-      <html lang="ru" />
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content="монтаж электрики Брест, электромонтаж Беларусь, электропроводка новостройка, электрик Брест, установка розеток, электромонтажные работы, штробление стен, сборка электрощита" />
+  useEffect(() => {
+    document.title = title;
+    document.documentElement.lang = 'ru';
 
-      <link rel="canonical" href={canonicalUrl} />
+    const metaTags = [
+      { name: 'description', content: description },
+      { name: 'keywords', content: 'монтаж электрики Брест, электромонтаж Беларусь, электропроводка новостройка, электрик Брест, установка розеток, электромонтажные работы, штробление стен, сборка электрощита' },
+      { property: 'og:type', content: ogType },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
+      { property: 'og:url', content: canonicalUrl },
+      { property: 'og:image', content: ogImage },
+      { property: 'og:locale', content: 'ru_BY' },
+      { property: 'og:site_name', content: 'Надежный Контакт - Электромонтаж' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: ogImage },
+      { name: 'format-detection', content: 'telephone=yes' },
+      { name: 'geo.region', content: 'BY-BR' },
+      { name: 'geo.placename', content: 'Брест' },
+    ];
 
-      <meta property="og:type" content={ogType} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:locale" content="ru_BY" />
-      <meta property="og:site_name" content="Надежный Контакт - Электромонтаж" />
+    metaTags.forEach(({ name, property, content }) => {
+      const attr = name ? 'name' : 'property';
+      const value = name || property;
+      let meta = document.querySelector(`meta[${attr}="${value}"]`);
 
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attr, value!);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    });
 
-      <meta name="format-detection" content="telephone=yes" />
-      <meta name="geo.region" content="BY-BR" />
-      <meta name="geo.placename" content="Брест" />
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
 
-      <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' blob:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-src 'self'; object-src 'none';" />
+    if (structuredData) {
+      let script = document.querySelector('script[type="application/ld+json"]');
+      if (!script) {
+        script = document.createElement('script');
+        script.type = 'application/ld+json';
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(structuredData);
+    }
+  }, [title, description, canonicalUrl, ogImage, ogType, structuredData]);
 
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      )}
-    </Helmet>
-  );
+  return null;
 };
 
 export default SEO;
