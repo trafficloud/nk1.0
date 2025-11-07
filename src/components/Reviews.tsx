@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import ReviewForm from './ReviewForm';
+import Skeleton from './Skeleton';
 
 interface Review {
   id: string;
@@ -230,8 +231,31 @@ const Reviews: React.FC = () => {
     return (
       <section id="reviews" className="bg-white py-10 md:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="inline-block w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin" />
+          <div className="text-center mb-12">
+            <Skeleton variant="text" width="300px" height="40px" className="mx-auto mb-4" />
+            <Skeleton variant="text" width="400px" height="20px" className="mx-auto" />
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white rounded-2xl border-2 border-gray-200 p-5">
+                <Skeleton variant="circular" width="32px" height="32px" className="mb-4" />
+                <Skeleton variant="text" className="mb-2" />
+                <Skeleton variant="text" className="mb-2" />
+                <Skeleton variant="text" width="80%" className="mb-4" />
+                <div className="flex gap-1 mb-4">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <Skeleton key={s} variant="circular" width="16px" height="16px" />
+                  ))}
+                </div>
+                <div className="flex items-center gap-3">
+                  <Skeleton variant="circular" width="48px" height="48px" />
+                  <div className="flex-1">
+                    <Skeleton variant="text" width="120px" className="mb-1" />
+                    <Skeleton variant="text" width="100px" height="12px" />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

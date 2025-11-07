@@ -10,6 +10,29 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
 }
 
 @layer components {
@@ -134,8 +157,45 @@
   }
 }
 
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes count-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-slide-up {
   animation: slide-up 0.6s ease-out 0.2s backwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s ease-out;
 }
 
 .animate-fade-in {
@@ -167,6 +227,16 @@
 [data-reveal]:nth-child(7).is-visible { transition-delay: 360ms; }
 [data-reveal]:nth-child(8).is-visible { transition-delay: 420ms; }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 @media (max-width: 768px) {
   [data-reveal] {
     transform: translateY(10px);
@@ -178,13 +248,24 @@
 
   body {
     -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 
   button,
   a,
   input,
-  select {
+  select,
+  textarea {
     min-height: 44px;
+  }
+
+  input[type="number"],
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select {
+    font-size: 16px;
   }
 }
 

@@ -57,7 +57,23 @@ const Header: React.FC = () => {
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center space-x-1" aria-label="Основное меню">
             {menuItems.map((item, index) => (
-              item.href.startsWith('/') ? (
+              item.href.startsWith('#') ? (
+                <a
+                  key={index}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector(item.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className={`relative font-sans font-semibold text-sm px-3 py-2 rounded-full transition-all duration-300 ease-out active:scale-95 ${textClasses} group hover:bg-gray-100/70`}
+                >
+                  {item.name}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]" aria-hidden="true"></span>
+                </a>
+              ) : item.href.startsWith('/') ? (
                 <Link
                   key={index}
                   to={item.href}
@@ -95,7 +111,24 @@ const Header: React.FC = () => {
           <div className="lg:hidden py-4 bg-white/10 backdrop-blur-md border-t border-white/10">
             <nav className="flex flex-col space-y-3" aria-label="Мобильное меню">
               {menuItems.map((item, index) => (
-                item.href.startsWith('/') ? (
+                item.href.startsWith('#') ? (
+                  <a
+                    key={index}
+                    href={item.href}
+                    className="relative font-sans font-semibold text-sm text-primary px-6 py-2 rounded-full transition-all duration-300 ease-out hover:bg-primary/10 active:scale-95 group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector(item.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    {item.name}
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-[#FF7F50] transition-all duration-300 ease-out group-hover:w-[75%]" aria-hidden="true"></span>
+                  </a>
+                ) : item.href.startsWith('/') ? (
                   <Link
                     key={index}
                     to={item.href}

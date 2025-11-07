@@ -3,6 +3,8 @@ import { Calculator as CalculatorIcon } from 'lucide-react';
 import { loadConfig, Config } from '../types/calculator';
 import { getProcessedFormValues, calculateTotal, FormValues } from '../utils/calculator';
 import ResultCard from './ResultCard';
+import Spinner from './Spinner';
+import Skeleton from './Skeleton';
 
 interface CalculationResult {
   min: number;
@@ -21,6 +23,8 @@ interface CalculationResult {
 const Calculator: React.FC = () => {
   const [config, setConfig] = useState<Config | null>(null);
   const [result, setResult] = useState<CalculationResult | null>(null);
+  const [isLoadingConfig, setIsLoadingConfig] = useState(true);
+  const [isCalculating, setIsCalculating] = useState(false);
   
   // Form state
   const [fWallMaterial, setFWallMaterial] = useState('Не знаю');
@@ -43,20 +47,28 @@ const Calculator: React.FC = () => {
   // Load config on mount
   useEffect(() => {
     const loadCalculatorConfig = async () => {
+      setIsLoadingConfig(true);
       try {
         const cfg = await loadConfig();
         setConfig(cfg);
       } catch (error) {
         console.error('Failed to load calculator config:', error);
+      } finally {
+        setIsLoadingConfig(false);
       }
     };
-    
+
     loadCalculatorConfig();
   }, []);
 
-  const calculate = (): void => {
+  const calculate = async (): Promise<void> => {
     if (!config) return;
-    
+
+    setIsCalculating(true);
+
+    // Simulate async calculation for better UX
+    await new Promise(resolve => setTimeout(resolve, 300));
+
     const formValues: FormValues = {
       objectType: fType,
       area: Number(fArea) || 0,
@@ -78,8 +90,9 @@ const Calculator: React.FC = () => {
     
     const processedForm = getProcessedFormValues(formValues);
     const calculationResult = calculateTotal(processedForm, config);
-    
+
     setResult(calculationResult);
+    setIsCalculating(false);
   };
 
   const downloadPDF = (): void => {
@@ -339,9 +352,19 @@ const Calculator: React.FC = () => {
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={calculate}
-                className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center"
+                disabled={isCalculating || isLoadingConfig}
+                className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 min-w-[180px] justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               >
-                <CalculatorIcon className="w-5 h-5" strokeWidth={1.75} /> <span>Посчитать</span>
+                {isCalculating ? (
+                  <>
+                    <Spinner size="small" color="white" />
+                    <span>Считаем...</span>
+                  </>
+                ) : (
+                  <>
+                    <CalculatorIcon className="w-5 h-5" strokeWidth={1.75} /> <span>Посчитать</span>
+                  </>
+                )}
               </button>
               <button
                 onClick={downloadPDF}
