@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yourdomain.com/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+Disallow: /api/
+Disallow: /.env
+Disallow: /node_modules/

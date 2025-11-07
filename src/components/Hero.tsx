@@ -18,13 +18,14 @@ const Hero: React.FC = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
+          aria-label="Видео демонстрация электромонтажных работ"
         >
           <source src="/Cinematic_Electrical_Installation_Sequence.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 nk-hero-overlay" />
 
         {/* Scroll Indicator */}
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-5 md:bottom-8 z-20">
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-5 md:bottom-8 z-20" aria-hidden="true">
           <div className="w-6 h-10 rounded-full border-2 border-white/70 flex items-start justify-center">
             <span className="block w-1 h-2 rounded-full bg-white/70 mt-1 animate-bounce"></span>
           </div>
@@ -49,17 +50,19 @@ const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
             <a
               href="#calc"
-              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[240px] justify-center"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[240px] justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              aria-label="Перейти к калькулятору стоимости"
             >
-              <Calculator className="w-5 h-5" strokeWidth={1.75} /> <span>Рассчитать стоимость</span>
+              <Calculator className="w-5 h-5" strokeWidth={1.75} aria-hidden="true" /> <span>Рассчитать стоимость</span>
             </a>
 
             <a
               href="#consult"
               onClick={handleConsultationClick}
-              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[240px] justify-center"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FF7F50] text-white font-sans font-semibold px-6 sm:px-8 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[240px] justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              aria-label="Получить бесплатную консультацию"
             >
-              <Phone className="w-5 h-5" strokeWidth={1.75} /> <span>Бесплатная консультация</span>
+              <Phone className="w-5 h-5" strokeWidth={1.75} aria-hidden="true" /> <span>Бесплатная консультация</span>
             </a>
           </div>
         </div>
