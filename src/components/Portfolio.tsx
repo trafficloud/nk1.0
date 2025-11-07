@@ -21,7 +21,7 @@ const Portfolio: React.FC = () => {
       points: 28,
       gesAct: 'Акт сдан в ЖЭС',
       imageBefore: '/after1.png',
-      imageAfter: '/before1.png'
+      imageAfter: '/before3.png'
     },
     {
       id: 2,
@@ -30,8 +30,8 @@ const Portfolio: React.FC = () => {
       timeline: '7 дней',
       points: 35,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/после.png',
-      imageAfter: '/до.png'
+      imageBefore: '/after2.png',
+      imageAfter: '/before2.png'
     },
     {
       id: 3,
@@ -40,8 +40,8 @@ const Portfolio: React.FC = () => {
       timeline: '4 дня',
       points: 22,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/после1.png',
-      imageAfter: '/до1.png'
+      imageBefore: '/after3.png',
+      imageAfter: '/before3.png'
     }
   ];
 
