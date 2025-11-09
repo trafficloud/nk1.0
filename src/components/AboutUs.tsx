@@ -65,8 +65,8 @@ const AboutUs: React.FC = () => {
     {
       id: 1,
       title: 'Лицензия на работу',
-      preview: '/license.png',
-      fullImage: '/license.png'
+      preview: '/license.webp',
+      fullImage: '/license.webp'
     },
     {
       id: 2,
