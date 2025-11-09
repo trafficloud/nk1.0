@@ -25,12 +25,12 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 2,
-      title: 'ЖК "Маяк Минска"',
-      address: 'пр. Независимости, 177',
+      title: 'ЖК «Северный бульвар»',
+      address: 'г. Брест, ул. Олега Кошевого',
       timeline: '7 дней',
       points: 35,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/before-2.png',
+      imageBefore: '/after2.webp',
       imageAfter: '/after-2.png'
     },
     {
