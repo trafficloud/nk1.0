@@ -8,6 +8,7 @@ import SEO from './components/SEO';
 import CookieBanner from './components/CookieBanner';
 import Spinner from './components/Spinner';
 import { useScrollAnimation } from './hooks/useScrollAnimation';
+import { useYandexMetrika } from './hooks/useYandexMetrika';
 import { combineSchemas, generateLocalBusinessSchema, generateServiceSchema, generateBreadcrumbSchema, generateOrganizationSchema, generateFAQSchema, generateVideoObjectSchema } from './utils/seo';
 
 const Portfolio = lazy(() => import('./components/Portfolio'));
@@ -22,6 +23,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   useScrollAnimation();
+  useYandexMetrika();
 
   const structuredData = combineSchemas(
     generateLocalBusinessSchema(),
