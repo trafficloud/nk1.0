@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-const YANDEX_METRIKA_ID = 105203719;
+const YANDEX_METRIKA_ID = 105204696;
 
 export const useYandexMetrika = () => {
   const location = useLocation();
