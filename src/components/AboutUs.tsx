@@ -83,8 +83,8 @@ const AboutUs: React.FC = () => {
     {
       id: 4,
       title: 'Аттестат ГП',
-      preview: '/attestat-gp.png',
-      fullImage: '/attestat-gp.png'
+      preview: '/attestat GP.webp',
+      fullImage: '/attestat GP.webp'
     }
   ];
 
