@@ -15,13 +15,13 @@ const Portfolio: React.FC = () => {
   const portfolioData: PortfolioItem[] = [
     {
       id: 1,
-      title: 'ЖК "Минск Мир"',
-      address: 'ул. Дзержинского, 104',
+      title: 'ЖК «Чайка»',
+      address: 'г. Брест, ул. Октябрьской Революции',
       timeline: '5 дней',
       points: 28,
       gesAct: 'Акт сдан в ЖЭС',
-      imageBefore: '/before-1.png',
-      imageAfter: '/after-1.png'
+      imageBefore: '/after-1.png',
+      imageAfter: '/before-1.png'
     },
     {
       id: 2,
