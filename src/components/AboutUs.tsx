@@ -77,8 +77,8 @@ const AboutUs: React.FC = () => {
     {
       id: 3,
       title: 'Аттестат СМР',
-      preview: '/atestat-cmp.png',
-      fullImage: '/atestat-cmp.png'
+      preview: '/atestat CMP.webp',
+      fullImage: '/atestat CMP.webp'
     },
     {
       id: 4,
