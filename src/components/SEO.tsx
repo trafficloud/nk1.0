@@ -10,10 +10,10 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'Монтаж электрики в Беларуси | Профессиональные услуги электромонтажа в Бресте',
-  description = 'Профессиональный монтаж электропроводки в новостройках Бреста и области. 15 лет на рынке РБ, гарантия 24 месяца, бесплатный замер. Лицензированная компания с сертификатами.',
-  canonicalUrl = typeof window !== 'undefined' ? window.location.origin : 'https://надежныйконтакт.рф',
-  ogImage = typeof window !== 'undefined' ? `${window.location.origin}/68712ea0-bc68-4bc6-b983-b3985a37a71c.png` : 'https://надежныйконтакт.рф/68712ea0-bc68-4bc6-b983-b3985a37a71c.png',
+  title = 'Монтаж электрики в Бресте и Брестской области | Профессиональные услуги электромонтажа',
+  description = 'Профессиональный монтаж электропроводки в новостройках Бреста, Барановичей, Пинска и всей Брестской области. 15 лет опыта, гарантия 24 месяца, бесплатный выезд на замер по всей области.',
+  canonicalUrl = typeof window !== 'undefined' ? window.location.origin : 'https://safekontakt.site',
+  ogImage = typeof window !== 'undefined' ? `${window.location.origin}/68712ea0-bc68-4bc6-b983-b3985a37a71c.png` : 'https://safekontakt.site/68712ea0-bc68-4bc6-b983-b3985a37a71c.png',
   ogType = 'website',
   structuredData
 }) => {
@@ -23,7 +23,7 @@ const SEO: React.FC<SEOProps> = ({
 
     const metaTags = [
       { name: 'description', content: description },
-      { name: 'keywords', content: 'монтаж электрики Брест, электромонтаж Беларусь, электропроводка новостройка, электрик Брест, установка розеток, электромонтажные работы, штробление стен, сборка электрощита' },
+      { name: 'keywords', content: 'монтаж электрики Брест, электромонтаж Брестская область, электрик Барановичи, электропроводка Пинск, монтаж электрики Кобрин, электромонтаж новостройка Брест, установка розеток Брест, штробление стен Барановичи, сборка электрощита Брестская область' },
       { name: 'author', content: 'Надежный Контакт' },
       { name: 'revisit-after', content: '7 days' },
       { property: 'og:type', content: ogType },
@@ -43,7 +43,7 @@ const SEO: React.FC<SEOProps> = ({
       { name: 'twitter:image:alt', content: 'Надежный Контакт - Профессиональный электромонтаж' },
       { name: 'format-detection', content: 'telephone=yes' },
       { name: 'geo.region', content: 'BY-BR' },
-      { name: 'geo.placename', content: 'Брест' },
+      { name: 'geo.placename', content: 'Брест, Брестская область' },
       { name: 'geo.position', content: '52.097621;23.734050' },
       { name: 'ICBM', content: '52.097621, 23.734050' },
     ];

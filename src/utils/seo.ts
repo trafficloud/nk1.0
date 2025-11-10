@@ -13,17 +13,18 @@ export const generateLocalBusinessSchema = (reviewsData?: Review[]) => {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://yourdomain.com/#business',
+    '@id': 'https://safekontakt.site/#business',
     name: 'ОДО «Брестское предприятие производственных и инжиниринговых услуг»',
     alternateName: 'Надежный Контакт',
-    description: 'Профессиональный монтаж электропроводки в новостройках. 15 лет опыта, сертифицированные материалы, гарантия 24 месяца.',
-    url: 'https://yourdomain.com',
+    description: 'Профессиональный монтаж электропроводки в новостройках Бреста и Брестской области. 15 лет опыта, сертифицированные материалы, гарантия 24 месяца.',
+    url: 'https://safekontakt.site',
     telephone: '+375162351390',
     email: 'brestproing@tut.by',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'ул. Гоголя, 3',
       addressLocality: 'Брест',
+      addressRegion: 'Брестская область',
       postalCode: '224030',
       addressCountry: 'BY'
     },
@@ -47,8 +48,47 @@ export const generateLocalBusinessSchema = (reviewsData?: Review[]) => {
       }
     ],
     priceRange: '$$',
-    image: 'https://yourdomain.com/68712ea0-bc68-4bc6-b983-b3985a37a71c.png',
-    logo: 'https://yourdomain.com/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png',
+    image: 'https://safekontakt.site/68712ea0-bc68-4bc6-b983-b3985a37a71c.png',
+    logo: 'https://safekontakt.site/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png',
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Брест',
+        '@id': 'https://www.wikidata.org/wiki/Q181055'
+      },
+      {
+        '@type': 'City',
+        name: 'Барановичи'
+      },
+      {
+        '@type': 'City',
+        name: 'Пинск'
+      },
+      {
+        '@type': 'City',
+        name: 'Кобрин'
+      },
+      {
+        '@type': 'City',
+        name: 'Береза'
+      },
+      {
+        '@type': 'City',
+        name: 'Жабинка'
+      },
+      {
+        '@type': 'City',
+        name: 'Ивацевичи'
+      },
+      {
+        '@type': 'City',
+        name: 'Лунинец'
+      },
+      {
+        '@type': 'State',
+        name: 'Брестская область'
+      }
+    ],
     sameAs: [
       'https://www.facebook.com/yourpage',
       'https://www.instagram.com/yourpage'
@@ -67,16 +107,23 @@ export const generateServiceSchema = () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    '@id': 'https://yourdomain.com/#service',
+    '@id': 'https://safekontakt.site/#service',
     serviceType: 'Электромонтажные работы',
     provider: {
-      '@id': 'https://yourdomain.com/#business'
+      '@id': 'https://safekontakt.site/#business'
     },
-    areaServed: {
-      '@type': 'City',
-      name: 'Брест',
-      '@id': 'https://www.wikidata.org/wiki/Q181055'
-    },
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Брест',
+        '@id': 'https://www.wikidata.org/wiki/Q181055'
+      },
+      {
+        '@type': 'State',
+        name: 'Брестская область',
+        containsPlace: ['Барановичи', 'Пинск', 'Кобрин', 'Береза', 'Жабинка', 'Ивацевичи', 'Лунинец']
+      }
+    ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Услуги электромонтажа',
@@ -135,25 +182,25 @@ export const generateBreadcrumbSchema = () => {
         '@type': 'ListItem',
         position: 1,
         name: 'Главная',
-        item: 'https://yourdomain.com'
+        item: 'https://safekontakt.site'
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Услуги',
-        item: 'https://yourdomain.com#benefits'
+        item: 'https://safekontakt.site#benefits'
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Калькулятор',
-        item: 'https://yourdomain.com#calc'
+        item: 'https://safekontakt.site#calc'
       },
       {
         '@type': 'ListItem',
         position: 4,
         name: 'Отзывы',
-        item: 'https://yourdomain.com#reviews'
+        item: 'https://safekontakt.site#reviews'
       }
     ]
   };
@@ -163,11 +210,11 @@ export const generateOrganizationSchema = () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'https://yourdomain.com/#organization',
+    '@id': 'https://safekontakt.site/#organization',
     name: 'ОДО «Брестское предприятие производственных и инжиниринговых услуг»',
     legalName: 'ОДО «Брестское предприятие производственных и инжиниринговых услуг»',
-    url: 'https://yourdomain.com',
-    logo: 'https://yourdomain.com/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png',
+    url: 'https://safekontakt.site',
+    logo: 'https://safekontakt.site/68712ea0-bc68-4bc6-b983-b3985a37a71c-removebg-preview.png',
     foundingDate: '2009',
     taxID: '290484521',
     telephone: '+375162351390',
@@ -176,6 +223,7 @@ export const generateOrganizationSchema = () => {
       '@type': 'PostalAddress',
       streetAddress: 'ул. Гоголя, 3',
       addressLocality: 'Брест',
+      addressRegion: 'Брестская область',
       postalCode: '224030',
       addressCountry: 'BY'
     },
@@ -267,11 +315,11 @@ export const generateVideoObjectSchema = () => {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: 'Демонстрация электромонтажных работ',
-    description: 'Профессиональный монтаж электропроводки в новостройках Беларуси',
-    thumbnailUrl: 'https://yourdomain.com/68712ea0-bc68-4bc6-b983-b3985a37a71c.png',
+    description: 'Профессиональный монтаж электропроводки в новостройках Бреста и Брестской области',
+    thumbnailUrl: 'https://safekontakt.site/68712ea0-bc68-4bc6-b983-b3985a37a71c.png',
     uploadDate: '2024-01-01',
     duration: 'PT30S',
-    contentUrl: 'https://yourdomain.com/Cinematic_Electrical_Installation_Sequence.mp4'
+    contentUrl: 'https://safekontakt.site/Cinematic_Electrical_Installation_Sequence.mp4'
   };
 };
 
