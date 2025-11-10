@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calculator as CalculatorIcon } from 'lucide-react';
 import { loadConfig, Config } from '../types/calculator';
 import { getProcessedFormValues, calculateTotal, FormValues } from '../utils/calculator';
+import { saveCalculation } from '../utils/calculatorStorage';
 import ResultCard from './ResultCard';
 import Spinner from './Spinner';
 import Skeleton from './Skeleton';
@@ -25,6 +26,8 @@ const Calculator: React.FC = () => {
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [isLoadingConfig, setIsLoadingConfig] = useState(true);
   const [isCalculating, setIsCalculating] = useState(false);
+  const [sessionId, setSessionId] = useState<string>('');
+  const [submissionId, setSubmissionId] = useState<string | null>(null);
   
   // Form state
   const [fWallMaterial, setFWallMaterial] = useState('Не знаю');
@@ -43,6 +46,12 @@ const Calculator: React.FC = () => {
   const [optLow, setOptLow] = useState(false);
   const [optGround, setOptGround] = useState(false);
   const [optMeter, setOptMeter] = useState(false);
+
+  // Generate session ID on mount
+  useEffect(() => {
+    const id = crypto.randomUUID();
+    setSessionId(id);
+  }, []);
 
   // Load config on mount
   useEffect(() => {
@@ -87,11 +96,57 @@ const Calculator: React.FC = () => {
       wallMaterial: fWallMaterial,
       heightGT3: fCeilingHeight
     };
-    
+
     const processedForm = getProcessedFormValues(formValues);
     const calculationResult = calculateTotal(processedForm, config);
 
     setResult(calculationResult);
+
+    // Save to Supabase (silent fail)
+    const calculationData = {
+      min: calculationResult.min,
+      max: calculationResult.max,
+      breakdown: {
+        labor: { min: calculationResult.breakdown.works * 0.6, max: calculationResult.breakdown.works * 0.7 },
+        materials: { min: calculationResult.breakdown.materials * 0.9, max: calculationResult.breakdown.materials },
+        logistics: { min: calculationResult.breakdown.logistics, max: calculationResult.breakdown.logistics },
+        services: {
+          points: { min: 0, max: 0 },
+          lights: { min: 0, max: 0 },
+          panel: { min: 0, max: 0 },
+          chase: { min: 0, max: 0 },
+          options: { min: 0, max: 0 }
+        }
+      }
+    };
+
+    const saveResult = await saveCalculation(
+      {
+        objectType: fType,
+        area: fArea,
+        points: fPoints,
+        lights: fLights,
+        panel: fPanel,
+        rcd: fRcd,
+        chaseM: fChase,
+        materials: fMaterials,
+        region: fRegion,
+        urgency: fUrgency,
+        wallMaterial: fWallMaterial,
+        heightGt3: fCeilingHeight,
+        warmFloor: optWarm,
+        weakCurrent: optLow,
+        grounding: optGround,
+        meterMove: optMeter
+      },
+      calculationData,
+      sessionId
+    );
+
+    if (saveResult.success && saveResult.id) {
+      setSubmissionId(saveResult.id);
+    }
+
     setIsCalculating(false);
   };
 
@@ -393,6 +448,23 @@ const Calculator: React.FC = () => {
               breakdown={result.breakdown}
               factors={result.factors}
               orangeNote={result.orangeNote}
+              sessionId={sessionId}
+              submissionId={submissionId}
+              formValues={{
+                objectType: fType,
+                area: fArea,
+                points: fPoints,
+                lights: fLights,
+                region: fRegion,
+                materials: fMaterials,
+                urgency: fUrgency,
+                wallMaterial: fWallMaterial,
+                heightGt3: fCeilingHeight,
+                warmFloor: optWarm,
+                weakCurrent: optLow,
+                grounding: optGround,
+                meterMove: optMeter
+              }}
             />
           ) : (
             <div className="bg-white rounded-2xl ring-1 ring-[#1A3A63]/20 shadow-[0_6px_24px_-8px_rgba(10,20,40,0.25)] nk-hover p-6 md:p-7" data-reveal>
